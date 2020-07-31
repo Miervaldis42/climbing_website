@@ -1,3 +1,3 @@
 setTimeout(function () {
-	document.location.href="test";
+	document.location.href="sites";
 }, 5000)

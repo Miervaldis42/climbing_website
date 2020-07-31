@@ -18,3 +18,65 @@ body, html {
 	margin: 0;
 	padding: 0;
 }
+
+
+/*
+ * Container
+ */
+.container {
+	height: 90vh;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	text-align: center;
+	font-style: italic;
+	
+	margin: 0% auto;
+}
+
+
+/*
+ * Footer
+ */
+#footer {
+ 	height: 5vh;
+ 	width: 100vw;
+    
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+/* Footer - Desktop version */
+@media screen and (min-width: 769px) and (max-width: 3000px) {
+	#footer {
+		display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	}
+}
+
+#footer img {
+	height: 50%;
+	margin: 0% 1%;
+}
+
+#social_network {
+	width: 10vw;
+	
+	display: flex;
+	justify-content: space-evenly;
+}
+
+#social_network img {
+	width: 20%;
+}
+
+/* Footer - Mobile version */
+@media screen and (max-width: 769px) {
+	#footer {
+		display: none;
+	}
+}
