@@ -5,11 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class TestController {
+public class MainController {
 	
-	@RequestMapping("/test")
+	@RequestMapping("/sites")
 	public String showTestPage() {
-		return "test-page";
+		return "siteList-page";
 	}
 
 }
