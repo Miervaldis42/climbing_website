@@ -1,3 +1,12 @@
+/* Variables */
+:root {
+	--navbar-height: 10vh;
+	--navbar-color: black;
+	--navbar-color-alternative: rgb(126, 97, 78);
+}
+
+
+
 *,
 *::after,
 *::before {
@@ -5,6 +14,7 @@
     padding: 0;
     box-sizing: inherit;
 }
+
 
 /*
  * HTML & body
@@ -17,14 +27,73 @@ body, html {
 	
 	margin: 0;
 	padding: 0;
+	
+	display: flex;
+	flex-direction: column;
 }
+
+
+
+/*
+ * Header
+ */
+#header {
+	height: var(--navbar-height);
+	width: 100vw;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#header__logo {
+	height: 80%;
+	padding: 0.5% 0% 0.5% 1%;
+}
+
+#header__navbar {
+	height: var(--navbar-height);
+	width: 20%;
+	
+	display: flex;
+	justify-content: space-around;
+	
+	margin-right: 1%;
+}
+
+#header__navbar a {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+	text-decoration: none;
+	color: var(--navbar-color);
+}
+
+#header__navbar i {
+	font-size: 200%;
+	color: var(--navbar-color);
+	
+	padding-bottom: 5%;
+}
+
+#header__navbar .fa.fa-book {
+	padding-bottom: 8%;
+}
+
+#header__navbar i:hover {
+	font-size: 250%;
+	color: var(--navbar-color-alternative);
+}
+
 
 
 /*
  * Container
  */
 .container {
-	height: 90vh;
+	height: 85vh;
 	
 	display: flex;
 	justify-content: center;
@@ -35,6 +104,7 @@ body, html {
 	
 	margin: 0% auto;
 }
+
 
 
 /*
