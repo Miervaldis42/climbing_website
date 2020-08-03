@@ -1,6 +1,6 @@
 /* Mobile Style */
 #splashscreen {
-	background-image: url("../../assets/splashscreen_background_mobile.png");
+	background-image: url("../../assets/splashscreen/splashscreen_background_mobile.png");
 	background-size: cover;
 	background-position-x: 86%;
 }

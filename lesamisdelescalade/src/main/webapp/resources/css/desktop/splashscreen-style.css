@@ -9,7 +9,7 @@
  * Body
  */
 #splashscreen {
-  background-image: url("../../assets/splashscreen_background.png");
+  background-image: url("../../assets/splashscreen/splashscreen_background.png");
   background-size: cover;
   background-position-x: 100%;
   background-repeat: no-repeat;
@@ -36,7 +36,8 @@
 	left: 20%;
 	
 	font-family: "My Empire Wont Fall", Helvetica, "Times New Roman", serif;
-	font-size: 2em; 
+	font-size: 2em;
+	color: black;
 }
 
 #author {
