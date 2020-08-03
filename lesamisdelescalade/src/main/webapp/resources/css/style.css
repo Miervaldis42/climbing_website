@@ -144,9 +144,37 @@ body, html {
 	width: 20%;
 }
 
-/* Footer - Mobile version */
+
+
+/* 
+ * Mobile version
+ */
 @media screen and (max-width: 769px) {
+	
+	/* Header */
+	#header {
+		order: 3;
+	}
+	
+	#header__logo {
+		display: none;
+	}
+	
+	#header__navbar {
+		width: 100vw;
+		margin: 0;
+	}
+	
+	
+	/* Container */
+	.container {
+		height: 90vh;
+	}
+	
+	
+	/* Footer */
 	#footer {
 		display: none;
 	}
+
 }
