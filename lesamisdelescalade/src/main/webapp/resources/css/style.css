@@ -1,9 +1,10 @@
 /* Variables */
 :root {
 	--main-color: white;
+	--brown-color: rgb(126, 97, 78);
+	--brown-clear-color: rgba(37, 28, 28, 0.8);
 	
 	--navbar-height: 10vh;
-	--navbar-color-alternative: rgb(126, 97, 78);
 }
 
 
@@ -95,7 +96,7 @@ body, html {
 
 #header__navbar i:hover {
 	font-size: 250%;
-	color: var(--navbar-color-alternative);
+	color: var(--brown-color);
 }
 
 
@@ -177,6 +178,8 @@ body, html {
 	#header__navbar {
 		width: 100vw;
 		margin: 0;
+		
+		background-color: var(--brown-clear-color);
 	}
 	
 	
