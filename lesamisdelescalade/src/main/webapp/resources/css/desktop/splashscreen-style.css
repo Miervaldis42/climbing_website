@@ -13,6 +13,8 @@
   background-size: cover;
   background-position-x: 100%;
   background-repeat: no-repeat;
+  
+  display: block;
 }
 
 
