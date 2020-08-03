@@ -1,7 +1,8 @@
 /* Variables */
 :root {
+	--main-color: white;
+	
 	--navbar-height: 10vh;
-	--navbar-color: black;
 	--navbar-color-alternative: rgb(126, 97, 78);
 }
 
@@ -25,11 +26,16 @@ body, html {
 	height: 100vh;
 	width: 100vw;
 	
-	margin: 0;
-	padding: 0;
-	
 	display: flex;
 	flex-direction: column;
+	
+	background-size: cover;
+	background-position-x: right;
+	
+	color: var(--main-color);
+	
+	margin: 0;
+	padding: 0;
 }
 
 
@@ -73,12 +79,12 @@ body, html {
 	justify-content: center;
 	
 	text-decoration: none;
-	color: var(--navbar-color);
+	color: var(--main-color);
 }
 
 #header__navbar i {
 	font-size: 200%;
-	color: var(--navbar-color);
+	color: var(--main-color);
 	
 	padding-bottom: 5%;
 }
@@ -100,7 +106,6 @@ body, html {
 .container {
 	display: flex;
 	justify-content: center;
-	align-items: center;
 	
 	text-align: center;
 	font-style: italic;
@@ -110,6 +115,7 @@ body, html {
 @media screen and (min-width: 769px) and (max-width: 3000px) {
 	.container {
 		height: 85vh;
+		align-items: center;
 		margin: 0% auto;
 	}
 }
@@ -177,6 +183,8 @@ body, html {
 	/* Container */
 	.container {
 		height: 90vh;
+		align-items: flex-start;
+		margin-top: 15%;
 	}
 	
 	

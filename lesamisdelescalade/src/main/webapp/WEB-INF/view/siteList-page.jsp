@@ -20,7 +20,7 @@
 	</head>
 
 	<!-- Body -->
-	<body>
+	<body style="background-image: url('<%=request.getContextPath()%>/resources/assets/mountain.jpg')">
 		<%@ include file="navbar.jsp" %>
 		
 		<div class="container">
