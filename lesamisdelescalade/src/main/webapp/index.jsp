@@ -10,10 +10,10 @@
         
         <!-- CSS -->
 		<link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/resources/assets/favicon.ico" />
+		
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/style.css" />
-
-		<link rel="stylesheet" type="text/css" media="screen and (min-width: 769px) and (max-width: 3000px)" href="<%=request.getContextPath()%>/resources/css/desktop/splashscreen-style.css" />
-		<link rel="stylesheet" type="text/css" media="screen and (max-width: 769px)" href="<%=request.getContextPath()%>/resources/css/mobile/splashscreen-mobile.css" />
+		<link rel="stylesheet" type="text/css" media="screen and (max-width: 767.98px)" href="<%=request.getContextPath()%>/resources/css/mobile/splashscreen-mobile.css" />
+		<link rel="stylesheet" type="text/css"  media="screen and (min-width: 768px)" href="<%=request.getContextPath()%>/resources/css/desktop/splashscreen-style.css" />
 		
 		<title>Les amis de l'escalade</title>
 	</head>
