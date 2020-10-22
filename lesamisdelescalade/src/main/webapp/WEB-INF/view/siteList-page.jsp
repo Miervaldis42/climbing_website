@@ -10,26 +10,28 @@
         
         <!-- CSS -->
 		<link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/resources/assets/favicon.ico" />
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/style.css" />
 		
-		<!-- Font Awesome -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" media="screen and (max-width: 767.98px)" href="<%=request.getContextPath()%>/resources/css/style-mobile.css" />
+		<link rel="stylesheet" type="text/css" media="screen and (max-width: 767.98px)" href="<%=request.getContextPath()%>/resources/css/mobile/siteList-mobile.css" />
+		
+		<link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="<%=request.getContextPath()%>/resources/css/style.css" />
+		<link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="<%=request.getContextPath()%>/resources/css/desktop/siteList-style.css" />
 		
 		<!-- Tab name -->
 		<title>Sites d'escalade</title>
 	</head>
 
 	<!-- Body -->
-	<body style="background-image: url('<%=request.getContextPath()%>/resources/assets/mountain.jpg')">
-		<%@ include file="navbar.jsp" %>
+	<body id="body">
+		<%@ include file="common/navbar.jsp" %>
 		
 		<div class="container">
-			Nos développeurs mettent tous en oeuvre pour construire ce havre de paix avec vue en contre-plongée sur la montagne ! 
+			Nos développeurs mettent tous en oeuvre pour construire ce havre de paix avec vue en contre-plongée sur la montagne !
 			<br/>
 			Revenez plus tard pour apprécier le spectacle ;)
 		</div>
 		
-		<%@ include file="footer.jsp" %>
+		<%@ include file="common/footer.jsp" %>
 	</body>
 </html>
 

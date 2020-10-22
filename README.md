@@ -52,3 +52,6 @@
 1. In Eclipse : In the "Server" tab, double click on the server you create. It will open your Tomcat server parameters in the main window
 2. In the 2nd column of Tomcat parameters, there wil be a "Ports" section. In there, you can change the port numbers by clicking on it and tape the new port you want to use
 **_N.B:_** The port name used with localhost is HTTPS.
+
+
+**_DISCLAIMER_**: None of the images or/and icons belong to me, but to their rightful owners.
