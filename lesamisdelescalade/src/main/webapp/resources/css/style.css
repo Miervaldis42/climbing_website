@@ -4,7 +4,7 @@
 	--secondary-color: white;
 	
 	--body-height: 100vh;
-	--body-width: 100wv;
+	--body-width: 100vw;
 	--navbar-height: 10vh;
 	--footer-height: 5vh;
 }
@@ -92,14 +92,7 @@ html, body {
  */
 .container {
 	height: calc(var(--body-height) - var(--navbar-height) - var(--footer-height));
-	
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	
-	text-align: center;
-	font-style: italic;
-	margin: 0% auto;
 }
 
 
@@ -109,7 +102,7 @@ html, body {
  */
 #footer {
  	height: var(--footer-height);
- 	width: 100vw;
+ 	width: var(--body-width);
  	
 	display: flex;
     justify-content: space-between;
@@ -118,6 +111,11 @@ html, body {
     position: fixed;
     bottom: 0;
     left: 0;
+}
+
+#footer p {
+	position: absolute;
+    left: 45%;
 }
 
 #footer img {

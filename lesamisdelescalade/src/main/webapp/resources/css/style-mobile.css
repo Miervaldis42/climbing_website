@@ -9,7 +9,9 @@
 	
 	--body-height: 100vh;
 	--body-width: 100vw;
+	
 	--navbar-height: 10vh;
+	--mobile-navbar-color: rgba(183, 147, 120, 0.8);
 }
 
 *,
@@ -85,7 +87,7 @@ html, body {
 	display: flex;
 	justify-content: space-around;
 	
-	background-color: rgba(183, 147, 120, 0.8);
+	background-color: var(--mobile-navbar-color);
 }
 
 #header__navbar a {
