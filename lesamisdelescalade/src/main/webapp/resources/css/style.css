@@ -17,6 +17,10 @@
     box-sizing: inherit;
 }
 
+a {
+	text-decoration: none;
+}
+
 
 /*
  * HTML & body
@@ -92,6 +96,7 @@ html, body {
  */
 .container {
 	height: calc(var(--body-height) - var(--navbar-height) - var(--footer-height));
+	max-width: var(--body-width);
 	display: flex;
 }
 
