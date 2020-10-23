@@ -28,6 +28,7 @@
 		
 		<div id="loginContainer" class="container">
 			<h2>Bonjour jeune grimpeur(euse) !</h2>
+
 			<form:form id="loginForm" method="POST" action="login">
 				<div class="field">
 					<label for="typedEmail">Adresse email</label>
@@ -45,7 +46,7 @@
 			<!-- Links: Forgotten password & New climber -->
 			<div id="loginLinks">
 				<a href="#">Mot de passe oublié ?</a>
-				<a href="#">Nouveau par ici ?</a>
+				<a href="userInscription">Nouveau par ici ?</a>
 			</div>
 		</div>
 		

@@ -1,0 +1,87 @@
+/**
+ * inscription page - Desktop CSS file
+ */
+ 
+
+/* Variables */
+:root {
+	--valide-color: green;
+}
+ 
+ 
+
+/* Body & Container */
+#inscriptionBody {
+	/* background-image: url(../../assets/backgrounds/climber_background.png); */
+	background-size: cover;
+	background-position-x: right;
+}
+
+#inscriptionContainer {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#inscriptionContainer h2 {
+	margin-bottom: 1%;
+}
+
+#inscriptionContainer p {
+	font-style: italic;
+	overflow-wrap: break-word;
+	line-height: 1.5;
+}
+
+
+/* inscription form */
+#inscriptionForm {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+	margin: 2% 0;
+}
+
+#inscriptionForm * {
+	text-align: center;
+    margin: 5% 2%;
+}
+
+
+
+#inscriptionForm input:not([type="submit"]) {
+	text-align: center;
+	
+	width: 100%;
+	background: none;
+	
+	padding-bottom: 0.6%;
+	
+	border: none;
+	border-bottom: 1px solid;
+}
+
+#inscriptionForm input:focus {
+	padding-bottom: 3%;
+	outline: none;
+}
+
+
+
+/* Inscription button */
+#inscriptionButton {
+	border-radius: 20px;
+	
+	background-color: var(--main-color);
+	color: var(--secondary-color);
+	
+	padding: 4% 10%;
+	margin: 10% 0;
+}
+
+#inscriptionButton:hover {
+	font-style: italic;
+	transform: translate(0, -4px);
+	background: var(--valide-color);
+}
