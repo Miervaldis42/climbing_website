@@ -58,16 +58,8 @@ html, body {
 .container {
 	order: 1;
 	
-	height: 90vh;
-	
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	
-	text-align: center;
-	font-style: italic;
-	
-	margin: 0% auto;
+	height: calc(var(--body-height) - var(--navbar-height));
+	max-width: var(--body-width);
 }
 
 
