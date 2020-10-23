@@ -4,7 +4,7 @@
 
 	<!-- Navbar -->
 	<nav id="header__navbar">
-		<a href="#">
+		<a href="/lesamisdelescalade/sites">
 			<img src="<%=request.getContextPath()%>/resources/assets/navbar/mountains_icon.png" />
 			Sites
 		</a>
@@ -14,7 +14,7 @@
 			Topos
 		</a>
 	
-		<a href="#">
+		<a href="/lesamisdelescalade/auth/login">
 			<img src="<%=request.getContextPath()%>/resources/assets/navbar/climber_icon.png" />
 			Vous
 		</a>
