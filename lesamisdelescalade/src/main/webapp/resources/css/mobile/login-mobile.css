@@ -1,0 +1,108 @@
+/**
+ * Login page - Mobile CSS file
+ */
+ 
+
+/* Variables */
+:root {
+	--valide-color: green;
+}
+ 
+ 
+
+/* Body & Container */
+#loginBody {
+	background-image: url(../../assets/backgrounds/climber_background.png);
+	background-size: cover;
+	background-position-x: right;
+}
+ 
+#loginContainer {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#loginContainer h2 {
+	text-align: center;
+	margin: 5% auto;
+}
+
+
+/* Login form */
+#loginForm {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 80%;
+}
+
+#loginForm * {
+	display: block;
+	text-align: center;
+	margin: 2%;
+}
+
+#loginForm .field * {
+	margin: 8% 0;
+}
+
+#loginForm input[type="text"], #loginForm input[type="password"] {
+	text-align: center;
+	padding-bottom: 0.6%;
+
+	background: none;
+	border: none;
+	border-bottom: 1px solid;
+}
+
+#loginForm input:focus {
+	padding-bottom: 3%;
+	outline: none;
+}
+
+
+/* Login button */
+#loginButton {
+	border-radius: 20px;
+	
+	background-color: var(--main-color);
+	color: var(--secondary-color);
+	
+	padding: 4% 10%;
+	margin: 8% 0;
+}
+
+#loginButton:hover {
+	font-style: italic;
+	transform: translate(0, -4px);
+	background: var(--valide-color);
+}
+
+
+
+/* Links */
+#loginLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100vw;	
+}
+
+#loginLinks a {	
+	color: var(--main-color);
+	font-style: italic;
+	
+	margin: 2% 0;
+}
+
+#loginLinks a:hover {
+	font-size: 105%;
+	color: var(--secondary-color);
+}
+
+
+#header__logo, #footer {
+	display: none;
+}

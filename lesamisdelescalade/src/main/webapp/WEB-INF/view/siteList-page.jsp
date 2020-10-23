@@ -22,10 +22,10 @@
 	</head>
 
 	<!-- Body -->
-	<body id="body">
+	<body id="siteBody">
 		<%@ include file="common/navbar.jsp" %>
 		
-		<div class="container">
+		<div id="siteContainer" class="container">
 			Nos développeurs mettent tous en oeuvre pour construire ce havre de paix avec vue en contre-plongée sur la montagne !
 			<br/>
 			Revenez plus tard pour apprécier le spectacle ;)
