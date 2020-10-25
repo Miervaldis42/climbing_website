@@ -5,7 +5,7 @@
 
 /* Body & Container */
 #loginBody {
-	background-image: url(../../assets/backgrounds/climber_background.png);
+	/* background-image: url(../../assets/backgrounds/climber_background.png); */
 	background-size: cover;
 	background-position-x: right;
 }
