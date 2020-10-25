@@ -1,18 +1,12 @@
 /**
- * inscription page - Mobile CSS file
+ * Inscription page - Mobile CSS file
  */
- 
 
-/* Variables */
-:root {
-	--valide-color: green;
-}
- 
  
 
 /* Body & Container */
 #inscriptionBody {
-	/* background-image: url(../../assets/backgrounds/climber_background.png); */
+	background-image: url(../../assets/backgrounds/climber_background.png);
 	background-size: cover;
 	background-position-x: right;
 }
@@ -70,7 +64,7 @@
 }
 
 
-/* inscription button */
+/* Inscription button */
 #inscriptionButton {
 	border-radius: 20px;
 	
