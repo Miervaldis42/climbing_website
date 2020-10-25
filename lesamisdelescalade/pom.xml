@@ -53,6 +53,13 @@
       <version>5.2.4.RELEASE</version>
     </dependency>
     
+    <!-- Hashing -->
+    <dependency>
+    	<groupId>commons-codec</groupId>
+    	<artifactId>commons-codec</artifactId>
+    	<version>1.9</version>
+	</dependency>
+    
     <!-- Servlet -->
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -66,7 +73,7 @@
       <version>4.0.1</version>
     </dependency>
 	
-	  <!-- Hibernate -->
+    <!-- Hibernate -->
     <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-core</artifactId>
