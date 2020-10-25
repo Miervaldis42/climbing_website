@@ -3,13 +3,6 @@
  */
  
 
-/* Variables */
-:root {
-	--valide-color: green;
-}
- 
- 
-
 /* Body & Container */
 #loginBody {
 	background-image: url(../../assets/backgrounds/climber_background.png);
@@ -77,7 +70,7 @@
 #loginButton:hover {
 	font-style: italic;
 	transform: translate(0, -4px);
-	background: var(--valide-color);
+	background: var(--success-color);
 }
 
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -24,11 +25,22 @@
 
 	<!-- Body -->
 	<body id="loginBody">
+		<!-- Header -->
 		<%@ include file="../common/navbar.jsp" %>
 		
 		<div id="loginContainer" class="container">
-			<h2>Bonjour jeune grimpeur(euse) !</h2>
 
+			<!-- Toast: Error/Success -->
+			<c:if test="${not empty error}">
+				<%@ include file="../notifications/error.jsp" %>
+			</c:if>
+			<c:if test="${not empty success}">
+				<%@ include file="../notifications/success.jsp" %>
+			</c:if>
+		
+			<!-- Login -->
+			<h2>Bonjour jeune grimpeur(euse) !</h2>
+			
 			<form:form id="loginForm" method="POST" action="login">
 				<div class="field">
 					<label for="typedEmail">Adresse email</label>
@@ -50,6 +62,10 @@
 			</div>
 		</div>
 		
+		<!-- Footer -->
 		<%@ include file="../common/footer.jsp" %>
+		
+		<!-- Script : Toast - Transition out -->
+		<script defer src="<%=request.getContextPath()%>/resources/js/toastTransition.js"></script>
 	</body>
 </html>

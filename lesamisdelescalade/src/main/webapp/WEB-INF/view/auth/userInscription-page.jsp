@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -24,13 +25,22 @@
 
 	<!-- Body -->
 	<body id="inscriptionBody">
+		<!-- Header -->
 		<%@ include file="../common/navbar.jsp" %>
 		
-		<div id="inscriptionContainer" class="container">			
+		<div id="inscriptionContainer" class="container">
+			<!-- Toast: Error -->
+			<c:if test="${not empty error}">
+				<%@ include file="../notifications/error.jsp" %>
+			</c:if>
+					
+			<!-- Inscription -->
 			<h2>Inscription</h2>
-			<p>Après cette inscription, tu feras parti(e) de la grande famille des 'Amis de l'escalade' !</p>
-			<p>Cela te permettra de commenter des sites d'escalade, modifier des informations sur les fiches de ces derniers et même réserver des topos !!</p>
-			<p>Alors, n'hésite pas à adhérer ;)</p>
+			<div id="inscriptionDescription">
+				<p>Après cette inscription, tu feras parti(e) de la grande famille des 'amis de l'escalade' !</p>
+				<p>Cela te permettra de commenter des sites d'escalade, modifier des informations sur les fiches de ces derniers et même réserver des topos !!</p>
+				<p>Alors, n'hésite pas à adhérer ;)</p>
+			</div>
 			
 			<form:form id="inscriptionForm" action="saveUser" modelAttribute="user" method="POST">
 				<label>Nom de famille</label>
@@ -45,11 +55,16 @@
 				<label>Password</label>
 				<form:password path="password" />
 				
+				<!-- Submit button -->
 				<input id="inscriptionButton" type="submit" value="Je m'inscris !" />
 			</form:form>
 		</div>
 		
+		<!-- Footer -->
 		<%@ include file="../common/footer.jsp" %>
+		
+		<!-- Script : Toast - Transition out -->
+		<script defer src="<%=request.getContextPath()%>/resources/js/toastTransition.js"></script>
 	</body>
 
 </html>

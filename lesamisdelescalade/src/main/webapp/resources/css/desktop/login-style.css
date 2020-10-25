@@ -2,12 +2,6 @@
  * Login page - Desktop CSS file
  */
  
-
-/* Variables */
-:root {
-	--valide-color: green;
-}
- 
  
 
 /* Body & Container */
@@ -71,7 +65,7 @@
 #loginButton:hover {
 	font-style: italic;
 	transform: translate(0, -4px);
-	background: var(--valide-color);
+	background: var(--success-color);
 }
 
 
