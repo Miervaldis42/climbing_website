@@ -35,15 +35,40 @@ public class AuthController {
 	 * Login page
 	 */
 	@GetMapping("login")
-	public String showLoginPage(Model toast) {
+	public String showLoginPage(Model credentialsModel, Model toastModel) {
+		User subscriber = new User();
+		credentialsModel.addAttribute("credentials", subscriber);
+		
 		// Toast to display
 		if(errorCode == "201 - User created") {
 			String message = errorDetector.displayErrorMessage(errorCode);
-			toast.addAttribute("success", message);
+			toastModel.addAttribute("success", message);
+		} else {
+			String message = errorDetector.displayErrorMessage(errorCode);
+			toastModel.addAttribute("error", message);
 		}
 		errorCode = "";
 
 		return authDir + "login-page";
+	}
+	
+	@PostMapping("connexion")
+	public String goBackToMainPage(@ModelAttribute("credentials") User subscriber) {
+		System.out.println(subscriber);
+		
+		String redirection = "";
+		
+		if(subscriber.getEmail().isEmpty() || subscriber.getPassword().isEmpty()) {
+			errorCode = "400 - Empty input";
+			redirection = "redirect:/auth/login";
+		} else if (Objects.deepEquals(subscriber.getEmail(), "admin") && Objects.deepEquals(subscriber.getPassword(), "admin")) {
+			redirection = "redirect:/sites";
+		} else {
+			
+			redirection = "redirect:/sites";
+		}
+		
+		return redirection;
 	}
 	
 	
@@ -52,14 +77,14 @@ public class AuthController {
 	 * User inscription
 	 */
 	@GetMapping("userInscription")
-	public String showUserInscriptionPage(Model userModel, Model toast) {
+	public String showUserInscriptionPage(Model userModel, Model toastModel) {
 		User newUser = new User();
 		userModel.addAttribute("user", newUser);
 
 		// Toast to display
 		if(errorCode != "201 - User created") {
 			String message = errorDetector.displayErrorMessage(errorCode);
-			toast.addAttribute("error", message);
+			toastModel.addAttribute("error", message);
 		}
 		
 		return authDir + "userInscription-page";

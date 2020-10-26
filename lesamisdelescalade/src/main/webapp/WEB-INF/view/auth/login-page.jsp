@@ -37,23 +37,23 @@
 			<c:if test="${not empty success}">
 				<%@ include file="../notifications/success.jsp" %>
 			</c:if>
+
 		
 			<!-- Login -->
 			<h2>Bonjour jeune grimpeur(euse) !</h2>
 			
-			<form:form id="loginForm" method="POST" action="login">
-				<div class="field">
-					<label for="typedEmail">Adresse email</label>
-					<input type="text" name="typedEmail" autofocus />
-				</div>
+			<form:form id="loginForm" action="connexion" modelAttribute="credentials" method="POST">
+
+				<label>Adresse email</label>
+				<form:input path="email" />
 				
-				<div class="field">
-					<label for="typedPassword">Mot de passe</label>
-					<input type="password" name="typedPassword" />
-				</div>
-				
+				<label>Password</label>
+				<form:password path="password" />
+
+				<!-- Submit button -->
 				<input id="loginButton" type="submit" value="Et c'est parti !" />
 			</form:form>
+
 
 			<!-- Links: Forgotten password & New climber -->
 			<div id="loginLinks">
