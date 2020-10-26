@@ -12,10 +12,10 @@ public class ErrorHandler {
 	
 	
 	// Error message
-	public String displayErrorMessage(String errorCode) {
+	public String displayToastMessage(String code) {
 		String messageToDisplay = "";
 		
-		switch(errorCode) {
+		switch(code) {
 			case "201 - User created":
 				messageToDisplay = "Bienvenue parmi nous ! ^^";
 				break;
@@ -25,6 +25,10 @@ public class ErrorHandler {
 				break;
 			case "400 - Invalid email":
 				messageToDisplay = "Le format de l'adresse email est incorrect...";
+				break;
+				
+			case "404 - User Not Found":
+				messageToDisplay = "L'adresse email ou/et le mot de passe sont incorrects...";
 				break;
 				
 			default:

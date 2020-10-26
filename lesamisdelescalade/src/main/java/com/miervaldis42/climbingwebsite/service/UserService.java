@@ -9,6 +9,7 @@ import java.util.List;
 // Service
 public interface UserService {
 	public void saveUser(User newUser);
-
+	
+	public User getUserByCredentials(User unknownUser);
 	public List<User> getUsers();
 }

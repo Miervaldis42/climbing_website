@@ -8,7 +8,8 @@ import java.util.List;
 public interface UserDAO {
 
 	public void saveUser(User newUser);
-
+	
+	public User getUserByCredentials(User unknownUser);
 	public List<User> getUsers();
 
 }
