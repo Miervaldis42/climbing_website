@@ -9,6 +9,7 @@ public interface UserDAO {
 
 	public void saveUser(User newUser);
 	
+	public Boolean checkEmailExists(String providedEmail);
 	public User getUserByCredentials(User unknownUser);
 	public List<User> getUsers();
 

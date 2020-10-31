@@ -10,6 +10,8 @@ import java.util.List;
 public interface UserService {
 	public void saveUser(User newUser);
 	
+	public Boolean checkEmailExists(String providedEmail);
 	public User getUserByCredentials(User unknownUser);
 	public List<User> getUsers();
+
 }
