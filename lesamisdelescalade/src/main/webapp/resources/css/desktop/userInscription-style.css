@@ -3,7 +3,9 @@
  */
  
 
-/* Body & Container */
+/* 
+ * Body & Container
+ */
 #inscriptionBody {
 	/* background-image: url(../../assets/backgrounds/climber_background.png); */
 	background-size: cover;
@@ -17,6 +19,19 @@
     justify-content: center;
 }
 
+
+/* Button to go back the "log in" page */
+#backToLoginButton {
+	align-self: flex-start;
+	margin-left: 2%;
+}
+
+#backToLoginButton img {
+	width: 10%;
+}
+
+
+/* Description */
 #inscriptionDescription {
 	margin: 1% 0 1.2% 0;
 }
@@ -29,7 +44,7 @@
 }
 
 
-/* inscription form */
+/* Inscription form */
 #inscriptionForm {
 	display: flex;
     flex-direction: column;
@@ -41,8 +56,6 @@
 	text-align: center;
 	margin: 5% 2%;
 }
-
-
 
 #inscriptionForm input:not([type="submit"]) {
 	text-align: center;
