@@ -31,6 +31,10 @@ public class ErrorHandler {
 				messageToDisplay = "L'adresse email ou/et le mot de passe sont incorrects...";
 				break;
 				
+			case "409 - Pre-existing Email":
+				messageToDisplay = "Cet adresse email est déjà relié à un compte !";
+				break;
+				
 			default:
 				break;
 		}

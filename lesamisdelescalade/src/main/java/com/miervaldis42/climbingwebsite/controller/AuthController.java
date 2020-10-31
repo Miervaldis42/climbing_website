@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
+import javax.servlet.http.HttpSession;
 
 import com.miervaldis42.climbingwebsite.entity.Role;
 import com.miervaldis42.climbingwebsite.entity.User;
@@ -25,7 +26,7 @@ public class AuthController {
 	@Autowired
 	private UserService userService;
 	
-	// Error variables
+	// Variables for error handling
 	ErrorHandler errorDetector = new ErrorHandler();
 	String toastCode = ""; 
 	
@@ -34,6 +35,8 @@ public class AuthController {
 	/*
 	 * Login page
 	 */
+	
+	// Show login page
 	@GetMapping("login")
 	public String showLoginPage(Model credentialsModel, Model toastModel) {
 		User unknownUser = new User();
@@ -43,6 +46,8 @@ public class AuthController {
 		if(toastCode == "201 - User created") {
 			String message = errorDetector.displayToastMessage(toastCode);
 			toastModel.addAttribute("success", message);
+		} else if(toastCode == "409 - Pre-existing Email") {
+			toastCode = "";
 		} else {
 			String message = errorDetector.displayToastMessage(toastCode);
 			toastModel.addAttribute("error", message);
@@ -52,29 +57,37 @@ public class AuthController {
 		return authDir + "login-page";
 	}
 	
+	
+	// Connexion with provided credentials
 	@PostMapping("connexion")
-	public String goBackToMainPage(@ModelAttribute("credentials") User unknownUser) {
-		String redirection = "redirect:/sites";
+	public String goBackToMainPage(@ModelAttribute("credentials") User unknownUser, HttpSession activeSession) {
+		String redirection = "redirect:/auth/login";
 		
 		// Possible error list
 		if(unknownUser.getEmail().isEmpty() || unknownUser.getPassword().isEmpty()) {
 			toastCode = "400 - Empty input";
-			return redirection = "redirect:/auth/login";
+			return redirection;
 
-		} else if (Objects.equals(unknownUser.getEmail(), "admin") && Objects.equals(unknownUser.getPassword(), "admin")) {
-			return redirection = "redirect:/sites";
-
-		} else if(!errorDetector.checkEmail(unknownUser.getEmail())) {
+		} else if(!errorDetector.checkEmail(unknownUser.getEmail()) && !Objects.equals(unknownUser.getEmail(), "admin")) {
 			toastCode = "400 - Invalid email";
-			return redirection = "redirect:/auth/login";
+			return redirection;
 
 		}
 		
 		// If no errors detected, execute transaction
 		User user = userService.getUserByCredentials(unknownUser);
+
 		if(user == null) {
 			toastCode = "404 - User Not Found";
-			return redirection = "redirect:/auth/login";
+			return redirection;
+		} else {
+			activeSession.setAttribute("id", user.getId());
+			activeSession.setAttribute("lastname", user.getLastname());
+			activeSession.setAttribute("firstname", user.getFirstname());
+			activeSession.setAttribute("email", user.getEmail());
+			activeSession.setAttribute("role", user.getRole());
+			
+			redirection = "redirect:/sites";
 		}
 		
 		return redirection;
@@ -85,6 +98,8 @@ public class AuthController {
 	/* 
 	 * User inscription
 	 */
+	
+	// Show user inscription page
 	@GetMapping("userInscription")
 	public String showUserInscriptionPage(Model userModel, Model toastModel) {
 		User newUser = new User();
@@ -99,18 +114,27 @@ public class AuthController {
 		return authDir + "userInscription-page";
 	}
 	
+
+	// Save the new user
 	@PostMapping("saveUser")
 	public String saveUser(@ModelAttribute("user") User newUser) {
-		String redirection = "";
+		String redirection = "redirect:/auth/login";
 		
+		// Check cases
 		if(newUser.getLastname().isEmpty() || newUser.getFirstname().isEmpty() || newUser.getEmail().isEmpty() || newUser.getPassword().isEmpty()) {
 			toastCode = "400 - Empty input";
 			redirection = "redirect:/auth/userInscription";
+			return redirection;
 			
 		} else if(!errorDetector.checkEmail(newUser.getEmail())) {
 			toastCode = "400 - Invalid email";
 			redirection = "redirect:/auth/userInscription";
+			return redirection;
 
+		} else if(userService.checkEmailExists(newUser.getEmail())) {
+			toastCode = "409 - Pre-existing Email";
+			redirection = "redirect:/auth/userInscription";
+			return redirection;
 		} else {
 			Date today = new Date();
 			newUser.setCreatedAt(today);
@@ -118,8 +142,7 @@ public class AuthController {
 			userService.saveUser(newUser);
 			
 			toastCode = "201 - User created";
-			redirection = "redirect:/auth/login";
-		}	
+		}
 
 		return redirection;
 	}
