@@ -65,7 +65,7 @@ html, body {
 .container {
 	order: 1;
 	
-	height: calc(var(--body-height) - var(--navbar-height));
+	height: calc(var(--body-height) - var(--navbar-height) - 6.8vh);
 	max-width: var(--body-width);
 	
 	scroll: auto;
