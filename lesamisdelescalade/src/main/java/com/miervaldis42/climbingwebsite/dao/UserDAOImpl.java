@@ -17,14 +17,14 @@ import com.miervaldis42.climbingwebsite.entity.User;
 
 /* DAO implementation */
 @Repository
-public class UserDAOImpl implements UserDAO {
-	
-	// Helper class
-	HashPassword hasherMachine = new HashPassword();
-	
+public class UserDAOImpl implements UserDAO {	
 	// Inject the session factory
 	@Autowired
 	private SessionFactory sessionFactory;
+
+	// Helper class
+	HashPassword hasherMachine = new HashPassword();
+
 
 
 	/*
