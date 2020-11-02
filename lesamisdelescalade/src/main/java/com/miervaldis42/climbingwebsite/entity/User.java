@@ -43,7 +43,18 @@ public class User {
 	private Date updatedAt;
 
 	
-	// Methods
+	/*
+	 * Constructor
+	 */
+	public User() {
+		
+	}
+	
+	
+	
+	/*
+	 * Methods
+	 */
 	
 	// id
 	public int getId() {
