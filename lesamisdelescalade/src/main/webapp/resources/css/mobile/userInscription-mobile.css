@@ -1,29 +1,37 @@
 /**
- * Login page - Mobile CSS file
+ * Inscription page - Mobile CSS file
  */
+
  
 
 /* Body & Container */
-#loginBody {
+#inscriptionBody {
 	/* background-image: url(../../assets/backgrounds/climber_background.png); */
 	background-size: cover;
 	background-position-x: right;
 }
  
-#loginContainer {
+#inscriptionContainer {
 	display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#loginContainer h2 {
+#inscriptionContainer h2 {
 	text-align: center;
 	margin: 5% auto;
 }
 
+#inscriptionContainer p {
+	text-align: center;
+	font-style: italic;
+	line-height: 1.5;
+	margin: 0 5%;
+}
 
-/* Login form */
-#loginForm {
+
+/* inscription form */
+#inscriptionForm {
 	display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,17 +39,17 @@
     flex-basis: 80%;
 }
 
-#loginForm * {
+#inscriptionForm * {
 	display: block;
 	text-align: center;
-	margin: 2%;
+	margin: 5%;
 }
 
-#loginForm .field * {
+#inscriptionForm .field * {
 	margin: 8% 0;
 }
 
-#loginForm input[type="text"], #loginForm input[type="password"] {
+#inscriptionForm input[type="text"], #inscriptionForm input[type="password"] {
 	text-align: center;
 	padding-bottom: 0.6%;
 
@@ -50,14 +58,14 @@
 	border-bottom: 1px solid;
 }
 
-#loginForm input:focus {
+#inscriptionForm input:focus {
 	padding-bottom: 3%;
 	outline: none;
 }
 
 
-/* Login button */
-#loginButton {
+/* Inscription button */
+#inscriptionButton {
 	border-radius: 20px;
 	
 	background-color: var(--main-color);
@@ -67,35 +75,14 @@
 	margin: 8% 0;
 }
 
-#loginButton:hover {
+#inscriptionButton:hover {
 	font-style: italic;
 	transform: translate(0, -4px);
 	background: var(--success-color);
 }
 
 
-
-/* Links */
-#loginLinks {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100vw;	
-}
-
-#loginLinks a {	
-	color: var(--main-color);
-	font-style: italic;
-	
-	margin: 2% 0;
-}
-
-#loginLinks a:hover {
-	font-size: 105%;
-	color: var(--secondary-color);
-}
-
-
+/* Logo & Footer */
 #header__logo, #footer {
 	display: none;
 }

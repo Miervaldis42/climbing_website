@@ -40,7 +40,7 @@
 	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/climbing_website_db?useSSL=false&amp;serverTimezone=UTC" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/climbing_website_db?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Paris" />
         <property name="user" value="admin" />
         <property name="password" value="lesamisdelescalade" /> 
 

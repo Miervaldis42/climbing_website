@@ -1,12 +1,19 @@
 /* Variables */
 :root {
 	--main-color: black;
-	--secondary-color: white;
+	--secondary-color: orange;
+	--white-color: white;
 	
 	--body-height: 100vh;
 	--body-width: 100vw;
 	--navbar-height: 10vh;
 	--footer-height: 5vh;
+	
+	--success-color: green;
+	--success-background: rgba(0, 156, 34, 0.8);
+	
+	--error-color: red;
+	--error-background: rgba(182, 2, 2, 0.8);
 }
 
 *,
@@ -97,6 +104,72 @@ html, body {
 .container {
 	height: calc(var(--body-height) - var(--navbar-height) - var(--footer-height));
 	max-width: var(--body-width);
+}
+
+
+/*
+ * Toasts
+ */
+.toast {
+	position: absolute;
+    top: 10%;
+    right: 2%;
+    z-index: 100;
+	
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	
+	width: 15%;
+	padding: 0.2% 0;
+	border-radius: 10px;
+	
+	animation: fadein 2s;
+}
+
+@-webkit-keyframes fadein {
+    from {
+        opacity:0;
+        transform: translateY(-150%);
+    }
+    to {
+   		transform: translateY(0%);
+        opacity:1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        opacity:1;
+        transform: translateY(0%);
+    }
+    to {
+   		transform: translateY(-150%);
+        opacity:0;
+        display: none;
+    }
+}
+
+.toast img {
+	width: 10%;
+	margin: 0 4%;
+}
+
+.toast p {
+	font-size: 85%;
+	font-style: italic;
+	font-weight: bold;
+	color: var(--white-color);
+	
+	padding: 1%; 
+}
+
+.toast.error {
+	background: var(--error-background);
+}
+
+.toast.success {
+	background: var(--success-background);
 }
 
 
