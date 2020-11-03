@@ -27,7 +27,7 @@ public class AuthController {
 	
 	// Error variables
 	ErrorHandler errorDetector = new ErrorHandler();
-	String errorCode = ""; 
+	String toastCode = ""; 
 	
 	
 	
@@ -35,15 +35,49 @@ public class AuthController {
 	 * Login page
 	 */
 	@GetMapping("login")
-	public String showLoginPage(Model toast) {
+	public String showLoginPage(Model credentialsModel, Model toastModel) {
+		User unknownUser = new User();
+		credentialsModel.addAttribute("credentials", unknownUser);
+		
 		// Toast to display
-		if(errorCode == "201 - User created") {
-			String message = errorDetector.displayErrorMessage(errorCode);
-			toast.addAttribute("success", message);
+		if(toastCode == "201 - User created") {
+			String message = errorDetector.displayToastMessage(toastCode);
+			toastModel.addAttribute("success", message);
+		} else {
+			String message = errorDetector.displayToastMessage(toastCode);
+			toastModel.addAttribute("error", message);
 		}
-		errorCode = "";
+		toastCode = "";
 
 		return authDir + "login-page";
+	}
+	
+	@PostMapping("connexion")
+	public String goBackToMainPage(@ModelAttribute("credentials") User unknownUser) {
+		String redirection = "redirect:/sites";
+		
+		// Possible error list
+		if(unknownUser.getEmail().isEmpty() || unknownUser.getPassword().isEmpty()) {
+			toastCode = "400 - Empty input";
+			return redirection = "redirect:/auth/login";
+
+		} else if (Objects.equals(unknownUser.getEmail(), "admin") && Objects.equals(unknownUser.getPassword(), "admin")) {
+			return redirection = "redirect:/sites";
+
+		} else if(!errorDetector.checkEmail(unknownUser.getEmail())) {
+			toastCode = "400 - Invalid email";
+			return redirection = "redirect:/auth/login";
+
+		}
+		
+		// If no errors detected, execute transaction
+		User user = userService.getUserByCredentials(unknownUser);
+		if(user == null) {
+			toastCode = "404 - User Not Found";
+			return redirection = "redirect:/auth/login";
+		}
+		
+		return redirection;
 	}
 	
 	
@@ -52,14 +86,14 @@ public class AuthController {
 	 * User inscription
 	 */
 	@GetMapping("userInscription")
-	public String showUserInscriptionPage(Model userModel, Model toast) {
+	public String showUserInscriptionPage(Model userModel, Model toastModel) {
 		User newUser = new User();
 		userModel.addAttribute("user", newUser);
 
 		// Toast to display
-		if(errorCode != "201 - User created") {
-			String message = errorDetector.displayErrorMessage(errorCode);
-			toast.addAttribute("error", message);
+		if(toastCode != "201 - User created") {
+			String message = errorDetector.displayToastMessage(toastCode);
+			toastModel.addAttribute("error", message);
 		}
 		
 		return authDir + "userInscription-page";
@@ -70,11 +104,11 @@ public class AuthController {
 		String redirection = "";
 		
 		if(newUser.getLastname().isEmpty() || newUser.getFirstname().isEmpty() || newUser.getEmail().isEmpty() || newUser.getPassword().isEmpty()) {
-			errorCode = "400 - Empty input";
+			toastCode = "400 - Empty input";
 			redirection = "redirect:/auth/userInscription";
 			
 		} else if(!errorDetector.checkEmail(newUser.getEmail())) {
-			errorCode = "400 - Invalid email";
+			toastCode = "400 - Invalid email";
 			redirection = "redirect:/auth/userInscription";
 
 		} else {
@@ -83,7 +117,7 @@ public class AuthController {
 			newUser.setRole(Role.SUBSCRIBER);
 			userService.saveUser(newUser);
 			
-			errorCode = "201 - User created";
+			toastCode = "201 - User created";
 			redirection = "redirect:/auth/login";
 		}	
 

@@ -27,7 +27,7 @@ CREATE TABLE `users` (
   `firstname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` varchar(255) NOT NULL DEFAULT "SUBSCRIBER",
+  `role` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -42,7 +42,7 @@ LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 
 INSERT INTO `users` VALUES 
-	(1,'Fallacy','Hal','hal@gmail.com','admin','ADMIN', '2020-01-01 10:10:10', null);
+	(1, 'Fallacy', 'Hal', 'admin', 'admin', '0', '2020-01-01 10:10:10', null);
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;

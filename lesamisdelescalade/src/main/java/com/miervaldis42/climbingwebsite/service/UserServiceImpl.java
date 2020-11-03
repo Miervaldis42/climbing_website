@@ -17,10 +17,23 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
 	
+	/*
+	 * Create user
+	 */
 	@Override
 	@Transactional
 	public void saveUser(User newUser) {
 		userDAO.saveUser(newUser);
+	}
+	
+	
+	/*
+	 * Get user(s)
+	 */
+	@Override
+	@Transactional
+	public User getUserByCredentials(User unknownUser) {
+		return userDAO.getUserByCredentials(unknownUser);
 	}
 
 	@Override

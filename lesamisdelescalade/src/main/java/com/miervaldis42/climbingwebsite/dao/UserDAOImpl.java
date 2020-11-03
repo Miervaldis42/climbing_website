@@ -18,7 +18,7 @@ import com.miervaldis42.climbingwebsite.entity.User;
 @Repository
 public class UserDAOImpl implements UserDAO {
 	
-	// Class to use the hashing method
+	// Helper class
 	HashPassword hasherMachine = new HashPassword();
 	
 	// Inject the session factory
@@ -42,13 +42,39 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	
+	
+	@Override
+    public User getUserByCredentials(User unknownUser) {
+		// Hash given password
+		byte[] hashedBytes = hasherMachine.hashPassword(unknownUser.getPassword());
+		String hashedPassword = Hex.encodeHexString(hashedBytes);
+		unknownUser.setPassword(hashedPassword);
+	    
+
+	    // Hibernate transaction
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        Query<User> matchFound = currentSession.createQuery("FROM User u WHERE u.email=:email AND u.password=:pwd", User.class);
+        matchFound.setParameter("email", unknownUser.getEmail());
+        matchFound.setParameter("pwd", unknownUser.getPassword());
+
+        User user;
+        if(matchFound.getResultList().isEmpty()) {
+        	user = null; 
+        } else {
+        	user = matchFound.getSingleResult();
+        }
+
+        return user;
+    }
+	
 	@Override
 	public List<User> getUsers() {
 		// Get the current Hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		// Create & execute the query
-		Query<User> getUsersQuery = currentSession.createQuery("FROM Users", User.class);
+		Query<User> getUsersQuery = currentSession.createQuery("FROM User", User.class);
 		List<User> users = getUsersQuery.getResultList();
 		
 		// Return result
