@@ -13,10 +13,10 @@
 			<img src="<%=request.getContextPath()%>/resources/assets/navbar/topos_icon.png" />
 			Topos
 		</a>
-	
-		<a href="/lesamisdelescalade/auth/login">
+		
+		<a href="${ redirection }">
 			<img src="<%=request.getContextPath()%>/resources/assets/navbar/climber_icon.png" />
-			Vous
+			${ firstname }
 		</a>
 	</nav>
 </header>

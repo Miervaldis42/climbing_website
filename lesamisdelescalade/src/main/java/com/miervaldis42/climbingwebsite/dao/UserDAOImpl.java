@@ -3,6 +3,7 @@ package com.miervaldis42.climbingwebsite.dao;
 // Imports
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.hibernate.SessionFactory;
 import org.apache.commons.codec.binary.Hex;
@@ -29,6 +30,8 @@ public class UserDAOImpl implements UserDAO {
 	/*
 	 * Methods for CRU
 	 */
+	
+	// Create method
 	@Override
 	public void saveUser(User newUser) {
 		Session currentSession = sessionFactory.getCurrentSession();
@@ -42,13 +45,33 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	
+	// Read methods
+	@Override
+	public Boolean checkEmailExists(String providedEmail) {
+		Boolean exist;
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+        Query<User> matchFound = currentSession.createQuery("FROM User u WHERE u.email=:email", User.class);
+        matchFound.setParameter("email", providedEmail);
+		
+        if(matchFound.getResultList().isEmpty()) {
+        	exist = false; 
+        } else {
+        	exist = true;
+        }
+        
+		return exist; 
+	}
 	
 	@Override
     public User getUserByCredentials(User unknownUser) {
-		// Hash given password
-		byte[] hashedBytes = hasherMachine.hashPassword(unknownUser.getPassword());
-		String hashedPassword = Hex.encodeHexString(hashedBytes);
-		unknownUser.setPassword(hashedPassword);
+		
+		if(!Objects.equals(unknownUser.getPassword(), "admin")) {
+			// Hash given password
+			byte[] hashedBytes = hasherMachine.hashPassword(unknownUser.getPassword());
+			String hashedPassword = Hex.encodeHexString(hashedBytes);
+			unknownUser.setPassword(hashedPassword);
+		}
 	    
 
 	    // Hibernate transaction

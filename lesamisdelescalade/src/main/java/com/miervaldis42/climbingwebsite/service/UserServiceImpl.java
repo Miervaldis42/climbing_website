@@ -32,6 +32,12 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	@Transactional
+	public Boolean checkEmailExists(String providedEmail) {
+		return userDAO.checkEmailExists(providedEmail);
+	}
+	
+	@Override
+	@Transactional
 	public User getUserByCredentials(User unknownUser) {
 		return userDAO.getUserByCredentials(unknownUser);
 	}

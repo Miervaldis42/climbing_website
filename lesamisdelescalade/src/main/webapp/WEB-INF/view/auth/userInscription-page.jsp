@@ -33,6 +33,12 @@
 			<c:if test="${not empty error}">
 				<%@ include file="../notifications/error.jsp" %>
 			</c:if>
+			
+			<div id="backToLoginButton">
+				<a href="/lesamisdelescalade/auth/login">
+					<img src="<%=request.getContextPath()%>/resources/assets/buttons/back_icon.png" alt="go back to login page" />
+				</a>
+			</div>
 					
 			<!-- Inscription -->
 			<h2>Inscription</h2>

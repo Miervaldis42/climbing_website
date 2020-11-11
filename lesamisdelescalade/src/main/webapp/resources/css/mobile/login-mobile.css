@@ -37,10 +37,6 @@
 	margin: 2%;
 }
 
-#loginForm .field * {
-	margin: 8% 0;
-}
-
 #loginForm input[type="text"], #loginForm input[type="password"] {
 	text-align: center;
 	padding-bottom: 0.6%;
