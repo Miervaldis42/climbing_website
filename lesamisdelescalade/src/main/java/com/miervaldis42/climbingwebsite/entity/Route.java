@@ -27,10 +27,6 @@ public class Route {
 	@JoinColumn(name="sector_id")
 	private Sector sector;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-	@JoinColumn(name="site_id")
-	private Site site;
-	
 	@Column(name="name")
 	private String name;
 	
@@ -54,13 +50,6 @@ public class Route {
 		this.id = id;
 	}
 
-	public Site getSite() {
-		return site;
-	}
-	public void setSite(Site site) {
-		this.site = site;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -78,7 +67,7 @@ public class Route {
 	
 	@Override
 	public String toString() {
-		return "Route [id=" + id + ", site=" + site + ", name=" + name + ", quotation=" + quotation + "]";
+		return "Route [id=" + id + ", name=" + name + ", quotation=" + quotation + "]";
 	}
 	
 }

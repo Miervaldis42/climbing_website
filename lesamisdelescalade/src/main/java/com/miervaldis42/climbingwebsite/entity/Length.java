@@ -23,9 +23,9 @@ public class Length {
 	@Column(name="id")
 	private int id;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-	@JoinColumn(name="site_id")
-	private Site site;
+	@ManyToOne(fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinColumn(name="route_id")
+	private Route route;
 	
 	@Column(name="name")
 	private String name;
@@ -50,11 +50,11 @@ public class Length {
 		this.id = id;
 	}
 	
-	public Site getSite() {
-		return site;
+	public Route getRoute() {
+		return route;
 	}
-	public void setSite(Site site) {
-		this.site = site;
+	public void setRoute(Route route) {
+		this.route = route;
 	}
 
 	public String getName() {
@@ -74,7 +74,7 @@ public class Length {
 	
 	@Override
 	public String toString() {
-		return "Length [id=" + id + ", site=" + site + ", name=" + name + ", quotation=" + quotation + "]";
+		return "Length [id=" + id + ", name=" + name + ", quotation=" + quotation + "]";
 	}
 
 }
