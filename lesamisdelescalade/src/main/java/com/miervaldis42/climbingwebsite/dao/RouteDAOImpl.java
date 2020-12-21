@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,7 +23,6 @@ public class RouteDAOImpl implements RouteDAO {
 	 * Create & Update
 	 */
 	@Override
-	@Transactional
 	public void saveRoute(Route newRoute) {
 		Session currentSession = sessionFactory.getCurrentSession();
 
@@ -36,7 +34,6 @@ public class RouteDAOImpl implements RouteDAO {
 	 * Read
 	 */
 	@Override
-	@Transactional
 	public List<Route> getRoutes() {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
@@ -51,11 +48,10 @@ public class RouteDAOImpl implements RouteDAO {
 	}
 	
 	@Override
-	@Transactional
 	public List<Route> getRoutesBySite(int siteId) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Route> siteRoutesQuery = currentSession.createQuery("FROM Route WHERE site_id = :siteId", Route.class);
+		Query<Route> siteRoutesQuery = currentSession.createQuery("SELECT r FROM Route r INNER JOIN r.sector rs INNER JOIN rs.site s WHERE s.id=:siteId", Route.class);
 		siteRoutesQuery.setParameter("siteId", siteId);
 		
 		List<Route> siteRoutes = null; 
@@ -68,7 +64,6 @@ public class RouteDAOImpl implements RouteDAO {
 	}
 
 	@Override
-	@Transactional
 	public List<Route> getRoutesBySector(int sectorId) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
@@ -85,7 +80,6 @@ public class RouteDAOImpl implements RouteDAO {
 	}
 
 	@Override
-	@Transactional
 	public Route getRoute(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Route selectedRoute = currentSession.get(Route.class, id);
@@ -98,7 +92,6 @@ public class RouteDAOImpl implements RouteDAO {
 	 * Delete
 	 */
 	@Override
-	@Transactional
 	public void deleteRoute(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		

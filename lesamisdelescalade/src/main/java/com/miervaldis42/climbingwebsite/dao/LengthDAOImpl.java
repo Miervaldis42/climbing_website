@@ -2,7 +2,6 @@ package com.miervaldis42.climbingwebsite.dao;
 
 // Imports
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -35,7 +34,6 @@ public class LengthDAOImpl implements LengthDAO {
 	 * Read
 	 */
 	@Override
-	@Transactional
 	public List<Length> getLengths() {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
@@ -50,11 +48,11 @@ public class LengthDAOImpl implements LengthDAO {
 	}
 	
 	@Override
-	@Transactional
 	public List<Length> getLengthsBySite(int siteId) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Length> siteLengthsQuery = currentSession.createQuery("FROM Length WHERE site_id = :siteId", Length.class);
+//		SQL: FROM climbing_website_db.lengths INNER JOIN climbing_website_db.routes INNER JOIN climbing_website_db.sectors INNER JOIN climbing_website_db.sites WHERE climbing_website_db.lengths.route_id = climbing_website_db.routes.id AND climbing_website_db.routes.sector_id = climbing_website_db.sectors.id AND climbing_website_db.sectors.site_id = climbing_website_db.sites.id AND climbing_website_db.sites.id = '2';
+		Query<Length> siteLengthsQuery = currentSession.createQuery("SELECT l FROM Length l INNER JOIN l.route lr INNER JOIN lr.sector lrs INNER JOIN lrs.site s WHERE s.id=:siteId", Length.class);
 		siteLengthsQuery.setParameter("siteId", siteId);
 		
 		List<Length> siteLengths = null;
@@ -66,7 +64,6 @@ public class LengthDAOImpl implements LengthDAO {
 	}
 
 	@Override
-	@Transactional
 	public List<Length> getLengthsByRoute(int routeId) {
 		Session currentSession = sessionFactory.getCurrentSession();
 
@@ -82,7 +79,6 @@ public class LengthDAOImpl implements LengthDAO {
 	}
 
 	@Override
-	@Transactional
 	public Length getLength(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Length selectedLength = currentSession.get(Length.class, id);
@@ -96,7 +92,6 @@ public class LengthDAOImpl implements LengthDAO {
 	 * Delete
 	 */
 	@Override
-	@Transactional
 	public void deleteLength(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
