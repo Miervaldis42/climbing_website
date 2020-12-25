@@ -7,8 +7,12 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
@@ -29,6 +33,9 @@ public class Sector {
 
 	@Column(name="name")
 	private String name;
+	
+	@OneToMany(mappedBy="sector", fetch = FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	private List<Route> routes;
 	
 	
 	/*
@@ -59,6 +66,26 @@ public class Sector {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public List<Route> getRoutes() {
+		return routes;
+	}
+	public void setRoutes(List<Route> routes) {
+		this.routes = routes;
+	}
+
+
+	/*
+	 * Methods
+	 */
+	public void addRoute(Route newRoute) {
+		if(routes == null) {
+			routes = new ArrayList<>();
+		}
+		
+		routes.add(newRoute);
+		newRoute.setSector(this);
 	}
 
 	
