@@ -12,6 +12,8 @@ public interface LengthDAO {
 	
 	public List<Length> getLengths();
 	public List<Length> getLengthsBySite(int siteId);
+	public int countLengthsBySite(int siteId);
+	
 	public List<Length> getLengthsByRoute(int routeId);
 	public Length getLength(int id);
 	

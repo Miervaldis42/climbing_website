@@ -1,6 +1,5 @@
 package com.miervaldis42.climbingwebsite.dao;
 
-
 // Imports
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -38,11 +37,9 @@ public class SectorDAOImpl implements SectorDAO {
 	@Override
 	public List<Sector> getSectors() {
 		Session currentSession = sessionFactory.getCurrentSession();
-		
 		Query<Sector> retrievedAllSectors = currentSession.createQuery("FROM Sector", Sector.class);
 		
 		List<Sector> allSectors = null;
-		
 		if(!retrievedAllSectors.getResultList().isEmpty()) {
         	allSectors = retrievedAllSectors.getResultList();
         }
@@ -64,6 +61,17 @@ public class SectorDAOImpl implements SectorDAO {
         }
 		
 		return allSectors;
+	}
+	
+	@Override
+	public int countSectorsBySite(int siteId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Long> countSectorsQuery = currentSession.createQuery("SELECT COUNT(s) FROM Sector s WHERE site_id=:id", Long.class);
+		countSectorsQuery.setParameter("id", siteId);
+		
+		int countSiteSectors = ((Long) countSectorsQuery.uniqueResult()).intValue();
+		
+		return countSiteSectors;
 	}
 	
 

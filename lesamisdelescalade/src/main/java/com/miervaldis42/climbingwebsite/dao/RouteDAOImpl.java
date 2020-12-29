@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 import com.miervaldis42.climbingwebsite.entity.Route;
@@ -50,7 +49,7 @@ public class RouteDAOImpl implements RouteDAO {
 	@Override
 	public List<Route> getRoutesBySite(int siteId) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		
+
 		Query<Route> siteRoutesQuery = currentSession.createQuery("SELECT r FROM Route r INNER JOIN r.sector rs INNER JOIN rs.site s WHERE s.id=:siteId", Route.class);
 		siteRoutesQuery.setParameter("siteId", siteId);
 		
@@ -62,6 +61,16 @@ public class RouteDAOImpl implements RouteDAO {
 		
 		return siteRoutes;
 	}
+	
+	@Override
+	public int countRoutesBySite(int siteId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Long> countRoutesQuery = currentSession.createQuery("SELECT COUNT(r) FROM Route r INNER JOIN r.sector rs INNER JOIN rs.site s WHERE site_id=:id", Long.class);
+		countRoutesQuery.setParameter("id", siteId);
+		
+		int countSiteRoutes = ((Long) countRoutesQuery.uniqueResult()).intValue();
+		return countSiteRoutes;
+	}
 
 	@Override
 	public List<Route> getRoutesBySector(int sectorId) {
@@ -71,7 +80,6 @@ public class RouteDAOImpl implements RouteDAO {
 		sectorRoutesQuery.setParameter("sectorId", sectorId);
 		
 		List<Route> sectorRoutes = null;
-		
 		if(!sectorRoutesQuery.getResultList().isEmpty()) {
 			sectorRoutes = sectorRoutesQuery.getResultList();
 		}

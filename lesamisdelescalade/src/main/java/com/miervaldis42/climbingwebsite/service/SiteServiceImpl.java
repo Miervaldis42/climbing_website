@@ -4,20 +4,38 @@ package com.miervaldis42.climbingwebsite.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.List;
+import java.util.*;
 
 import com.miervaldis42.climbingwebsite.entity.Site;
 import com.miervaldis42.climbingwebsite.dao.SiteDAO;
+import com.miervaldis42.climbingwebsite.dao.SectorDAO;
+import com.miervaldis42.climbingwebsite.dao.RouteDAO;
+import com.miervaldis42.climbingwebsite.dao.LengthDAO;
 
 
 
 @Service
 public class SiteServiceImpl implements SiteService {
+	/*
+	 * Autowired
+	 */
 	@Autowired
 	private SiteDAO siteDAO;
 	
+	@Autowired
+	private SectorDAO sectorDAO;
 	
-	// Get info from all sites from "ClimbingSites" table in database
+	@Autowired
+	private RouteDAO routeDAO;
+	
+	@Autowired
+	private LengthDAO lengthDAO;
+	
+	
+	
+	/*
+	 * READ
+	 */
 	@Override
 	@Transactional
 	public List<Site> getSites() {
@@ -25,9 +43,34 @@ public class SiteServiceImpl implements SiteService {
 		
 		return sites;
 	}
-
 	
-	// Get info from a specific site from "ClimbingSite s" table in database
+	@Override
+	@Transactional
+	public Map<Integer, List<Integer>> getSiteCards(List<Site> allSites) {
+		// siteId, <secteur,route,length>
+		Map<Integer, List<Integer>> siteInfoCards = new HashMap<>();
+		
+		for(Site site : allSites) {
+			int siteId = site.getId();
+			List<Integer> siteCounts = new ArrayList<Integer>(3);
+			
+			int sectorCount = sectorDAO.countSectorsBySite(siteId);
+			siteCounts.add(sectorCount);
+			
+			int routeCount = routeDAO.countRoutesBySite(siteId);
+			siteCounts.add(routeCount);
+			
+			int lengthCount = lengthDAO.countLengthsBySite(siteId);
+			siteCounts.add(lengthCount);
+			
+			// Info for Site cards
+			siteInfoCards.put(siteId, siteCounts);
+		}
+		
+		return siteInfoCards;
+	}
+
+
 	@Override
 	@Transactional
 	public Site getSite(int id) {

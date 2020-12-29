@@ -62,6 +62,16 @@ public class LengthDAOImpl implements LengthDAO {
 		
 		return siteLengths;
 	}
+	
+	@Override
+	public int countLengthsBySite(int siteId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Long> countLengthsQuery = currentSession.createQuery("SELECT COUNT(l) FROM Length l INNER JOIN l.route lr INNER JOIN lr.sector lrs INNER JOIN lrs.site s WHERE site_id=:id", Long.class);
+		countLengthsQuery.setParameter("id", siteId);
+		
+		int countSiteLengths = ((Long) countLengthsQuery.uniqueResult()).intValue();
+		return countSiteLengths;
+	}
 
 	@Override
 	public List<Length> getLengthsByRoute(int routeId) {
