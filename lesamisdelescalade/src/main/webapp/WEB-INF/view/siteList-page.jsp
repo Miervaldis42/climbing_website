@@ -34,45 +34,49 @@
 			
 			<!-- Site list -->
 			<div id="siteCards">
-
-				<div class="siteCard" style="background-image: url('https://nomadlist.com/assets/img/places/curacao-600px.jpg');">
-					<!-- Official tag -->
-					<div class="siteTag">
-						<p>Officiel - Les amis de l'escalade</p>
-					</div>
+				
+				<c:forEach items="${ sites }" var="site">
+					<div class="siteCard" style="background-image: url('https://nomadlist.com/assets/img/places/curacao-600px.jpg');">
+						<!-- Official tag -->
+						<c:if test="${ site.tag }">
+							<div class="siteTag">
+								<p>Officiel - Les amis de l'escalade</p>
+							</div>
+						</c:if>
+						
+						<!-- Site main info -->
+						<div class="siteMainInfo">
+							<p class="siteCardName">${ site.name }</p>
+							<p class="siteCardLocation">
+								<i class="fas fa-map-marker-alt"></i> 
+								${ site.location }
+							</p>
+						</div>
 					
-					<!-- Site main info -->
-					<div class="siteMainInfo">
-						<p class="siteCardName">Test</p>
-						<p class="siteCardLocation">
-							<i class="fas fa-map-marker-alt"></i> 
-							Location
-						</p>
+						<div class="siteSubInfo">
+							<div> 
+								<i class="fas fa-award" title="Cotation"></i>
+								9a 
+							</div>
+							
+							<div>
+								<i class="fas fa-map-signs" title="Nombre de secteurs"></i>
+								${ infos.get(site.id).get(0) }
+							</div>
+							
+							<div>
+								<i class="fas fa-route" title="Nombre de routes"></i>
+								${ infos.get(site.id).get(1) }
+							</div>
+							
+							<div>
+								<i class="fas fa-wave-square" title="Nombre de longueurs"></i>
+								${ infos.get(site.id).get(2) }
+							</div>
+						</div>
+						
 					</div>
-					
-					<div class="siteSubInfo">
-						<div> 
-							<i class="fas fa-award" title="Cotation"></i>
-							9a 
-						</div>
-						
-						<div>
-							<i class="fas fa-map-signs" title="Nombre de secteurs"></i>
-							7
-						</div>
-						
-						<div>
-							<i class="fas fa-route" title="Nombre de routes"></i>
-							7
-						</div>
-						
-						<div>
-							<i class="fas fa-wave-square" title="Nombre de longueurs"></i>
-							7
-						</div>
-					</div>
-				</div>
-
+				</c:forEach>
 				
 			</div>
 		</div>
