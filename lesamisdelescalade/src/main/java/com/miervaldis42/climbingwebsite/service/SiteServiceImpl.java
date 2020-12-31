@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.miervaldis42.climbingwebsite.entity.Site;
 import com.miervaldis42.climbingwebsite.dao.SiteDAO;
@@ -47,12 +49,17 @@ public class SiteServiceImpl implements SiteService {
 	@Override
 	@Transactional
 	public Map<Integer, List<Integer>> getSiteCards(List<Site> allSites) {
-		// siteId, <secteur,route,length>
+		// siteId, <siteQuotationIndex,sector,route,length>
 		Map<Integer, List<Integer>> siteInfoCards = new HashMap<>();
 		
 		for(Site site : allSites) {
 			int siteId = site.getId();
 			List<Integer> siteCounts = new ArrayList<Integer>(3);
+			
+			List<String> allRouteQuotationsBySite = routeDAO.getQuotationsBySite(siteId);
+			List<String> allLengthQuotationsBySite = lengthDAO.getQuotationsBySite(siteId);
+			List<String> allSiteQuotations = Stream.concat(allRouteQuotationsBySite.stream(), allLengthQuotationsBySite.stream())
+                    .collect(Collectors.toList());			
 			
 			int sectorCount = sectorDAO.countSectorsBySite(siteId);
 			siteCounts.add(sectorCount);

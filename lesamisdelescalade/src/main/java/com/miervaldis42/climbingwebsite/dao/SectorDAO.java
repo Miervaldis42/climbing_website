@@ -13,11 +13,12 @@ public interface SectorDAO {
 	// Read
 	public List<Sector> getSectors();
 	public List<Sector> getSectors(int siteId);
-	public int countSectorsBySite(int siteId);
-	
 	public Sector getSector(int id);
+	
+	public int countSectorsBySite(int siteId);
 	
 	
 	// Delete
 	public void deleteSector(int id);
+
 }

@@ -61,16 +61,6 @@ public class RouteDAOImpl implements RouteDAO {
 		
 		return siteRoutes;
 	}
-	
-	@Override
-	public int countRoutesBySite(int siteId) {
-		Session currentSession = sessionFactory.getCurrentSession();
-		Query<Long> countRoutesQuery = currentSession.createQuery("SELECT COUNT(r) FROM Route r INNER JOIN r.sector rs INNER JOIN rs.site s WHERE site_id=:id", Long.class);
-		countRoutesQuery.setParameter("id", siteId);
-		
-		int countSiteRoutes = ((Long) countRoutesQuery.uniqueResult()).intValue();
-		return countSiteRoutes;
-	}
 
 	@Override
 	public List<Route> getRoutesBySector(int sectorId) {
@@ -94,6 +84,31 @@ public class RouteDAOImpl implements RouteDAO {
 
 		return selectedRoute;
 	}
+	
+	
+	/*
+	 * Utils
+	 */
+	@Override
+	public int countRoutesBySite(int siteId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Long> countRoutesQuery = currentSession.createQuery("SELECT COUNT(r) FROM Route r INNER JOIN r.sector rs INNER JOIN rs.site s WHERE site_id=:id", Long.class);
+		countRoutesQuery.setParameter("id", siteId);
+		
+		int countSiteRoutes = ((Long) countRoutesQuery.uniqueResult()).intValue();
+		return countSiteRoutes;
+	}
+	
+	@Override
+	public List<String> getQuotationsBySite(int siteId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<String> RouteQuotationsQuery = currentSession.createQuery("SELECT r.quotation FROM Route r INNER JOIN r.sector rs INNER JOIN rs.site s WHERE site_id=:id", String.class);
+		RouteQuotationsQuery.setParameter("id", siteId);
+		
+		List<String> allSiteRouteQuotations = RouteQuotationsQuery.getResultList();
+		return allSiteRouteQuotations;
+	}
+
 
 	
 	/*

@@ -15,13 +15,15 @@ public interface RouteDAO {
 	// Read
 	public List<Route> getRoutes();
 	
-	public List<Route> getRoutesBySite(int siteId);
-	public int countRoutesBySite(int siteId);
-	
+	public List<Route> getRoutesBySite(int siteId);	
 	public List<Route> getRoutesBySector(int sectorId);
 	public Route getRoute(int id);
 	
+	// Utils
+	public int countRoutesBySite(int siteId);
+	public List<String> getQuotationsBySite(int siteId);
 	
 	// Delete
 	public void deleteRoute(int id);
+
 }

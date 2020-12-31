@@ -62,16 +62,6 @@ public class LengthDAOImpl implements LengthDAO {
 		
 		return siteLengths;
 	}
-	
-	@Override
-	public int countLengthsBySite(int siteId) {
-		Session currentSession = sessionFactory.getCurrentSession();
-		Query<Long> countLengthsQuery = currentSession.createQuery("SELECT COUNT(l) FROM Length l INNER JOIN l.route lr INNER JOIN lr.sector lrs INNER JOIN lrs.site s WHERE site_id=:id", Long.class);
-		countLengthsQuery.setParameter("id", siteId);
-		
-		int countSiteLengths = ((Long) countLengthsQuery.uniqueResult()).intValue();
-		return countSiteLengths;
-	}
 
 	@Override
 	public List<Length> getLengthsByRoute(int routeId) {
@@ -94,6 +84,30 @@ public class LengthDAOImpl implements LengthDAO {
 		Length selectedLength = currentSession.get(Length.class, id);
 
 		return selectedLength;
+	}
+	
+	
+	/*
+	 * Utils
+	 */
+	@Override
+	public int countLengthsBySite(int siteId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Long> countLengthsQuery = currentSession.createQuery("SELECT COUNT(l) FROM Length l INNER JOIN l.route lr INNER JOIN lr.sector lrs INNER JOIN lrs.site s WHERE site_id=:id", Long.class);
+		countLengthsQuery.setParameter("id", siteId);
+		
+		int countSiteLengths = ((Long) countLengthsQuery.uniqueResult()).intValue();
+		return countSiteLengths;
+	}
+	
+	@Override
+	public List<String> getQuotationsBySite(int siteId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<String> LengthQuotationsQuery = currentSession.createQuery("SELECT l.quotation FROM Length l INNER JOIN l.route lr INNER JOIN lr.sector lrs INNER JOIN lrs.site s WHERE site_id=:id", String.class);
+		LengthQuotationsQuery.setParameter("id", siteId);
+		
+		List<String> allSiteLengthQuotations = LengthQuotationsQuery.getResultList();
+		return allSiteLengthQuotations;
 	}
 	
 	

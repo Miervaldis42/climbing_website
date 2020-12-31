@@ -64,6 +64,16 @@ public class SectorDAOImpl implements SectorDAO {
 	}
 	
 	@Override
+	public Sector getSector(int id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Sector selectedSector = currentSession.get(Sector.class, id);
+		
+		return selectedSector;
+	}
+	
+	
+	
+	@Override
 	public int countSectorsBySite(int siteId) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query<Long> countSectorsQuery = currentSession.createQuery("SELECT COUNT(s) FROM Sector s WHERE site_id=:id", Long.class);
@@ -73,16 +83,6 @@ public class SectorDAOImpl implements SectorDAO {
 		
 		return countSiteSectors;
 	}
-	
-
-	@Override
-	public Sector getSector(int id) {
-		Session currentSession = sessionFactory.getCurrentSession();
-		Sector selectedSector = currentSession.get(Sector.class, id);
-		
-		return selectedSector;
-	}
-
 
 	
 	/*
