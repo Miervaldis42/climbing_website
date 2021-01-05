@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import java.util.Map;
 
+import com.miervaldis42.climbingwebsite.entity.Difficulty;
 import com.miervaldis42.climbingwebsite.entity.Site;
 import com.miervaldis42.climbingwebsite.service.SiteService;
 
@@ -31,11 +32,14 @@ public class MainController {
 			session.addAttribute("redirection", "/lesamisdelescalade/auth/login");
 		}
 		
+		
 		// Populate model to use for site cards
 		List<Site> allSites = siteService.getSites();
 		Map<Integer, List<Integer>> siteCardsInfo = siteService.getSiteCards(allSites);
+		Map<Integer, String> siteQuotation = Difficulty.EASY.getQuotation(siteCardsInfo);
 		cards.addAttribute("sites", allSites);
 		cards.addAttribute("infos", siteCardsInfo);
+		cards.addAttribute("quotation", siteQuotation);
 		
 		return "siteList-page";
 	}

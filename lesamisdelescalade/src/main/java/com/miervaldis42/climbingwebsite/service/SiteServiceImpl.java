@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.miervaldis42.climbingwebsite.entity.Difficulty;
 import com.miervaldis42.climbingwebsite.entity.Site;
 import com.miervaldis42.climbingwebsite.dao.SiteDAO;
 import com.miervaldis42.climbingwebsite.dao.SectorDAO;
@@ -54,13 +55,16 @@ public class SiteServiceImpl implements SiteService {
 		
 		for(Site site : allSites) {
 			int siteId = site.getId();
-			List<Integer> siteCounts = new ArrayList<Integer>(3);
+			List<Integer> siteCounts = new ArrayList<Integer>(4);
 			
+			// Site average quotation
 			List<String> allRouteQuotationsBySite = routeDAO.getQuotationsBySite(siteId);
 			List<String> allLengthQuotationsBySite = lengthDAO.getQuotationsBySite(siteId);
 			List<String> allSiteQuotations = Stream.concat(allRouteQuotationsBySite.stream(), allLengthQuotationsBySite.stream())
-                    .collect(Collectors.toList());			
+                    .collect(Collectors.toList());
+			siteCounts.add(Difficulty.EASY.getAvgQuotationIndex(allSiteQuotations));
 			
+			// Counts
 			int sectorCount = sectorDAO.countSectorsBySite(siteId);
 			siteCounts.add(sectorCount);
 			
@@ -73,7 +77,7 @@ public class SiteServiceImpl implements SiteService {
 			// Info for Site cards
 			siteInfoCards.put(siteId, siteCounts);
 		}
-		
+
 		return siteInfoCards;
 	}
 
