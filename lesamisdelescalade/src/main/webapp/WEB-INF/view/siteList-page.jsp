@@ -36,7 +36,7 @@
 			<div id="siteCards">
 				
 				<c:forEach items="${ sites }" var="site">
-					<div class="siteCard" style="background-image: url('https://nomadlist.com/assets/img/places/curacao-600px.jpg');">
+					<div class="siteCard" style="background-image: url('<%=request.getContextPath()%>/resources/assets/sites/${ site.name }.jpg');">
 						<!-- Official tag -->
 						<c:if test="${ site.tag }">
 							<div class="siteTag">
@@ -55,23 +55,30 @@
 					
 						<div class="siteSubInfo">
 							<div> 
-								<i class="fas fa-award" title="Cotation"></i>
-								9a 
+								<i class="fas fa-award" title="Cotation"></i>						
+								<c:choose>
+								  <c:when test="${ quotation.get(site.id) == null }">
+								    -
+								  </c:when>
+								  <c:otherwise>
+								    ${ quotation.get(site.id) }
+								  </c:otherwise>
+								</c:choose>
 							</div>
 							
 							<div>
 								<i class="fas fa-map-signs" title="Nombre de secteurs"></i>
-								${ infos.get(site.id).get(0) }
-							</div>
-							
-							<div>
-								<i class="fas fa-route" title="Nombre de routes"></i>
 								${ infos.get(site.id).get(1) }
 							</div>
 							
 							<div>
-								<i class="fas fa-wave-square" title="Nombre de longueurs"></i>
+								<i class="fas fa-route" title="Nombre de routes"></i>
 								${ infos.get(site.id).get(2) }
+							</div>
+							
+							<div>
+								<i class="fas fa-wave-square" title="Nombre de longueurs"></i>
+								${ infos.get(site.id).get(3) }
 							</div>
 						</div>
 						
