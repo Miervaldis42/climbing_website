@@ -1,18 +1,18 @@
 /* Variables */
 :root {
-	--card-height: 30%;
-	--card-width: 20%;
+	--card-height: 22vh;
+	--card-width: 22vw;
 }
 
 
 /*
  * Body & Container
  */
-#siteBody {
-	/* background-image: url("../../assets/backgrounds/mountain_background.jpg"); */
+/* #siteBody {
+	background-image: url("../../assets/backgrounds/mountain_background.jpg");
 	background-size: cover;
 	background-position-x: right;
-}
+} */
 
 #siteContainer {
 	display: flex;
@@ -50,11 +50,15 @@
 	text-shadow: 1px 1px 2px grey;
 	
 	margin: 2%;
+	
+	-webkit-transition: all 0.5s ease;
+	transition: all 0.5s ease;
 }
-
-/* .siteCard:hover {
-	box-shadow: 10px 5px 5px rgba(230, 230, 255, .2);
-} */
+	
+.siteCard:hover {
+	padding: 0 0 5% 5%;
+	box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, .2);
+}
 
 
 
@@ -64,7 +68,7 @@
 .siteTag {	
 	position: absolute;
     top: 7%;
-    right: -10%; 
+    right: -8%; 
     
     padding: 1% 4%;
     padding-bottom: 8%;
