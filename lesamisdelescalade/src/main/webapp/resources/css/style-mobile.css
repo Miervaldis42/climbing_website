@@ -12,7 +12,8 @@
 	--body-width: 100vw;
 	
 	--navbar-height: 10vh;
-	--mobile-navbar-color: rgba(183, 147, 120, 0.8);
+	--navbar-width: 100vw;
+	--mobile-navbar-color: rgba(183, 147, 120, 1);
 	
 	--success-color: green;
 	--success-background: rgba(0, 156, 34, 1);
@@ -64,6 +65,7 @@ html, body {
 /* Container */
 .container {
 	order: 1;
+	z-index: -100;
 	
 	height: calc(var(--body-height) - var(--navbar-height) - 6.8vh);
 	max-width: var(--body-width);
@@ -143,18 +145,26 @@ html, body {
 	height: var(--navbar-height);
 	width: var(--body-width);
 	
+	display: flex;
+	
 	position: fixed;
-    bottom: -1px;
+    bottom: 0;
+    right: 0;
     left: 0;
+	z-index:1000;
+	
+	will-change:transform;
+	transform: translateZ(0);
 }
 
 #header__navbar {
 	height: var(--navbar-height);
-	width: var(--body-width);
+	width: var(--navbar-width);
 	
 	display: flex;
 	justify-content: space-around;
 	
+	box-shadow: 0 -2px 5px -2px #333;
 	background-color: var(--mobile-navbar-color);
 }
 

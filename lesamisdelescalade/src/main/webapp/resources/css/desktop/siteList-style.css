@@ -78,6 +78,10 @@
 	clip-path: polygon(0 0, 100% 0, 100% 50%, 87% 87%, 87% 50%, 0 50%);
 }
 
+.siteTag i {
+	display: none;
+}
+
 .siteTag p {
 	text-align: center;
 	font-size: small;
@@ -99,6 +103,7 @@
 
 .siteCardName {
 	font-size: 150%;
+	text-shadow: 1px 1px 10px black;
 	text-align: center;
 	font-weight: bolder;
 }

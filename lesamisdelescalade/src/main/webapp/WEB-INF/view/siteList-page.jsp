@@ -40,6 +40,7 @@
 						<!-- Official tag -->
 						<c:if test="${ site.tag }">
 							<div class="siteTag">
+								<i class="fa fa-certificate" aria-hidden="true"></i>
 								<p>Officiel - Les amis de l'escalade</p>
 							</div>
 						</c:if>

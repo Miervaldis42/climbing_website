@@ -1,14 +1,117 @@
-body {
-	/* background-image: url("../../assets/backgrounds/mountain_background.jpg"); */
-	background-size: cover;
-	background-position-x: right;
+:root {
+	--card-height: 15vh;
+	--card-width: 90vw;
 }
 
-#siteContainer {
+/* body {
+	background-image: url("../../assets/backgrounds/mountain_background.jpg");
+	background-size: cover;
+	background-position-x: right;
+} */
+
+
+
+#siteContainer h2 {
+	text-align: center;
+	margin: 4% 0 5% 0;
+}
+
+
+
+/* 
+ * Site cards
+ */
+#siteCards {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+}
+
+.siteCard {
+	height: var(--card-height);
+	width: var(--card-width);
+	margin-bottom: 3%;
 	
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	
+	position: relative;
+
+	border-radius: 10px;	
+	background-size: cover;
+	
+	color: white;
+	text-shadow: 1px 1px 5px black;
+}
+
+
+/* 
+ * Site tag
+ */
+.siteTag i {
+	position: absolute;
+    left: 2%;
+    
+    margin-top: 1.5%;
+	
+	color: red;	
+}
+
+.siteTag p {
+	display: none;
+}
+
+
+/* 
+ * Site main info
+ */
+.siteMainInfo .siteCardName {
+	position: relative;
+    top: 175%;
+    width: var(--card-width);
+	
+	font-size: 130%;
+	font-weight: bolder;
+
 	text-align: center;
 }
+
+.siteMainInfo .siteCardLocation {
+	width: var(--card-width);
+	
+	position: absolute;
+    bottom: 7%;
+    left: 1%;
+}
+
+.siteMainInfo p {
+	padding: 0 2%;
+}
+
+
+/* 
+ * Site sub info
+ */
+.siteSubInfo {
+	position: absolute;
+	bottom: 5%;
+	
+	display: flex;
+	justify-content: flex-end;
+	
+	margin-right: 3%; 
+}
+
+.siteSubInfo div {
+	display: flex;
+	
+	text-shadow: 1px 1px 2px grey;
+	margin: 0 8%;
+}
+
+.siteSubInfo div i {
+	padding-right: 18%;
+}
+
+
