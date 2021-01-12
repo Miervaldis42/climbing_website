@@ -34,5 +34,26 @@ public class SiteDAOImpl implements SiteDAO {
 		
 		return selectedSite;
 	}
+	
+	@Override
+    public List<Site> searchSites(String searchedTerms) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        
+        Query<Site> query = null;
+        if (searchedTerms != null && searchedTerms.trim().length() > 0) {
+
+            // search for name or location
+        	query = currentSession.createQuery("FROM Site s WHERE s.name LIKE :search OR s.location LIKE :search", Site.class);
+        	query.setParameter("search", "%" + searchedTerms.toLowerCase() + "%");
+
+        } else {
+            // if searchedTerms is empty => Get all sites
+        	query = currentSession.createQuery("FROM Site", Site.class);            
+        }
+        
+        List<Site> sites = query.getResultList();
+        return sites;
+        
+    }
 
 }
