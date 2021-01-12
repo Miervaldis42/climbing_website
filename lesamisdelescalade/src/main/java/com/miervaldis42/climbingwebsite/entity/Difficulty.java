@@ -81,20 +81,24 @@ public enum Difficulty {
 		return avgListIndex;
 	}
 	
+
 	public Map<Integer, String> getQuotation(Map<Integer, List<Integer>> list) {
-		Map<Integer, String> correspondingQuotation = new HashMap<>();
 		List<String> stepList = getEntireStepList();
+		Map<Integer, String> correspondingQuotation = new HashMap<>();
 		String quotation = null;
 		
-		for(int i = 0; i < list.size(); i++) {
-			int quotationIndex = list.get(i+1).get(0);
+		// For each element in provided list
+		for(int nb : list.keySet()) {
+			int quotationIndex = list.get(nb).get(0);
 			
 			if(quotationIndex == -1) {
 				quotation = null;
 			} else {
 				quotation = stepList.get(quotationIndex);
 			}
-			correspondingQuotation.put(i+1, quotation);
+			
+			// Set site index & avg quotation
+			correspondingQuotation.put(nb, quotation);
 		}
 
 		return correspondingQuotation;
