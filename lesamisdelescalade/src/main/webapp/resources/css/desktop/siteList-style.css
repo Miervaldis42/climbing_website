@@ -21,6 +21,24 @@
 
 
 
+/*
+ * No search result
+ */
+#noSearchResult {	
+	display: flex;
+	flex-basis: calc(var(--body-height) - var(--navbar-height) - var(--footer-height));
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#noSearchResult i {
+	font-size: 200%;
+	margin: 1% 0;
+}
+
+
+
 /* 
  * Site cards
  */
@@ -68,7 +86,7 @@
 .siteTag {	
 	position: absolute;
     top: 7%;
-    right: -8%; 
+    right: -6.5%; 
     
     padding: 1% 4%;
     padding-bottom: 8%;

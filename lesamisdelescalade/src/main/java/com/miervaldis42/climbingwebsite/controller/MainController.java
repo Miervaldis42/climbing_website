@@ -5,7 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 import java.util.Map;
 
@@ -34,14 +37,30 @@ public class MainController {
 		
 		
 		// Populate model to use for site cards
-		List<Site> allSites = siteService.getSites();
-		Map<Integer, List<Integer>> siteCardsInfo = siteService.getSiteCards(allSites);
-		Map<Integer, String> siteQuotation = Difficulty.EASY.getQuotation(siteCardsInfo);
-		cards.addAttribute("sites", allSites);
-		cards.addAttribute("infos", siteCardsInfo);
-		cards.addAttribute("quotation", siteQuotation);
+		List<Site> sites = siteService.getSites();
+		setSiteCardInfo(sites, cards);		
 		
 		return "siteList-page";
+	}
+	
+	
+	@GetMapping("/search")
+    public String searchSites(@RequestParam("searchedTerms") String searchedTerms, Model cards) {
+		List<Site> searchedSites = siteService.searchSites(searchedTerms);
+		setSiteCardInfo(searchedSites, cards);
+		
+        return "siteList-page";        
+    }
+	
+	
+	// Set info for each site card
+	private void setSiteCardInfo(List<Site> sites, Model cards) {
+		Map<Integer, List<Integer>> siteCardsInfo = siteService.getSiteCards(sites);		
+		Map<Integer, String> siteQuotation = Difficulty.EASY.getQuotation(siteCardsInfo);
+		
+		cards.addAttribute("sites", sites);
+		cards.addAttribute("infos", siteCardsInfo);
+		cards.addAttribute("quotation", siteQuotation);
 	}
 
 }
