@@ -9,7 +9,7 @@ import java.util.Map;
 public interface SiteService {
 
 	public List<Site> getSites();
-	public List<Site> searchSites(String searchedTerms);
+	public List<Site> searchSites(String searchedTerms, String tagFilter);
 	public Map<Integer, List<Integer>> getSiteCards(List<Site> allSites);
 	
 	public Site getSite(int id);

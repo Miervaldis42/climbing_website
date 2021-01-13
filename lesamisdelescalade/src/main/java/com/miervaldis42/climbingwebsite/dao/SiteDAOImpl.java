@@ -36,24 +36,24 @@ public class SiteDAOImpl implements SiteDAO {
 	}
 	
 	@Override
-    public List<Site> searchSites(String searchedTerms) {
+    public List<Site> searchSites(String searchedTerms, String tagFilter) {
         Session currentSession = sessionFactory.getCurrentSession();
         
-        Query<Site> query = null;
-        if (searchedTerms != null && searchedTerms.trim().length() > 0) {
-
-            // search for name or location
-        	query = currentSession.createQuery("FROM Site s WHERE s.name LIKE :search OR s.location LIKE :search", Site.class);
-        	query.setParameter("search", "%" + searchedTerms.toLowerCase() + "%");
-
+        Query<Site> searchQuery = null;
+        if(searchedTerms.trim().length() == 0 && tagFilter.equals("all")) {
+        	// If searchedTerms is empty => Get all sites
+        	searchQuery = currentSession.createQuery("FROM Site", Site.class);
+        } else if (searchedTerms.trim().length() == 0) {
+        	searchQuery = currentSession.createQuery("FROM Site s WHERE s.tag=:tagFilter", Site.class);
+        	searchQuery.setParameter("tagFilter", Boolean.parseBoolean(tagFilter));
         } else {
-            // if searchedTerms is empty => Get all sites
-        	query = currentSession.createQuery("FROM Site", Site.class);            
+        	searchQuery = currentSession.createQuery("FROM Site s WHERE s.name LIKE :keywords OR s.location LIKE :keywords AND s.tag=:tagFilter", Site.class);
+        	searchQuery.setParameter("keywords", "%" + searchedTerms.toLowerCase() + "%");
+        	searchQuery.setParameter("tagFilter", Boolean.parseBoolean(tagFilter));
         }
         
-        List<Site> sites = query.getResultList();
+        List<Site> sites = searchQuery.getResultList();
         return sites;
-        
     }
 
 }
