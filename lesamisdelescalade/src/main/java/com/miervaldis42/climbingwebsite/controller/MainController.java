@@ -45,9 +45,15 @@ public class MainController {
 	
 	
 	@GetMapping("/search")
-    public String searchSites(@RequestParam("searchedTerms") String searchedTerms, Model cards) {
-		List<Site> searchedSites = siteService.searchSites(searchedTerms);
+    public String searchSites(@RequestParam("searchedTerms") String searchedTerms, @RequestParam("tagFilter") String tagFilter, Model search, Model cards) {		
+		// Narrow down site list with user filters
+		List<Site> searchedSites = siteService.searchSites(searchedTerms, tagFilter);
+		
+		// Repopulate site with its card info
 		setSiteCardInfo(searchedSites, cards);
+		
+		search.addAttribute("keywords", searchedTerms);
+		search.addAttribute("chosenTag", tagFilter);
 		
         return "siteList-page";        
     }

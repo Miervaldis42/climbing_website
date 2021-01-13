@@ -35,8 +35,17 @@
 			
 			<!--  Search box -->
             <form:form action="search" method="GET">
-                <input type="text" name="searchedTerms" />
-                <input type="submit" value="Search" />
+            	<!-- Search by name or location -->
+                <input name="searchedTerms" value="${ keywords }" type="text" placeholder="Cherchez par nom ou par lieu (ex: Alpes, France)..." />
+                
+                <!-- Select if a site has to be certified -->
+                <select name="tagFilter">
+                	<option value="all" ${chosenTag == "all" ? "selected" : ""}>Tout</option>
+                	<option value="true" ${chosenTag == "true" ? "selected" : ""}>Officiel</option>
+                	<option value="false" ${chosenTag == "false" ? "selected" : ""}>Non officiel</option>
+                </select>
+                
+                <input type="submit" value="Rechercher" />
             </form:form>
             
 
@@ -45,7 +54,7 @@
             	<div id="noSearchResult">
             		<i class="fa fa-map-signs" aria-hidden="true"></i>
 	            	<p>Le Mont Olympe que vous cherchez n'existe pas encore sur notre site malheureusement...</p>
-	            	<p>Mais nous avons d'autres merveilleux sites d'escalade pouvant vous combler !</p>
+	            	<p>Mais nous avons d'autres merveilleux sites d'escalade qui n'attendent que vous !</p>
             	</div>
             </c:if>
             
