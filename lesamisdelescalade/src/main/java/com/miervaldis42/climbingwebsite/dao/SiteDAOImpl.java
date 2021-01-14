@@ -38,10 +38,9 @@ public class SiteDAOImpl implements SiteDAO {
 	@Override
     public List<Site> searchSites(String searchedTerms, String tagFilter) {
         Session currentSession = sessionFactory.getCurrentSession();
-        
         Query<Site> searchQuery = null;
+
         if(searchedTerms.trim().length() == 0 && tagFilter.equals("all")) {
-        	// If searchedTerms is empty => Get all sites
         	searchQuery = currentSession.createQuery("FROM Site", Site.class);
         } else if (searchedTerms.trim().length() == 0) {
         	searchQuery = currentSession.createQuery("FROM Site s WHERE s.tag=:tagFilter", Site.class);
