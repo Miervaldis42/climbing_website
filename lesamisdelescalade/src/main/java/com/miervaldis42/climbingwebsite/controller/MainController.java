@@ -23,29 +23,44 @@ public class MainController {
 	private SiteService siteService;
 	
 	@RequestMapping("/sites")
-	public String showSiteListPage(HttpSession activeSession, Model session, Model cards) {	
+	public String showSiteListPage(HttpSession activeSession, Model session, Model search, Model cards) {	
 		// Check if a user session is present
 		checkSession(activeSession, session);
 		
+		// Searchbar
+		search.addAttribute("quotationDifficulties", Difficulty.EASY.getAllDifficulties());
+		
 		// Populate model to use for site cards
 		List<Site> sites = siteService.getSites();
-		setSiteCardInfo(sites, cards);		
+		setSiteCardInfo(sites, cards);
 		
 		return "siteList-page";
 	}
 	
 	
 	@GetMapping("/search")
-    public String searchSites(HttpSession activeSession, Model session, @RequestParam("searchedTerms") String searchedTerms, @RequestParam("tagFilter") String tagFilter, Model search, Model cards) {		
+    public String searchSites(HttpSession activeSession, Model session, @RequestParam("quotationFilter") String quotationFilter, @RequestParam("tagFilter") String tagFilter, @RequestParam("searchedTerms") String searchedTerms, Model search, Model cards) {		
 		// Narrow down site list with user filters
 		List<Site> searchedSites = siteService.searchSites(searchedTerms, tagFilter);
-		
-		// Repopulate site with its card info
 		setSiteCardInfo(searchedSites, cards);
+		
+		if(!quotationFilter.equals("all")) {
+			searchedSites.clear();
+
+			Map<Integer, String> siteQuotation = (Map<Integer, String>) cards.getAttribute("quotation");
+			List<Integer> filteredSiteIndexes = Difficulty.EASY.filterSitesByQuotationMode(siteQuotation, quotationFilter);
+			
+			for(int nb: filteredSiteIndexes) {
+				searchedSites.add(siteService.getSite(nb));
+			}
+			setSiteCardInfo(searchedSites, cards);
+		}
 		
 		// Add user chosen filters to search model
 		search.addAttribute("keywords", searchedTerms);
 		search.addAttribute("chosenTag", tagFilter);
+		search.addAttribute("quotationDifficulties", Difficulty.EASY.getAllDifficulties());
+		search.addAttribute("chosenQuotationMode", quotationFilter);
 		
 		// Check if a user session is present
 		checkSession(activeSession, session);

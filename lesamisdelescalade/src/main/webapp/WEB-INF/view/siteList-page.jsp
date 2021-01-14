@@ -35,14 +35,22 @@
 			
 			<!--  Search box -->
             <form:form action="search" method="GET">
-            	<!-- Search by name or location -->
+            	<!-- Name or location filter -->
                 <input name="searchedTerms" value="${ keywords }" type="text" placeholder="Cherchez par nom ou par lieu (ex: Alpes, France)..." />
                 
-                <!-- Select if a site has to be certified -->
+                <!-- Certification filter -->
                 <select name="tagFilter">
                 	<option value="all" ${chosenTag == "all" ? "selected" : ""}>Tout</option>
                 	<option value="true" ${chosenTag == "true" ? "selected" : ""}>Officiel</option>
                 	<option value="false" ${chosenTag == "false" ? "selected" : ""}>Non officiel</option>
+                </select>
+                
+                <!-- Quotation filter -->
+                <select name="quotationFilter">
+               		<option value="all">Toutes difficultés</option>
+                	<c:forEach items="${ quotationDifficulties }" var="quotationDifficulty">
+                		<option value="${ quotationDifficulty }" ${ chosenQuotationMode != "all" && chosenQuotationMode == quotationDifficulty ? "selected" : ""}>${ quotationDifficulty.getMode() }</option>
+                	</c:forEach>
                 </select>
                 
                 <input type="submit" value="Rechercher" />
