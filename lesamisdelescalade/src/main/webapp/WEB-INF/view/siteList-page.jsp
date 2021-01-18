@@ -34,9 +34,9 @@
 			<h2 class="title">Sites d'escalade</h2>
 			
 			<!--  Search box -->
-            <form:form action="search" method="GET">
+            <form:form id="searchSection" action="search" method="GET">
             	<!-- Name or location filter -->
-                <input name="searchedTerms" value="${ keywords }" type="text" placeholder="Cherchez par nom ou par lieu (ex: Alpes, France)..." />
+                <input id="textSearch" name="searchedTerms" value="${ keywords }" type="text" placeholder="Cherchez par nom ou par lieu (ex: Alpes, France)" />
                 
                 <!-- Certification filter -->
                 <select name="tagFilter">
@@ -53,7 +53,9 @@
                 	</c:forEach>
                 </select>
                 
-                <input type="submit" value="Rechercher" />
+                <button type="submit">
+				    <i class="fa fa-search-location"></i>
+				</button>
             </form:form>
             
 
@@ -61,8 +63,8 @@
             <c:if test="${ empty sites }">
             	<div id="noSearchResult">
             		<i class="fa fa-map-signs" aria-hidden="true"></i>
-	            	<p>Le Mont Olympe que vous cherchez n'existe pas encore sur notre site malheureusement...</p>
-	            	<p>Mais nous avons d'autres merveilleux sites d'escalade qui n'attendent que vous !</p>
+	            	<p>Le Mont Olympe que tu cherches n'existe pas encore sur notre site malheureusement...</p>
+	            	<p>Mais nous avons d'autres merveilleux sites d'escalade qui n'attendent que toi !</p>
             	</div>
             </c:if>
             
@@ -120,7 +122,7 @@
 						</div>
 					</c:forEach>
 				</div>
-			</c:if>
+			</c:if>	<!-- End of site list -->
 
 		</div>	<!-- End of Container -->
 		
