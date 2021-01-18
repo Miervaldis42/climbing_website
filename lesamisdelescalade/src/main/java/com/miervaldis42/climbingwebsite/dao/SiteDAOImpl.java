@@ -39,19 +39,29 @@ public class SiteDAOImpl implements SiteDAO {
     public List<Site> searchSites(String searchedTerms, String tagFilter) {
         Session currentSession = sessionFactory.getCurrentSession();
         Query<Site> searchQuery = null;
+        String HQLRequest = "FROM Site s";
+        
+        if(searchedTerms.trim().length() > 0 || !tagFilter.equals("all")) {
+        	HQLRequest = HQLRequest.concat(" WHERE ");
 
-        if(searchedTerms.trim().length() == 0 && tagFilter.equals("all")) {
-        	searchQuery = currentSession.createQuery("FROM Site", Site.class);
-        } else if (searchedTerms.trim().length() == 0) {
-        	searchQuery = currentSession.createQuery("FROM Site s WHERE s.tag=:tagFilter", Site.class);
-        	searchQuery.setParameter("tagFilter", Boolean.parseBoolean(tagFilter));
-        } else {
-        	searchQuery = currentSession.createQuery("FROM Site s WHERE s.name LIKE :keywords OR s.location LIKE :keywords AND s.tag=:tagFilter", Site.class);
-        	searchQuery.setParameter("keywords", "%" + searchedTerms.toLowerCase() + "%");
-        	searchQuery.setParameter("tagFilter", Boolean.parseBoolean(tagFilter));
+	        if (searchedTerms.trim().length() > 0) {
+	        	String keywordsParameter = "(s.name LIKE '%" + searchedTerms.toLowerCase() + "%' OR s.location LIKE '%" + searchedTerms.toLowerCase() + "%')";
+	        	HQLRequest = HQLRequest.concat(keywordsParameter);
+	        } 
+	        
+	        if(searchedTerms.trim().length() > 0 && !tagFilter.equals("all")) {
+	        	HQLRequest = HQLRequest.concat(" AND ");
+	        }
+	        
+	        if(!tagFilter.equals("all")) {
+	        	String keywordsParameter = "s.tag=" + Boolean.parseBoolean(tagFilter);
+	        	HQLRequest = HQLRequest.concat(keywordsParameter);
+	        }
         }
         
+        searchQuery = currentSession.createQuery(HQLRequest, Site.class);        
         List<Site> sites = searchQuery.getResultList();
+
         return sites;
     }
 
