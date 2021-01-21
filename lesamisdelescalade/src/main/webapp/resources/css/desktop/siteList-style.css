@@ -55,7 +55,7 @@
 
 #textSearch::placeholder {
 	padding-left: 2%;
-	font-size: 70%;
+	font-size: 85%;
 	font-style: italic;
 }
 
@@ -141,7 +141,7 @@ button[type="submit"]:hover {
 .siteTag {	
 	position: absolute;
     top: 7%;
-    right: -7.5%; 
+    right: -6.2%; 
     
     padding: 1% 4%;
     padding-bottom: 8%;

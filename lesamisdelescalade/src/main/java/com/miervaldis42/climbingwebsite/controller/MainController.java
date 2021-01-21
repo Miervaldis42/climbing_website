@@ -19,8 +19,12 @@ import com.miervaldis42.climbingwebsite.service.SiteService;
 
 @Controller
 public class MainController {
+	String siteDir = "sites/";
+	
 	@Autowired
 	private SiteService siteService;
+	
+
 	
 	@RequestMapping("/sites")
 	public String showSiteListPage(HttpSession activeSession, Model session, Model search, Model cards) {	
@@ -34,7 +38,7 @@ public class MainController {
 		List<Site> sites = siteService.getSites();
 		setSiteCardInfo(sites, cards);
 		
-		return "siteList-page";
+		return siteDir + "siteList-page";
 	}
 	
 	
@@ -65,7 +69,7 @@ public class MainController {
 		// Check if a user session is present
 		checkSession(activeSession, session);
 		
-        return "siteList-page";        
+        return siteDir + "siteList-page";        
     }
 	
 	
