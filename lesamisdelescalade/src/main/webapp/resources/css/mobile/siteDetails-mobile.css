@@ -1,0 +1,71 @@
+:root {
+	--card-height: 15vh;
+	--card-width: 90vw;
+}
+
+
+/* #siteDetailsBody {
+	background-image: url("../../assets/backgrounds/mountain_background.jpg");
+	background-size: cover;
+	background-position-x: right;
+} */
+
+
+/*
+ * Container
+ */
+#siteDetailsContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#siteDetailsCard {
+	width: var(--card-width);
+
+	background-color: #0FD281;
+	box-shadow: 6px 6px 2px 1px rgba(0, 0, 0, .2);
+}
+
+#siteCover {
+	height: 15vh;
+    width: var(--card-width);
+    
+   	position: relative;
+}
+
+#siteTag {
+	font-size: 150%;
+    color: red;
+
+	position: absolute;
+    top: 9%;
+    right: 8%;
+}
+
+#siteHeader {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#siteLocation {
+	font-style: italic;
+}
+
+#siteHeader p:last-child {
+	text-align: justify;
+	margin: 4% 4% 1%;
+}
+
+#siteElements {
+	margin: 4%;
+}
+
+#siteElements h3 {
+	margin-bottom: 2%;
+}
+
+#siteElements ul {
+	margin-left: 4%;
+}
