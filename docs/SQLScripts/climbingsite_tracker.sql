@@ -24,7 +24,7 @@ CREATE TABLE `sites` (
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `location` varchar(255) NOT NULL,
-  `tag` varchar(5) NOT NULL DEFAULT 'false',
+  `tag` boolean NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,11 +37,11 @@ LOCK TABLES `sites` WRITE;
 /*!40000 ALTER TABLE `sites` DISABLE KEYS */;
 
 INSERT INTO `sites` VALUES 
-	(1, "Les Alpes", "Magnifique chaîne de montagnes avec ces nombreux parcours d'escalades pour débutants.", "France", 'true'),
-	(2, "Les Vosges", "Débutants & experts peuvent venir défier les mystères de la nature.", "France", 'false'),
-	(3, "Le Jura", "Grandeur Nature", "France", 'false'),
-	(4, "Le Massif Central", "Parfait terrain de jeux pour les grimpeurs en été comme en hiver !", "France", 'false'),
-	(5, "Les Pyrénées", "Jusqu'au 30 décembre, certains secteurs seront réouverts !", "France", 'false');
+	(1, "Les Alpes", "Magnifique chaîne de montagnes avec ces nombreux parcours d'escalades pour débutants.", "France", 1),
+	(2, "Les Vosges", "Débutants & experts peuvent venir défier les mystères de la nature.", "France", 0),
+	(3, "Le Jura", "Grandeur Nature", "France", 0),
+	(4, "Le Massif Central", "Parfait terrain de jeux pour les grimpeurs en été comme en hiver !", "France", 1),
+	(5, "Les Pyrénées", "Jusqu'au 30 décembre, certains secteurs seront réouverts !", "France", 0);
 
 /*!40000 ALTER TABLE `sites` ENABLE KEYS */;
 UNLOCK TABLES;

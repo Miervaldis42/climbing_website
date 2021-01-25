@@ -90,4 +90,11 @@ public class SiteServiceImpl implements SiteService {
 		return selectedSite;
 	}
 
+	@Override
+	@Transactional
+	public List<Site> searchSites(String searchedTerms, String tagFilter) {
+		List<Site> retrievedSites = siteDAO.searchSites(searchedTerms, tagFilter);
+		return retrievedSites;
+	}
+
 }

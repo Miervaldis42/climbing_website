@@ -17,6 +17,79 @@
 #siteContainer {
 	display: flex;
 	flex-direction: column;
+	align-items: center;	
+}
+
+/*
+ * Search section
+ */
+#searchSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin: 1% 0;
+}
+
+#searchSection * {
+	margin: 0 2%;
+}
+
+
+#searchSection input, select {	
+	border: none;
+	border-bottom: 1px solid black;
+	
+	background: none;
+	outline: none;
+	
+	color: #555;
+	padding: 1% 0;
+	
+	z-index: 1;
+}
+
+#textSearch {
+	min-width: 70%;
+}
+
+#textSearch::placeholder {
+	padding-left: 2%;
+	font-size: 70%;
+	font-style: italic;
+}
+
+button[type="submit"] {
+	border: none;
+	background: none;
+}
+
+button[type="submit"] i {
+	font-size: 190%;
+}
+
+button[type="submit"]:hover {
+	line-height: 2;
+	font-weight: bolder;
+	color: var(--secondary-color);
+}
+
+
+
+/*
+ * No search result
+ */
+#noSearchResult {	
+	display: flex;
+	flex-basis: calc(var(--body-height) - var(--navbar-height) - var(--footer-height));
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#noSearchResult i {
+	font-size: 200%;
+	margin: 1% 0;
 }
 
 
@@ -56,7 +129,7 @@
 }
 	
 .siteCard:hover {
-	padding: 0 0 5% 5%;
+	padding: 0 0 2% 2%;
 	box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, .2);
 }
 
@@ -68,7 +141,7 @@
 .siteTag {	
 	position: absolute;
     top: 7%;
-    right: -8%; 
+    right: -7.5%; 
     
     padding: 1% 4%;
     padding-bottom: 8%;

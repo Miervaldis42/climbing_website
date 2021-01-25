@@ -38,9 +38,20 @@ public enum Difficulty {
 	 * Utils
 	 */
 	
+	// Get all difficulties
+	public List<Difficulty> getAllDifficulties() {
+		List<Difficulty> allDifficulties = Arrays.asList(Difficulty.values());
+		return allDifficulties;
+	}
+	
 	// Get all modes
-	public List<Difficulty> getAllModes() {
-		List<Difficulty> allModes = Arrays.asList(Difficulty.values());
+	public List<String> getAllModes() {
+		List<String> allModes = new ArrayList<String>();
+		
+		for(Difficulty difficulty : Difficulty.values()) {
+			allModes.add(difficulty.mode);
+		}
+		
 		return allModes;
 	}
 	
@@ -52,6 +63,7 @@ public enum Difficulty {
 		
 		return allStepList;
 	}
+	
 	
 	
 	// Get index corresponding to average quotation from the entire quotation list
@@ -81,23 +93,43 @@ public enum Difficulty {
 		return avgListIndex;
 	}
 	
+	// Set avg quotation attached to site index in a HashMap
 	public Map<Integer, String> getQuotation(Map<Integer, List<Integer>> list) {
-		Map<Integer, String> correspondingQuotation = new HashMap<>();
 		List<String> stepList = getEntireStepList();
+		Map<Integer, String> correspondingQuotation = new HashMap<>();
 		String quotation = null;
 		
-		for(int i = 0; i < list.size(); i++) {
-			int quotationIndex = list.get(i+1).get(0);
+		// For each element in provided list
+		for(int nb : list.keySet()) {
+			int quotationIndex = list.get(nb).get(0);
 			
 			if(quotationIndex == -1) {
 				quotation = null;
 			} else {
 				quotation = stepList.get(quotationIndex);
 			}
-			correspondingQuotation.put(i+1, quotation);
+			
+			// Set site index & avg quotation
+			correspondingQuotation.put(nb, quotation);
 		}
 
 		return correspondingQuotation;
+	}
+	
+	
+	
+	// Filter a list per difficulty mode
+	public List<Integer> filterSitesByQuotationMode(Map<Integer, String> quotationList, String modeFilter) {
+		List<String> modeSteps = Difficulty.valueOf(modeFilter).getSteps();
+		List<Integer> filteredList = new ArrayList<Integer>();
+		
+		for(int i : quotationList.keySet()) {
+			if(quotationList.get(i) != null && modeSteps.contains(quotationList.get(i))) {
+				filteredList.add(i);
+			}
+		}
+		
+		return filteredList;
 	}
 	
 }

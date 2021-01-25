@@ -34,5 +34,35 @@ public class SiteDAOImpl implements SiteDAO {
 		
 		return selectedSite;
 	}
+	
+	@Override
+    public List<Site> searchSites(String searchedTerms, String tagFilter) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query<Site> searchQuery = null;
+        String HQLRequest = "FROM Site s";
+        
+        if(searchedTerms.trim().length() > 0 || !tagFilter.equals("all")) {
+        	HQLRequest = HQLRequest.concat(" WHERE ");
+
+	        if (searchedTerms.trim().length() > 0) {
+	        	String keywordsParameter = "(s.name LIKE '%" + searchedTerms.toLowerCase() + "%' OR s.location LIKE '%" + searchedTerms.toLowerCase() + "%')";
+	        	HQLRequest = HQLRequest.concat(keywordsParameter);
+	        } 
+	        
+	        if(searchedTerms.trim().length() > 0 && !tagFilter.equals("all")) {
+	        	HQLRequest = HQLRequest.concat(" AND ");
+	        }
+	        
+	        if(!tagFilter.equals("all")) {
+	        	String keywordsParameter = "s.tag=" + Boolean.parseBoolean(tagFilter);
+	        	HQLRequest = HQLRequest.concat(keywordsParameter);
+	        }
+        }
+        
+        searchQuery = currentSession.createQuery(HQLRequest, Site.class);        
+        List<Site> sites = searchQuery.getResultList();
+
+        return sites;
+    }
 
 }
