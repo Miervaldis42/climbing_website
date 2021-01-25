@@ -47,7 +47,7 @@
 				<label>Adresse email</label>
 				<form:input path="email" />
 				
-				<label>Password</label>
+				<label>Mot de passe</label>
 				<form:password path="password" />
 
 				<!-- Submit button -->

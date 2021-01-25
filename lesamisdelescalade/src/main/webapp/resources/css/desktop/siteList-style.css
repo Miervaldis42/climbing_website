@@ -1,14 +1,145 @@
-#siteBody {
-	/* background-image: url("../../assets/backgrounds/mountain_background.jpg"); */
+/* Variables */
+:root {
+	--card-height: 22vh;
+	--card-width: 22vw;
+}
+
+
+/*
+ * Body & Container
+ */
+/* #siteBody {
+	background-image: url("../../assets/backgrounds/mountain_background.jpg");
 	background-size: cover;
 	background-position-x: right;
-}
+} */
 
 #siteContainer {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+}
+
+
+
+/* 
+ * Site cards
+ */
+#siteCards {
+	display: flex;
+	flex-wrap: wrap;
+	flex-basis: var(--body-width);
+	justify-content: space-around;
 	
+	padding: 2% 8%;
+}
+
+.siteCard {
+	height: var(--card-height);
+	width: var(--card-width);
+	
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+
+	border-radius: 20px;	
+	background-size: cover;
+	
+	position: relative;
+	
+	color: white;
+	text-shadow: 1px 1px 2px grey;
+	
+	margin: 2%;
+	
+	-webkit-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+	
+.siteCard:hover {
+	padding: 0 0 5% 5%;
+	box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, .2);
+}
+
+
+
+/* 
+ * Site tag
+ */
+.siteTag {	
+	position: absolute;
+    top: 7%;
+    right: -8%; 
+    
+    padding: 1% 4%;
+    padding-bottom: 8%;
+  
+	background-color: brown;
+	
+	clip-path: polygon(0 0, 100% 0, 100% 50%, 87% 87%, 87% 50%, 0 50%);
+}
+
+.siteTag i {
+	display: none;
+}
+
+.siteTag p {
 	text-align: center;
+	font-size: small;
+	font-weight: bold;
+	color: white;
+}
+
+
+
+/* 
+ * Site main info
+ */
+.siteMainInfo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);	
+}
+
+.siteCardName {
+	font-size: 150%;
+	text-shadow: 1px 1px 10px black;
+	text-align: center;
+	font-weight: bolder;
+}
+
+.siteCardLocation {
+	display: flex;
+	justify-content: center;
+	font-style: italic;
+}
+
+.siteCardLocation i {
+	padding-right: 8%;
+}
+
+
+
+/* 
+ * Site sub info
+ */
+.siteSubInfo {
+	position: absolute;
+	bottom: 5%;
+	
+	display: flex;
+	justify-content: flex-end;
+	
+	margin-right: 3%; 
+}
+
+.siteSubInfo div {
+	display: flex;
+	
+	text-shadow: 1px 1px 2px grey;
+	margin: 0 8%;
+}
+
+.siteSubInfo div i {
+	padding-right: 18%;
 }
