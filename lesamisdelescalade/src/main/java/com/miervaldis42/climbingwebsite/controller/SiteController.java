@@ -13,6 +13,7 @@ import com.miervaldis42.climbingwebsite.entity.Site;
 import com.miervaldis42.climbingwebsite.entity.Length;
 import com.miervaldis42.climbingwebsite.entity.Route;
 import com.miervaldis42.climbingwebsite.entity.Sector;
+import com.miervaldis42.climbingwebsite.entity.Difficulty;
 
 import com.miervaldis42.climbingwebsite.service.SiteService;
 import com.miervaldis42.climbingwebsite.service.SectorService;
@@ -48,6 +49,7 @@ public class SiteController {
 		siteDetails.addAttribute("sectors", siteSectors);
 		siteDetails.addAttribute("routes", siteRoutes);
 		siteDetails.addAttribute("lengths", siteLengths);
+		siteDetails.addAttribute("quotations", Difficulty.EASY.getEntireStepList());
 
 		return siteDir + "siteDetails-page";
 	}
