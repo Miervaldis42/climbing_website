@@ -12,7 +12,7 @@
 		<!-- Tag field -->
 		<div id="editMode__siteTag">
 			<label id="editMode__tag">Officiel ?</label>
-			<select id="editMode__tag" name="tag" value="${ site.tag }">
+			<select id="editMode__tag" name="siteTag" value="${ site.tag }" readonly>
 				<option value="true">Officiel</option>
 				<option value="false">Non officiel</option>
 			</select>
@@ -22,21 +22,21 @@
 		<!-- Name field -->
 		<div id="editMode__siteName">
 			<label for="editMode__name">Nom du site</label>
-			<input id="editMode__name" name="name" maxlength="255" value="${ site.name }" />
+			<input id="editMode__name" value="${ site.name }" readonly />
 		</div>
 		
 		
 		<!-- Location field -->
 		<div id="editMode__siteLocation">
 			<label for="editMode__location">Lieu</label>
-			<input id="editMode__location" name="location" maxlength="255" value="${ site.location }" />
+			<input id="editMode__location" value="${ site.location }" readonly />
 		</div>
 		
 		
 		<!-- Description field -->
 		<div id="editMode__siteDesc">
 			<label for="editMode__description">Description</label>
-			<textarea id="editMode__description" name="description" maxlength="255"> ${ site.description } </textarea>
+			<textarea id="editMode__description" readonly> ${ site.description } </textarea>
 		</div>
 		
 		
@@ -45,59 +45,66 @@
 		
 			<!-- Sector list -->
 			<div id="editMode__sectors">
-				<h3>Secteurs</h3>
+				<h3>
+					Secteurs
+					
+					<button type="button" onclick="addASector()">
+						<i class="fa fa-plus"></i>
+					</button>
+				</h3>
 				
-				<button type="button" onclick="addASector()">
-					<i class="fa fa-plus"></i>
-				</button>
-				
-				<c:if test="${ sectors == null }">
-					<p>---</p>
-				</c:if>
-				
-				<!--  List of existing sectors -->
-				<c:forEach items="${ sectors }" var="sector">
-					<c:if test="${ not empty sector.id }">
-						<input type="hidden" name="sectorId" value="${ sector.id }" />
+				<div>
+					<c:if test="${ sectors == null }">
+						<p>---</p>
 					</c:if>
-					<label for="sectorCreation"> Secteur: </label>
-					<input id="sectorCreation" name="sector" value="${ sector.name }" />
-				</c:forEach>
-			</div>
+					
+					<!--  List of existing sectors -->
+					<c:forEach items="${ sectors }" var="sector">
+						<c:if test="${ not empty sector.id }">
+							<input type="hidden" name="sectorId" value="${ sector.id }" />
+						</c:if>
+						<label for="sectorCreation"> Secteur: </label>
+						<input id="sectorCreation" name="sector" value="${ sector.name }" />
+					</c:forEach>
+				</div>
+			</div>	<!-- End of Sector list -->
 			
 			
 			<!-- Route list -->
 			<div id="editMode__routes">
-				<h3>Routes</h3>
+				<h3>
+					Routes
 				
-				<button type="button" onclick="${ sectors != null } ? addARoute() : ''">
-					<i class="fa fa-plus"></i>
-				</button>
+					<button type="button" onclick="${ sectors != null } ? addARoute() : ''">
+						<i class="fa fa-plus"></i>
+					</button>
+				</h3>
 				
-				<c:if test="${ sectors == null }">
-					<p>Aucune route ne peut être créée si le site d'escalade n'a pas de secteurs !</p>
-				</c:if>
-
-				<c:if test="${ routes == null }">
-					<p>---</p>
-				</c:if>			
-				
-				
-				<!-- List of existing routes -->
-				<c:forEach items="${ routes }" var="route">
-					<c:if test="${ not empty route.id }">
-						<input type="hidden" name="routeId" value="${ route.id }" />
+				<div>
+					<c:if test="${ sectors == null }">
+						<p>Aucune route ne peut être créée si le site d'escalade n'a pas de secteurs !</p>
 					</c:if>
+	
+					<c:if test="${ routes == null }">
+						<p>---</p>
+					</c:if>			
 					
-					<label for="existingRoutes"> Route: </label>
-					<input id="existingRoutes" name="route" type="text" value="${ route.name }" />
-					
-					<select name="routeQuotation">
-						<c:forEach items="${ quotations }" var="q">
-							<option value="${ q }" ${ route.quotation == q ? "selected" : "" }> ${ q } </option>
-						</c:forEach>
-					</select>
-				</c:forEach>
+					<!-- List of existing routes -->
+					<c:forEach items="${ routes }" var="route">
+						<c:if test="${ not empty route.id }">
+							<input type="hidden" name="routeId" value="${ route.id }" />
+						</c:if>
+						
+						<label for="existingRoutes"> Route: </label>
+						<input id="existingRoutes" name="route" type="text" value="${ route.name }" />
+						
+						<select name="routeQuotation">
+							<c:forEach items="${ quotations }" var="q">
+								<option value="${ q }" ${ route.quotation == q ? "selected" : "" }> ${ q } </option>
+							</c:forEach>
+						</select>
+					</c:forEach>
+				</div>
 				
 				
 				<!-- Route quotation selection -->
@@ -113,40 +120,44 @@
 						<option id="routeSectorOption" value="${ s.id }"> ${ s.name } </option>
 					</c:forEach>
 				</select>
-			</div>
+			</div> <!-- End of Route list -->
 			
 			
 			<!-- Length list -->
 			<div id="editMode__lengths">
-				<h3>Longueurs</h3>
+				<h3>
+					Longueurs
 	
-				<button type="button" onclick="${ routes != null } ? addALength() : ''">
-					<i class="fa fa-plus"></i>
-				</button>
+					<button type="button" onclick="${ routes != null } ? addALength() : ''">
+						<i class="fa fa-plus"></i>
+					</button>
+				</h3>
 				
-				<c:if test="${ routes == null }">
-					<p>Aucune longueur ne peut être créée si le site d'escalade n'a pas de routes !</p>
-				</c:if>
-				
-				<c:if test="${ lengths == null }">
-					<p> --- </p>
-				</c:if>
-	
-				<!-- Existing lengths -->
-				<c:forEach items="${ lengths }" var="length">
-					<c:if test="${ not empty length.id }">
-						<input type="hidden" name="lengthId" value="${ length.id }" />
+				<div>
+					<c:if test="${ routes == null }">
+						<p>Aucune longueur ne peut être créée si le site d'escalade n'a pas de routes !</p>
 					</c:if>
-
-					<label for="existingLengths"> Longueur: </label>
-					<input type="text" id="existingLengths" name="length" value="${ length.name }" />
 					
-					<select name="lengthQuotation">
-						<c:forEach items="${ quotations }" var="q">
-							<option value="${ q }" ${ length.quotation == q ? "selected" : "" }> ${ q } </option>
-						</c:forEach>
-					</select>
-				</c:forEach>
+					<c:if test="${ lengths == null }">
+						<p> --- </p>
+					</c:if>
+		
+					<!-- Existing lengths -->
+					<c:forEach items="${ lengths }" var="length">
+						<c:if test="${ not empty length.id }">
+							<input type="hidden" name="lengthId" value="${ length.id }" />
+						</c:if>
+	
+						<label for="existingLengths"> Longueur: </label>
+						<input type="text" id="existingLengths" name="length" value="${ length.name }" />
+						
+						<select name="lengthQuotation">
+							<c:forEach items="${ quotations }" var="q">
+								<option value="${ q }" ${ length.quotation == q ? "selected" : "" }> ${ q } </option>
+							</c:forEach>
+						</select>
+					</c:forEach>
+				</div>
 				
 				
 				<!-- Length quotation selection -->
@@ -162,7 +173,7 @@
 						<option id="lengthRouteOption" value="${ r.id }"> ${ r.name } </option>
 					</c:forEach>
 				</select>
-			</div>
+			</div>	<!-- End of Length list -->
 		</div>
 		
 		

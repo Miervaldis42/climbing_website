@@ -70,8 +70,7 @@ public class SiteController {
 		 @RequestParam("lengthId") Optional<int[]> lengthIds,
 		 @RequestParam("length") Optional<String[]> lengthNames,
 		 @RequestParam("lengthQuotation") Optional<String[]> lengthQuotations,
-		 @RequestParam("lengthRoute") Optional<int[]> lengthRouteIds,
-		 Model siteDetails)
+		 @RequestParam("lengthRoute") Optional<int[]> lengthRouteIds)
 	{
 		int id = Integer.parseInt(siteId);
 		Site associatedSite = siteService.getSite(id);
@@ -115,11 +114,13 @@ public class SiteController {
 		if(routeIds.isPresent()) {			
 			String[] existingRouteNames = Arrays.copyOfRange(routeNames.get(), 0, routeIds.get().length);
 			String[] otherRouteNames = Arrays.copyOfRange(routeNames.get(), routeIds.get().length, routeNames.get().length);
+			String[] existingRouteQuotations = Arrays.copyOfRange(routeQuotations.get(), 0, routeIds.get().length);
+			String[] otherRouteQuotations = Arrays.copyOfRange(routeQuotations.get(), routeIds.get().length, routeNames.get().length);
 			
 			for(int i=0; i < routeIds.get().length; i++) {	
 				newRoute = routeService.getRoute(routeIds.get()[i]);
 				newRoute.setName(!existingRouteNames[i].isEmpty() ? existingRouteNames[i] : "X-File n°" + i);
-				newRoute.setQuotation(routeQuotations.get()[i]);
+				newRoute.setQuotation(existingRouteQuotations[i]);
 				
 				routeService.saveRoute(newRoute);
 			}
@@ -128,7 +129,7 @@ public class SiteController {
 				newRoute = new Route();
 				newRoute.setSector(sectorService.getSector(routeSectorIds.get()[i]));
 				newRoute.setName(!otherRouteNames[i].isEmpty() ? otherRouteNames[i] : "X-File n°" + i);		
-				newRoute.setQuotation(routeQuotations.get()[i]);
+				newRoute.setQuotation(otherRouteQuotations[i]);
 
 				routeService.saveRoute(newRoute);
 			}
@@ -150,11 +151,13 @@ public class SiteController {
 		if(lengthIds.isPresent()) {			
 			String[] existingLengthNames = Arrays.copyOfRange(lengthNames.get(), 0, lengthIds.get().length);
 			String[] otherLengthNames = Arrays.copyOfRange(lengthNames.get(), lengthIds.get().length, lengthNames.get().length);
+			String[] existingLengthQuotations = Arrays.copyOfRange(lengthQuotations.get(), 0, lengthIds.get().length);
+			String[] otherLengthQuotations = Arrays.copyOfRange(lengthQuotations.get(), lengthIds.get().length, lengthNames.get().length);
 			
 			for(int i=0; i < lengthIds.get().length; i++) {	
 				newLength = lengthService.getLength(lengthIds.get()[i]);
 				newLength.setName(!existingLengthNames[i].isEmpty() ? existingLengthNames[i] : "X-File n°" + i);
-				newLength.setQuotation(lengthQuotations.get()[i]);
+				newLength.setQuotation(existingLengthQuotations[i]);
 				
 				lengthService.saveLength(newLength);
 			}
@@ -163,7 +166,7 @@ public class SiteController {
 				newLength = new Length();
 				newLength.setRoute(routeService.getRoute(lengthRouteIds.get()[i]));
 				newLength.setName(!otherLengthNames[i].isEmpty() ? otherLengthNames[i] : "X-File n°" + i);		
-				newLength.setQuotation(lengthQuotations.get()[i]);
+				newLength.setQuotation(otherLengthQuotations[i]);
 
 				lengthService.saveLength(newLength);
 			}
