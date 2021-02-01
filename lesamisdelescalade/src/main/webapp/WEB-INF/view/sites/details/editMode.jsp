@@ -46,6 +46,8 @@
 			<!-- Sector list -->
 			<div id="editMode__sectors">
 				<h3>
+					<i class="fas fa-map-signs"></i>
+					
 					Secteurs
 					
 					<button type="button" onclick="addASector()">
@@ -73,6 +75,8 @@
 			<!-- Route list -->
 			<div id="editMode__routes">
 				<h3>
+					<i class="fas fa-route"></i>
+					
 					Routes
 				
 					<button type="button" onclick="${ sectors != null } ? addARoute() : ''">
@@ -126,6 +130,8 @@
 			<!-- Length list -->
 			<div id="editMode__lengths">
 				<h3>
+					<i class="fas fa-wave-square"></i>
+					
 					Longueurs
 	
 					<button type="button" onclick="${ routes != null } ? addALength() : ''">
