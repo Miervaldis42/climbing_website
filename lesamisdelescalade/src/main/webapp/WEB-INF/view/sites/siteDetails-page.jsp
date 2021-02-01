@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -27,71 +28,25 @@
 	<body id="siteDetailsBody">
 		<%@ include file="../common/navbar.jsp" %>
 		
+		<!-- Container -->
 		<div id="siteDetailsContainer" class="container">
 			<h2 class="title">Détails du site</h2>
 			
-			<div id="siteDetailsCard">
-				<img id="siteCover" src="<%=request.getContextPath()%>/resources/assets/sites/${ site.name }.jpg" />
+			<!-- Site details -->
+			<div id="siteDetails">
+				<img id="siteDetails__img" src="<%=request.getContextPath()%>/resources/assets/sites/${ site.name }.jpg" />
+				
+				<!-- Edit icon & mode -->
+				<%@ include file="./details/editMode.jsp" %>
+				
+				<!-- Display mode -->
+				<%@ include file="./details/displayMode.jsp" %>
+			</div> <!-- End of SiteDetails -->
 
-				<c:if test="${ site.tag }">
-					<i id="siteTag" class="fa fa-award" aria-hidden="true"></i>
-				</c:if>
-
-				<div id="siteInfo">
-					<div id="siteHeader">
-						<h2>${ site.name }</h2>
-						<p id="siteLocation">${ site.location }</p>
-						<p>${ site.description }</p>
-					</div>
-					
-					<br />
-					<div id="siteElements">
-						<div id="siteSectors">
-							<h3><i class="fas fa-map-signs"></i> Secteurs</h3>
-							
-							<c:if test="${ empty sectors }">
-								<p class="center">---</p>
-							</c:if>
-							<ul>								
-								<c:forEach items="${ sectors }" var="sector">
-									<li>${ sector.name }</li>
-								</c:forEach>
-							</ul>
-						</div>
-						
-						<br />
-						<div id="siteRoutes">
-							<h3><i class="fas fa-route"></i> Routes</h3>
-							
-							<c:if test="${ empty routes }">
-								<p class="center">---</p>
-							</c:if>
-							<ul>
-								<c:forEach items="${ routes }" var="route">
-									<li>${ route.name } - ${ route.quotation }</li>
-								</c:forEach>
-							</ul>
-						</div>
-						
-						<br />
-						<div id="siteLengths">
-							<h3><i class="fas fa-wave-square"></i> Longueurs</h3>
-							
-							<c:if test="${ empty lengths }">
-								<p class="center">---</p>
-							</c:if>
-							<ul>
-								<c:forEach items="${ lengths }" var="length">
-									<li>${ length.name } - ${ length.quotation }</li>
-								</c:forEach>
-							</ul>
-						</div>
-					</div>					
-				</div>
-
-			</div>
 		</div>	<!-- End of container -->
 		
 		<%@ include file="../common/footer.jsp" %>
 	</body>
+	
+	<script defer src="<%=request.getContextPath()%>/resources/js/editDetailsUtils.js"></script>
 </html>
