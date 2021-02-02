@@ -35,6 +35,7 @@ function addASector() {
 	sectorsList.appendChild(newSectorInput);
 }
 
+
 function addARoute() {
 	// Variables
 	var routesList = document.getElementById("editMode__routes");
@@ -68,6 +69,7 @@ function addARoute() {
 	routesList.appendChild(newRouteQuotationSelect);
 	routesList.appendChild(newRouteSectorSelect);
 }
+
 
 function addALength() {
 	var lengthsList = document.getElementById("editMode__lengths");

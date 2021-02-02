@@ -20,21 +20,31 @@
 	align-items: center;
 }
 
-#siteDetailsCard {
+#siteDetails {
+	height: 50%;
 	width: var(--card-width);
 
 	background-color: #0FD281;
 	box-shadow: 6px 6px 2px 1px rgba(0, 0, 0, .2);
 }
 
-#siteCover {
+#siteDetails__img {
 	height: 15vh;
     width: var(--card-width);
     
    	position: relative;
 }
 
-#siteTag {
+
+/*
+ * Display mode
+ */
+#siteDetails__displayMode {
+	height: 55%;
+	overflow: auto;
+}
+ 
+#displayMode__tag {
 	font-size: 150%;
     color: red;
 
@@ -43,29 +53,155 @@
     right: 8%;
 }
 
-#siteHeader {
+#displayMode__siteInfo {
+	margin: 2%;
+}
+
+#siteInfo__header {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	text-align: center;
 }
 
-#siteLocation {
-	font-style: italic;
+
+#siteInfo__header p:last-child {
+	margin: 2% 0;
 }
 
-#siteHeader p:last-child {
-	text-align: justify;
-	margin: 4% 4% 1%;
+#siteInfo__elements {
+	padding: 1% 2%;
 }
 
-#siteElements {
-	margin: 4%;
+#siteInfo__elements * h3 {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+
+	padding-bottom: 2%;
 }
 
-#siteElements h3 {
-	margin-bottom: 2%;
+#siteInfo__elements ul {
+	text-align: center;
+    list-style-type: none;
 }
 
-#siteElements ul {
-	margin-left: 4%;
+
+
+/*
+ * Edit mode
+ */
+#siteDetails__editIcon {
+	display: flex;
+    justify-content: flex-end;
+    margin: 1% 3% 0 0;
+}
+
+#siteDetails__editIcon i:hover {
+	font-size: 130%;
+	color: red;	
+}
+
+#siteDetails__editMode button[type="submit"] {
+	position: absolute;
+	top: 23.6%;
+    right: 15%;
+	
+	border: none;
+    background: none;
+}
+
+#siteDetails__editMode button[type="submit"] i {
+	font-size: 150%;
+}
+
+#siteDetails__editMode button[type="submit"] i:hover {
+	font-size: 170%;
+	color: green;
+}
+
+
+#siteDetails__editMode {
+	height: 50%;
+	width: var(--details-width);
+
+	margin: 2%;
+	overflow: auto;
+}
+
+
+#siteDetails__editMode form div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	margin-bottom: 5%;
+}
+
+#siteDetails__editMode button:not([type="submit"]) {
+	width: 1%;
+	margin: 5%;
+	
+	border: none;
+    background: none;
+}
+
+#siteDetails__editMode button:not([type="submit"]):hover {
+	font-size: 100%;
+	color: red;
+}
+
+#siteDetails__editMode h3 {
+	text-align: center;
+	width: 100%;
+}
+
+#siteDetails__editMode label {
+	font-weight: bold; 
+	margin-bottom: .5%;
+}
+
+#siteDetails__editMode input, #siteDetails__editMode select {	
+	width: 40%;
+	
+	text-align: center;
+	text-align-last:center;
+	
+	border: none;
+	border-bottom: 1px solid black;
+	background: none;
+	outline: none;
+
+	padding-bottom: 1%;
+	
+	z-index: 1;
+}
+
+#siteDetails__editMode textarea {
+	width: 90%;
+
+	text-align: center;
+	
+	border: dashed;
+	outline: none;
+	
+	background: white;
+	padding-bottom: 1%;
+	
+	z-index: 1;
+}
+
+#editMode__components div {
+	margin: 2% 0;
+}
+
+#editMode__components label {
+	top-margin: 1%;
+}
+
+#editMode__components input, #editMode__components select {
+	width: 100%;
+	
+	padding: 0.5% 1%;
+    margin: 3% 0;
 }
