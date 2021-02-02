@@ -74,18 +74,20 @@ public enum Difficulty {
 		int avgListIndex = 0;
 		
 		// Get index of elements present in all step list & the site quotations
-		for (int i = 0; i < list.size(); i++) {
-			if(list.contains(stepList.get(i))) {
-				indexList.add(i);
+		for(int i = 0; i < stepList.size(); i++) {			
+			for(int j = 0; j < list.size(); j++) {
+				if(list.get(j).equalsIgnoreCase(stepList.get(i))) {
+					indexList.add(i);
+				}
 			}
 		}
-		
+	
 		// Get index of average quotation based average of indexes of site quotations 
 		for(int i = 0; i < indexList.size(); i++) {
 			sum += indexList.get(i);
 		}
 		if(indexList.size() != 0) {
-			avgListIndex = (int) Math.ceil(sum / indexList.size()); 
+			avgListIndex = (int) Math.ceil(sum / indexList.size());
 		} else {
 			avgListIndex = -1;	// -1 means site either has no routes & lengths, so no quotations
 		}

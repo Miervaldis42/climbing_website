@@ -73,7 +73,7 @@
 			
 				<div id="siteCards">
 					<c:forEach items="${ sites }" var="site">
-						<a href="details?siteId= ${ site.id }">
+						<a href="details?siteId=${ site.id }">
 							<div class="siteCard" style="background-image: url('<%=request.getContextPath()%>/resources/assets/sites/${ site.name }.jpg');">
 								<!-- Official tag -->
 								<c:if test="${ site.tag }">
@@ -123,7 +123,7 @@
 							</div>
 						</a>
 					</c:forEach>
-				</div>
+				</div>	<!-- End of cards -->
 
 			</c:if>	<!-- End of site list -->
 

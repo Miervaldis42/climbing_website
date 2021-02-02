@@ -49,8 +49,9 @@
  */
 #siteDetails__displayMode {
 	width: var(--details-width);
-	
 	padding: 1%;
+	
+	overflow: auto;
 }
 
 #displayMode__tag {
