@@ -1,7 +1,7 @@
 /* Variables */
 :root {
 	--details-height: 40vh;
-	--details-width: 80vw;
+	--details-width: 70vw;
 }
 
 
@@ -23,56 +23,62 @@
 	margin-top: 2%;
 }
 
-.title {
-	margin-bottom: 1%;
-}
 
-#siteDetailsCard {
+/*
+ * Site details
+ */
+#siteDetails {
 	height: var(--details-height);
 	width: var(--details-width);
 	
+	position: relative;
 	display: flex;
 	
 	box-shadow: 6px 6px 2px 1px rgba(0, 0, 0, .2);	
 	background-color: #0FD281;
 }
 
-#siteTag {
-	font-size: 200%;
-	color: red;
-
-	margin: .5% 0 0 1%;
-}
-
-#siteCover {
+#siteDetails__img {
 	width: 12vw;
 }
 
-#siteInfo {
-	width: 80%;
-	
-	display: flex;
-	flex-direction: column;
 
+
+/*
+ * Display mode
+ */
+#siteDetails__displayMode {
+	width: var(--details-width);
+	
 	padding: 1%;
 }
 
-#siteHeader {
+#displayMode__tag {
+	font-size: 200%;
+	color: red;
+}
+
+#displayMode__siteInfo {
+	display: flex;
+	flex-direction: column;
+}
+
+#siteInfo__header {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-#siteHeader #siteLocation {
+#siteInfo__header:nth-child(2) {
 	font-size: 90%;
 	font-style: italic;
 }
 
-#siteHeader p:last-child {
+#siteInfo__header p:last-child {
 	margin: 2% 0;
 }
 
-#siteElements {
+#siteInfo__elements {
 	width: -webkit-fill-available;
 	
 	display: flex;
@@ -81,10 +87,127 @@
 	padding: 1% 2%;
 }
 
-#siteElements * h3 {
+#siteInfo__elements * h3 {
 	padding-bottom: 8%;
 }
 
-.center {
-	text-align: center;
+
+
+
+/*
+ * Edit mode
+ */
+#siteDetails__editIcon {
+	position: absolute;
+	top: 2%;
+	right: 1.5%;
+	
+	font-size: 120%;
+}
+
+#siteDetails__editIcon i:hover {
+	font-size: 130%;
+	color: red;	
+}
+
+#siteDetails__editMode button[type="submit"] {
+	position: absolute;
+	top: 2%;
+	right: 5%;
+	
+	border: none;
+    background: none;
+}
+
+#siteDetails__editMode button[type="submit"] i {
+	font-size: 150%;
+}
+
+#siteDetails__editMode button[type="submit"] i:hover {
+	font-size: 170%;
+	color: green;
+}
+
+
+#siteDetails__editMode {	
+	width: var(--details-width);
+	overflow: auto;
+}
+
+
+#siteDetails__editMode form {
+	margin: 2% 3%;
+}
+
+#siteDetails__editMode form div {
+	display: flex;
+	flex-direction: column;
+	
+	margin-bottom: 2%;
+}
+
+#siteDetails__editMode button:not([type="submit"]) {
+	width: 1%;
+	margin: 5%;
+	
+	border: none;
+    background: none;
+}
+
+#siteDetails__editMode button:not([type="submit"]):hover {
+	font-size: 100%;
+	color: red;
+}
+
+#siteDetails__editMode label {
+	font-weight: bold; 
+	margin-bottom: .5%;
+}
+
+#siteDetails__editMode input, #siteDetails__editMode select {	
+	width: 15%;
+	
+	border: none;
+	border-bottom: 1px solid black;
+	background: none;
+	outline: none;
+
+	padding: .2% .4%;
+	
+	z-index: 1;
+}
+
+#siteDetails__editMode textarea {
+	width: 70%;
+
+	border: dashed;
+	outline: none;
+	
+	background: white;
+	padding: .8% 1%;
+	
+	z-index: 1;
+}
+
+#siteDetails__editMode #editMode__components {
+	display: flex;
+	flex-direction: row;
+    justify-content: space-between;
+    
+    width: 90%;
+}
+
+#editMode__components div {
+	margin: 2% 0;
+}
+
+#editMode__components label {
+	top-margin: 1%;
+}
+
+#editMode__components input, #editMode__components select {
+	width: 100%;
+	
+	padding: 0.5% 1%;
+    margin: 3% 0;
 }

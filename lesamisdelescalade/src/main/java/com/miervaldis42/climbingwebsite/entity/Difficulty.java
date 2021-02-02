@@ -14,12 +14,12 @@ public enum Difficulty {
 	SKYISTHELIMIT("Rien ne peut t'arrêter !", Arrays.asList(new String[] {"8a", "8a+", "8b", "8b+", "8c", "8c+", "9a", "9a+", "9b"}));
 
 	private String mode;
-	private List<String> stages;
+	private List<String> steps;
 	
 	// Constructor
-	private Difficulty(String mode, List<String> stages) {
+	private Difficulty(String mode, List<String> steps) {
 		this.mode = mode;
-		this.stages = stages;
+		this.steps = steps;
 	}
 	
 	
@@ -30,7 +30,7 @@ public enum Difficulty {
 		return mode;
 	}
 	public List<String> getSteps() {
-		return stages;
+		return steps;
 	}
 	
 	
