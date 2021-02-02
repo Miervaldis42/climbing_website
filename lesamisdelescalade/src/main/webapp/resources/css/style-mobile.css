@@ -67,6 +67,14 @@ html, body {
 	height: calc(var(--body-height) - var(--navbar-height));
 }
 
+.title {
+	display: block;
+	font-weight: bolder;
+	text-align: center;
+	
+	margin: 5% 0;
+}
+
 
 /*
  * Toasts

@@ -28,7 +28,7 @@
 
 	<!-- Body -->
 	<body id="siteBody">
-		<%@ include file="common/navbar.jsp" %>
+		<%@ include file="../common/navbar.jsp" %>
 		
 		<div id="siteContainer" class="container">
 			<h2 class="title">Sites d'escalade</h2>
@@ -70,63 +70,66 @@
             
 			<!-- Site list -->
 			<c:if test="${ not empty sites }">
+			
 				<div id="siteCards">
 					<c:forEach items="${ sites }" var="site">
-						<div class="siteCard" style="background-image: url('<%=request.getContextPath()%>/resources/assets/sites/${ site.name }.jpg');">
-							<!-- Official tag -->
-							<c:if test="${ site.tag }">
-								<div class="siteTag">
-									<i class="fa fa-award" aria-hidden="true"></i>
-									<p>Officiel - Les amis de l'escalade</p>
-								</div>
-							</c:if>
-							
-							<!-- Site main info -->
-							<div class="siteMainInfo">
-								<p class="siteCardName">${ site.name }</p>
-								<p class="siteCardLocation">
-									<i class="fas fa-map-marker-alt"></i> 
-									${ site.location }
-								</p>
-							</div>
-						
-							<div class="siteSubInfo">
-								<div> 
-									<i class="fas fa-award" title="Cotation"></i>						
-									<c:choose>
-									  <c:when test="${ quotation.get(site.id) == null }">
-									    -
-									  </c:when>
-									  <c:otherwise>
-									    ${ quotation.get(site.id) }
-									  </c:otherwise>
-									</c:choose>
-								</div>
+						<a href="details?siteId= ${ site.id }">
+							<div class="siteCard" style="background-image: url('<%=request.getContextPath()%>/resources/assets/sites/${ site.name }.jpg');">
+								<!-- Official tag -->
+								<c:if test="${ site.tag }">
+									<div class="siteTag">
+										<i class="fa fa-award" aria-hidden="true"></i>
+										<p>Officiel - Les amis de l'escalade</p>
+									</div>
+								</c:if>
 								
-								<div>
-									<i class="fas fa-map-signs" title="Nombre de secteurs"></i>
-									${ infos.get(site.id).get(1) }
+								<!-- Site main info -->
+								<div class="siteMainInfo">
+									<p class="siteCardName">${ site.name }</p>
+									<p class="siteCardLocation">
+										<i class="fas fa-map-marker-alt"></i> 
+										${ site.location }
+									</p>
 								</div>
-
-								<div>
-									<i class="fas fa-route" title="Nombre de routes"></i>
-									${ infos.get(site.id).get(2) }
-								</div>
-								
-								<div>
-									<i class="fas fa-wave-square" title="Nombre de longueurs"></i>
-									${ infos.get(site.id).get(3) }
+							
+								<div class="siteSubInfo">
+									<div> 
+										<i class="fas fa-award" title="Cotation"></i>						
+										<c:choose>
+										  <c:when test="${ quotation.get(site.id) == null }">
+										    -
+										  </c:when>
+										  <c:otherwise>
+										    ${ quotation.get(site.id) }
+										  </c:otherwise>
+										</c:choose>
+									</div>
+									
+									<div>
+										<i class="fas fa-map-signs" title="Nombre de secteurs"></i>
+										${ infos.get(site.id).get(1) }
+									</div>
+	
+									<div>
+										<i class="fas fa-route" title="Nombre de routes"></i>
+										${ infos.get(site.id).get(2) }
+									</div>
+									
+									<div>
+										<i class="fas fa-wave-square" title="Nombre de longueurs"></i>
+										${ infos.get(site.id).get(3) }
+									</div>
 								</div>
 							</div>
-							
-						</div>
+						</a>
 					</c:forEach>
 				</div>
+
 			</c:if>	<!-- End of site list -->
 
 		</div>	<!-- End of Container -->
 		
-		<%@ include file="common/footer.jsp" %>
+		<%@ include file="../common/footer.jsp" %>
 	</body>
 </html>
 
