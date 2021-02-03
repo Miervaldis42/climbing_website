@@ -18,4 +18,9 @@
 			${ sessionScope.email }
 		</p>
 	</div>
+	
+	<a id="profile__logoutButton" href="logout">
+		<i class="fa fa-couch"></i>
+		Déconnexion
+	</a>
 </div>
