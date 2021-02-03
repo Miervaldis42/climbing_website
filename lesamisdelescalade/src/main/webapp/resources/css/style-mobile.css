@@ -32,6 +32,12 @@
 
 a {
 	text-decoration: none;
+	color: var(--main-color);
+}
+
+a:hover {
+	font-size: 105%;
+	color: var(--secondary-color);
 }
 
 
