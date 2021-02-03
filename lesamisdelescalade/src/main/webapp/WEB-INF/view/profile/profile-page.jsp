@@ -1,0 +1,55 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+    
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Meta -->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+        <!-- CSS -->
+		<link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/resources/assets/favicon.ico" />
+		
+		<link rel="stylesheet" type="text/css" media="screen and (max-width: 767.98px)" href="<%=request.getContextPath()%>/resources/css/style-mobile.css" />
+		<link rel="stylesheet" type="text/css" media="screen and (max-width: 767.98px)" href="<%=request.getContextPath()%>/resources/css/mobile/profile-mobile.css" />
+		
+		<link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="<%=request.getContextPath()%>/resources/css/style.css" />
+		<link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="<%=request.getContextPath()%>/resources/css/desktop/profile-style.css" />
+		
+		<script src="https://kit.fontawesome.com/b67ef61f81.js"></script>
+		
+		<!-- Tab name -->
+		<title>Profil</title>
+	</head>
+
+	<!-- Body -->
+	<body id="profileBody">
+		<%@ include file="../common/navbar.jsp" %>
+		
+		<div id="profileContainer" class="container">
+			<h2 class="title">Profil</h2>
+			
+			<div id="profile__nav">
+				<button onclick="displayInfoSection()">
+					<i class="fa fa-info"></i>
+					Info
+				</button>
+				<c:if test="${ sessionScope.role == 'ADMIN' }">
+					<button onclick="displayDashbaordSection()">
+						<i class="fa fa-tachometer-alt"></i>
+						Dashboard
+					</button>
+				</c:if>
+			</div>
+			
+			<%@ include file="sections/userInfo.jsp" %>
+		</div>	<!-- End of Container -->
+		
+		<%@ include file="../common/footer.jsp" %>
+	</body>
+</html>
+
