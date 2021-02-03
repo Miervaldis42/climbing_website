@@ -1,6 +1,6 @@
 <div id="profile__userInfo">
 	<div id="profile__role">
-		<img src="<%=request.getContextPath()%>/resources/assets/roles/${ sessionScope.role.getRoleName() }.png" />
+		<img src="<%=request.getContextPath()%>/resources/assets/roles/${ sessionScope.role.getRoleName() }.png" alt="Ton rôle - ${ sessionScope.role.getRoleName() }"/>
 		${ sessionScope.role.getRoleName() }
 	</div>
 	

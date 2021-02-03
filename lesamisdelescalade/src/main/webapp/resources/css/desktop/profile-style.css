@@ -1,0 +1,81 @@
+/**
+ * Profile page - Desktop CSS file
+ */
+:root{
+	--profile-buttonSize: 110%;
+}
+
+
+/*
+ * Profile navigation
+ */
+#profile__nav {
+	display: flex;
+	justify-content: center;
+	
+	margin: 1% 5%;
+}
+
+#profile__nav button {
+	width: 10%;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	font-family: serif;
+	font-size: var(--profile-buttonSize);
+	font-weight: bolder;
+	
+	border: none;
+	background: none;
+	
+	padding: .5%;
+	margin: 0% 4%;
+}
+
+#profile__nav button i {
+	font-size: 150%;
+    margin-bottom: 4%;
+}
+
+#profile__nav button:hover {
+	font-size: calc(var(--profile-buttonSize) + 10%);
+	color: var(--secondary-color);
+}
+
+
+
+/*
+ * User info section
+ */
+#profile__userInfo {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#profile__role {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	margin: 2% 0;
+}
+
+#profile__role img {
+	width: 40%;
+	border-radius: 50%;
+	
+	margin-bottom: 2%; 
+}
+
+#profile__info p {
+	margin-bottom: 8%;
+}
+
+#profile__info span {
+	font-style: italic;
+	font-weight: bold;
+}
