@@ -6,7 +6,7 @@
 
 <!-- Edit mode -->
 <div id="siteDetails__editMode" style="display: none;">
-	<form:form action="editInfo" method="GET">
+	<form:form action="editInfo" method="POST">
 		<input type="hidden" name="siteId" value="${ site.id }" />
 		
 		<!-- Tag field -->

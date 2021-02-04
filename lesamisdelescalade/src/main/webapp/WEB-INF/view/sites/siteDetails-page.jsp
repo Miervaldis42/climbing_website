@@ -31,7 +31,8 @@
 		<!-- Container -->
 		<div id="siteDetailsContainer" class="container">
 			<h2 class="title">Détails du site</h2>
-			
+
+
 			<!-- Site details -->
 			<div id="siteDetails">
 				<img id="siteDetails__img" src="<%=request.getContextPath()%>/resources/assets/sites/${ site.name }.jpg" />
@@ -42,10 +43,24 @@
 				<!-- Display mode -->
 				<%@ include file="./details/displayMode.jsp" %>
 			</div> <!-- End of SiteDetails -->
-			
+
+
 			<!-- Site comments -->
 			<div id="siteDetails__commentList">
 				<h3>Commentaires (${ empty comments.size() ? 0 : comments.size() })</h3>
+				
+				<form:form id="commentList__addCommentForm" action="addComment" method="POST">
+					<input type="hidden" name="siteId" value="${ site.getId() }"/>
+
+					<img id="addCommentForm__avatar" src="<%=request.getContextPath()%>/resources/assets/roles/${ sessionScope.role.getRoleName() }.png">
+					
+					<div id="addCommentForm__form">
+						<input id="addCommentForm__input" type="text" name="content" placeholder="Partager vos impressions sur ce site ici !" maxlength="255" />
+						<button id="addCommentForm__submitButton" type="submit">
+							<i class="fa fa-check"></i>
+						</button>
+					</div>
+				</form:form>
 				
 				<c:if test="${ empty comments }">
 					<p id="commentList__empty">Sois le premier à nous narrer tes exploits sur ce site d'escalade ! ;)</p>

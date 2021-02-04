@@ -5,18 +5,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 // Entities
 import com.miervaldis42.climbingwebsite.entity.Site;
+import com.miervaldis42.climbingwebsite.entity.User;
 import com.miervaldis42.climbingwebsite.entity.Length;
 import com.miervaldis42.climbingwebsite.entity.Route;
 import com.miervaldis42.climbingwebsite.entity.Sector;
@@ -24,6 +29,7 @@ import com.miervaldis42.climbingwebsite.entity.Comment;
 import com.miervaldis42.climbingwebsite.entity.Difficulty;
 
 import com.miervaldis42.climbingwebsite.service.SiteService;
+import com.miervaldis42.climbingwebsite.service.UserService;
 import com.miervaldis42.climbingwebsite.service.SectorService;
 import com.miervaldis42.climbingwebsite.service.RouteService;
 import com.miervaldis42.climbingwebsite.service.CommentService;
@@ -45,6 +51,8 @@ public class SiteController {
 	private LengthService lengthService;
 	@Autowired
 	private CommentService commentService;
+	@Autowired
+	private UserService userService;
 
 
 	@GetMapping("/details") 
@@ -86,7 +94,7 @@ public class SiteController {
 	}
 	
 	
-	@GetMapping("/editInfo") 
+	@PostMapping("/editInfo") 
 	public String editSiteDetails
 		(@RequestParam("siteId") String siteId,
 		 @RequestParam("sectorId") Optional<int[]> sectorIds,
@@ -212,4 +220,31 @@ public class SiteController {
 		return "redirect:/details?siteId="+id;
 	}
 
+	
+	@PostMapping("/addComment")
+	public String addComment(HttpSession activeSession, @RequestParam("siteId") String siteId, @RequestParam("content") String userComment) {
+		// Connected user
+		int userId = (int) activeSession.getAttribute("id");
+		User connectedUser = userService.getUser(userId);
+		
+		
+		// Site linked to the comment
+		int id = Integer.parseInt(siteId);
+		Site commentSite = siteService.getSite(id);
+		
+		// Creation date
+		Date today = new Date();
+
+		// New comment to save
+		Comment newComment = new Comment();
+		newComment.setUser(connectedUser);
+		newComment.setSite(commentSite);
+		newComment.setContent(userComment);
+		newComment.setCreatedAt(today);
+		
+		commentService.saveComment(newComment);
+
+
+		return "redirect:/details?siteId="+id;
+	}
 }
