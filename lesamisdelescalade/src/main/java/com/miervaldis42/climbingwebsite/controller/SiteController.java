@@ -7,8 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 // Entities
@@ -16,11 +20,13 @@ import com.miervaldis42.climbingwebsite.entity.Site;
 import com.miervaldis42.climbingwebsite.entity.Length;
 import com.miervaldis42.climbingwebsite.entity.Route;
 import com.miervaldis42.climbingwebsite.entity.Sector;
+import com.miervaldis42.climbingwebsite.entity.Comment;
 import com.miervaldis42.climbingwebsite.entity.Difficulty;
 
 import com.miervaldis42.climbingwebsite.service.SiteService;
 import com.miervaldis42.climbingwebsite.service.SectorService;
 import com.miervaldis42.climbingwebsite.service.RouteService;
+import com.miervaldis42.climbingwebsite.service.CommentService;
 import com.miervaldis42.climbingwebsite.service.LengthService;
 
 
@@ -37,7 +43,8 @@ public class SiteController {
 	private RouteService routeService;
 	@Autowired
 	private LengthService lengthService;
-	
+	@Autowired
+	private CommentService commentService;
 
 
 	@GetMapping("/details") 
@@ -53,6 +60,27 @@ public class SiteController {
 		siteDetails.addAttribute("routes", siteRoutes);
 		siteDetails.addAttribute("lengths", siteLengths);
 		siteDetails.addAttribute("quotations", Difficulty.EASY.getEntireStepList());
+		
+		// Comments & Date
+		List<Comment> siteComments = commentService.getCommentsBySite(siteId);
+		if(siteComments != null && !siteComments.isEmpty()) {
+			DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy, à hh:mm");
+			Map<Integer, String> commentCreationDates = new HashMap<Integer, String>();
+			for(Comment c : siteComments) {
+				commentCreationDates.put(c.getId(), formatter.format(c.getCreatedAt()));
+			}
+			Map<Integer, String> commentUpdateDates = new HashMap<Integer, String>();
+			for(Comment c : siteComments) {
+				if(c.getUpdatedAt() != null) {
+					commentUpdateDates.put(c.getId(), formatter.format(c.getUpdatedAt()));
+				}
+			}
+			
+			// Attributes to model
+			siteDetails.addAttribute("comments", siteComments);
+			siteDetails.addAttribute("commentCreationDates", commentCreationDates);
+			siteDetails.addAttribute("commentUpdateDates", commentUpdateDates);
+		}		
 
 		return siteDir + "siteDetails-page";
 	}

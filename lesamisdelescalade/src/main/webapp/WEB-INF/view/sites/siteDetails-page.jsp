@@ -42,6 +42,40 @@
 				<!-- Display mode -->
 				<%@ include file="./details/displayMode.jsp" %>
 			</div> <!-- End of SiteDetails -->
+			
+			<!-- Site comments -->
+			<div id="siteDetails__commentList">
+				<h3>Commentaires (${ empty comments.size() ? 0 : comments.size() })</h3>
+				
+				<c:if test="${ empty comments }">
+					<p id="commentList__empty">Sois le premier à nous narrer tes exploits sur ce site d'escalade ! ;)</p>
+				</c:if>
+				
+				<!-- List of comments -->
+				<c:forEach items="${ comments }" var="comment">
+					<div class="commentList__comment">
+						<img class="commentList__avatar" src="<%=request.getContextPath()%>/resources/assets/roles/${ comment.getUser().role.getRoleName() }.png">
+						
+						<div class="commentList__content">
+							<p class="commentList__author">${ comment.getUser().firstname }</p>
+							
+							<p>
+								<c:if test="${ empty comment.getUpdatedAt() }">
+									<span class="commentList__creationDate">Créé le: ${ commentCreationDates.get(comment.getId()) }</span>
+								</c:if>
+								<c:if test="${ not empty comment.getUpdatedAt() && commentUpdateDates.containsKey(comment.getId())}">
+									<span class="commentList__updateDate">(Modifié le: ${ commentUpdateDates.get(comment.getId()) }<span>
+									<span class="commentList__modifiedLastBy"> par ${ comment.getModifiedLastBy().getFirstname() })<span>
+								</c:if>
+							</p>
+
+							<div class="commentList__text">
+								${ comment.getContent() }
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
 
 		</div>	<!-- End of container -->
 		
