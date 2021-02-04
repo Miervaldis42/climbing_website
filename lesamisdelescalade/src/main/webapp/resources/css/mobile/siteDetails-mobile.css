@@ -18,6 +18,8 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	
+	overflow: scroll;
 }
 
 #siteDetails {
@@ -26,6 +28,8 @@
 
 	background-color: #0FD281;
 	box-shadow: 6px 6px 2px 1px rgba(0, 0, 0, .2);
+	
+	position: relative;
 }
 
 #siteDetails__img {
@@ -40,7 +44,7 @@
  * Display mode
  */
 #siteDetails__displayMode {
-	height: 55%;
+	height: 58%;
 	overflow: auto;
 }
  
@@ -48,9 +52,9 @@
 	font-size: 150%;
     color: red;
 
-	position: absolute;
-    top: 9%;
-    right: 8%;
+    position: absolute;
+    top: 2%;
+    right: 3%;
 }
 
 #displayMode__siteInfo {
@@ -104,8 +108,8 @@
 
 #siteDetails__editMode button[type="submit"] {
 	position: absolute;
-	top: 23.6%;
-    right: 15%;
+	top: 35.2%;
+    right: 12%;
 	
 	border: none;
     background: none;
@@ -204,4 +208,61 @@
 	
 	padding: 0.5% 1%;
     margin: 3% 0;
+}
+
+
+
+/*
+ * Comment section
+ */
+#siteDetails__commentList {
+	width: var(--card-width);
+	padding-top: 5%;
+}
+
+#commentList__empty {
+	font-style: italic;
+	text-align: center;
+
+    margin: 30% 5%;
+}
+
+#siteDetails__commentList .commentList__comment {
+	display: flex;
+    align-items: center;
+
+	margin: 5% 4%;
+}
+
+#siteDetails__commentList .commentList__avatar {
+	height: 8vh;
+	border-radius: 50%;
+	
+	margin-right: 4%;
+}
+
+#siteDetails__commentList .commentList__content {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 100%;
+	justify-content: center;
+}
+
+#siteDetails__commentList .commentList__author {
+	font-weight: bolder;
+}
+
+#siteDetails__commentList .commentList__comment p:nth-child(2) {
+	color: grey;
+	
+	font-size: 80%;
+	font-style: italic;
+}
+
+#siteDetails__commentList .commentList__text {
+	margin-top: 4%;
+}
+
+.center {
+	text-align: center;
 }
