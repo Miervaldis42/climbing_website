@@ -1,18 +1,20 @@
 <div id="siteDetails__commentList">
 	<h3>Commentaires (${ empty comments.size() ? 0 : comments.size() })</h3>
 	
-	<form:form id="commentList__addCommentForm" action="addComment" method="POST">
-		<input type="hidden" name="siteId" value="${ site.getId() }"/>
-
-		<img id="addCommentForm__avatar" src="<%=request.getContextPath()%>/resources/assets/roles/${ sessionScope.role.getRoleName() }.png">
-		
-		<div id="addCommentForm__form">
-			<input id="addCommentForm__input" type="text" name="content" placeholder="Partager vos impressions sur ce site ici !" maxlength="255" />
-			<button id="addCommentForm__submitButton" type="submit">
-				<i class="fa fa-check"></i>
-			</button>
-		</div>
-	</form:form>
+	<c:if test="${ not empty sessionScope.role }">
+		<form:form id="commentList__addCommentForm" action="addComment" method="POST">
+			<input type="hidden" name="siteId" value="${ site.getId() }"/>
+	
+			<img id="addCommentForm__avatar" src="<%=request.getContextPath()%>/resources/assets/roles/${ sessionScope.role.getRoleName() }.png">
+			
+			<div id="addCommentForm__form">
+				<input id="addCommentForm__input" type="text" name="content" placeholder="Partager vos impressions sur ce site ici !" maxlength="255" />
+				<button id="addCommentForm__submitButton" type="submit">
+					<i class="fa fa-check"></i>
+				</button>
+			</div>
+		</form:form>
+	</c:if>
 	
 	<c:if test="${ empty comments }">
 		<p id="commentList__empty">Sois le premier à nous narrer tes exploits sur ce site d'escalade ! ;)</p>
@@ -67,22 +69,25 @@
 
 				
 				<!-- Action buttons -->
-				<div class="commentList__footer">
-					
-					<!-- Edit button -->
-					<button onclick="toggleEditCommentMode(${ comment.getId() })">
-						<i class="fa fa-pencil-alt"></i>
-					</button>
-					
-					<!-- Delete button -->
-					<c:url var="deleteLink" value="/deleteComment">
-						<c:param name="siteId" value="${ site.id }" />
-						<c:param name="commentId" value="${ comment.getId() }" />
-					</c:url>
-					<a id="deleteIcon${ comment.getId() }" href="${ deleteLink }">
-						<i class="fa fa-times" ></i>
-					</a>
-				</div>
+				<c:if test="${ sessionScope.role == 'SUBSCRIBER' && comment.getUser().id == sessionScope.id || sessionScope.role == 'MEMBER' || sessionScope.role == 'ADMIN' }">
+					<div class="commentList__footer">
+						
+						<!-- Edit button -->
+						<button onclick="toggleEditCommentMode(${ comment.getId() })">
+							<i class="fa fa-pencil-alt"></i>
+						</button>
+						
+						<!-- Delete button -->
+						<c:url var="deleteLink" value="/deleteComment">
+							<c:param name="siteId" value="${ site.id }" />
+							<c:param name="commentId" value="${ comment.getId() }" />
+						</c:url>
+						<a id="deleteIcon${ comment.getId() }" href="${ deleteLink }">
+							<i class="fa fa-times" ></i>
+						</a>
+					</div>
+				</c:if>
+				
 			</div>	<!-- End of comment info -->
 		</div>	<!-- End of comment -->
 	</c:forEach>
