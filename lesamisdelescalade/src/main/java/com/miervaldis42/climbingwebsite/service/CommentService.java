@@ -10,6 +10,7 @@ public interface CommentService {
 	public void saveComment(Comment newComment);
 
 	public List<Comment> getCommentsBySite(int siteId);
+	public Comment getComment(int id);
 	
 	public void deleteComment(int id);
 }

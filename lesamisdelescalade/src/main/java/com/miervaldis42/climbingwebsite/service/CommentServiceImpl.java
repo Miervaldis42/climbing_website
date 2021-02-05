@@ -26,6 +26,13 @@ public class CommentServiceImpl implements CommentService {
 	public List<Comment> getCommentsBySite(int siteId) {
 		return commentDAO.getCommentsBySite(siteId);
 	}
+	
+	@Override
+	@Transactional
+	public Comment getComment(int id) {
+		return commentDAO.getComment(id);
+	}
+	
 
 	@Override
 	@Transactional

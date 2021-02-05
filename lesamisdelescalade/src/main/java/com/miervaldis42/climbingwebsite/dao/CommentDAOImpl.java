@@ -40,6 +40,15 @@ public class CommentDAOImpl implements CommentDAO {
 		
 		return allSiteComments;
 	}
+	
+	@Override
+	public Comment getComment(int id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Comment selectedComment = currentSession.get(Comment.class, id);
+
+		return selectedComment;
+	}
 
 	
 	@Override
