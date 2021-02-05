@@ -46,67 +46,7 @@
 
 
 			<!-- Site comments -->
-			<div id="siteDetails__commentList">
-				<h3>Commentaires (${ empty comments.size() ? 0 : comments.size() })</h3>
-				
-				<form:form id="commentList__addCommentForm" action="addComment" method="POST">
-					<input type="hidden" name="siteId" value="${ site.getId() }"/>
-
-					<img id="addCommentForm__avatar" src="<%=request.getContextPath()%>/resources/assets/roles/${ sessionScope.role.getRoleName() }.png">
-					
-					<div id="addCommentForm__form">
-						<input id="addCommentForm__input" type="text" name="content" placeholder="Partager vos impressions sur ce site ici !" maxlength="255" />
-						<button id="addCommentForm__submitButton" type="submit">
-							<i class="fa fa-check"></i>
-						</button>
-					</div>
-				</form:form>
-				
-				<c:if test="${ empty comments }">
-					<p id="commentList__empty">Sois le premier à nous narrer tes exploits sur ce site d'escalade ! ;)</p>
-				</c:if>
-				
-				<!-- List of comments -->
-				<c:forEach items="${ comments }" var="comment">
-					<div class="commentList__comment">
-						<img class="commentList__avatar" src="<%=request.getContextPath()%>/resources/assets/roles/${ comment.getUser().role.getRoleName() }.png">
-						
-						<div class="commentList__content">
-							<p class="commentList__author">${ comment.getUser().firstname }</p>
-							
-							<p>
-								<c:if test="${ empty comment.getUpdatedAt() }">
-									<span class="commentList__creationDate">Créé le: ${ commentCreationDates.get(comment.getId()) }</span>
-								</c:if>
-								<c:if test="${ not empty comment.getUpdatedAt() && commentUpdateDates.containsKey(comment.getId())}">
-									<span class="commentList__updateDate">(Modifié le: ${ commentUpdateDates.get(comment.getId()) }<span>
-									<span class="commentList__modifiedLastBy"> par ${ comment.getModifiedLastBy().getFirstname() })<span>
-								</c:if>
-							</p>
-
-							<div class="commentList__text">
-								${ comment.getContent() }
-							</div>
-
-							
-							<!-- Action buttons -->
-							<div class="commentList__actionButtons">
-								<a href="deleteComment">
-									<i class="fa fa-pencil-alt"></i>
-								</a>
-								
-								<c:url var="deleteLink" value="/deleteComment">
-									<c:param name="siteId" value="${ site.id }" />
-									<c:param name="commentId" value="${ comment.getId() }" />
-								</c:url>
-								<a href="${ deleteLink }">
-									<i class="fa fa-times" ></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
+			<%@ include file="./comments/commentSection.jsp" %>
 
 		</div>	<!-- End of container -->
 		
@@ -114,4 +54,5 @@
 	</body>
 	
 	<script defer src="<%=request.getContextPath()%>/resources/js/editDetailsUtils.js"></script>
+	<script defer src="<%=request.getContextPath()%>/resources/js/editCommentUtils.js"></script>
 </html>
