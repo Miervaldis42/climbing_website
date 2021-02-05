@@ -46,7 +46,7 @@ public class CommentDAOImpl implements CommentDAO {
 	public void deleteComment(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Comment> selectedComment = currentSession.createQuery("DELETE FROM Comment WHERE id=:commentId", Comment.class);
+		Query selectedComment = currentSession.createQuery("DELETE FROM Comment WHERE id=:commentId");
 		selectedComment.setParameter("commentId", id);
 
 		selectedComment.executeUpdate();

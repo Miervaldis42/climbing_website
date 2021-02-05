@@ -87,6 +87,22 @@
 							<div class="commentList__text">
 								${ comment.getContent() }
 							</div>
+
+							
+							<!-- Action buttons -->
+							<div class="commentList__actionButtons">
+								<a href="deleteComment">
+									<i class="fa fa-pencil-alt"></i>
+								</a>
+								
+								<c:url var="deleteLink" value="/deleteComment">
+									<c:param name="siteId" value="${ site.id }" />
+									<c:param name="commentId" value="${ comment.getId() }" />
+								</c:url>
+								<a href="${ deleteLink }">
+									<i class="fa fa-times" ></i>
+								</a>
+							</div>
 						</div>
 					</div>
 				</c:forEach>

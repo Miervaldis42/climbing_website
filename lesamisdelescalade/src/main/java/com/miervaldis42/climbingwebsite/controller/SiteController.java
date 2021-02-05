@@ -247,4 +247,11 @@ public class SiteController {
 
 		return "redirect:/details?siteId="+id;
 	}
+	
+	@GetMapping("/deleteComment")
+	public String deleteComment(@RequestParam("commentId") int id, @RequestParam("siteId") int siteId) {
+		commentService.deleteComment(id);
+		
+		return "redirect:/details?siteId="+siteId;
+	}
 }
