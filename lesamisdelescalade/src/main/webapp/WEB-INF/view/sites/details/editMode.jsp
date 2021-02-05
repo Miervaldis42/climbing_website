@@ -1,8 +1,9 @@
 <!-- Edit icon -->
-<div id="siteDetails__editIcon" onclick="showEditDetails()">
-	<i class="fa fa-pencil-alt"></i>
-</div>
-
+<c:if test="${ not empty sessionScope.role }">
+	<div id="siteDetails__editIcon" onclick="showEditDetails()">
+		<i class="fa fa-pencil-alt"></i>
+	</div>
+</c:if>
 
 <!-- Edit mode -->
 <div id="siteDetails__editMode" style="display: none;">
