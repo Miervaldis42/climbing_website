@@ -1,3 +1,10 @@
+/**
+ *
+ * Site Details page - Desktop CSS file
+ *
+ */
+
+
 /* Variables */
 :root {
 	--details-height: 40vh;
@@ -107,8 +114,7 @@
 }
 
 #siteDetails__editIcon i:hover {
-	font-size: 130%;
-	color: red;	
+	font-size: 130%;	
 }
 
 #siteDetails__editMode button[type="submit"] {
@@ -217,27 +223,28 @@
 /*
  * Comment section
  */
+
+#siteDetails__commentList {
+	width: var(--details-width);
+	
+	padding-top: 1.5%;
+	margin-left: 2%;
+}
+
+
+
+/* 
+ * Add comment form 
+ */
 #commentList__addCommentForm {
 	display: flex;
 	align-items: center;
 	
 	margin: 1%;
 }
- 
-#siteDetails__commentList {
-	width: var(--details-width);
-	padding-top: 1.5%;
-}
 
 #siteDetails__commentList #addCommentForm__avatar {
 	width: 4%;
-}
-
-#commentList__empty {
-	font-style: italic;
-	text-align: center;
-
-    margin: 5% 0;
 }
 
 #siteDetails__commentList #addCommentForm__form {
@@ -277,7 +284,19 @@
 	color: green;
 	font-size: 140%;
 }
-	
+
+#commentList__empty {
+	font-style: italic;
+	text-align: center;
+
+    margin: 5% 0;
+}
+
+
+
+/*
+ * Comment list
+ */	
 #siteDetails__commentList .commentList__comment {
 	display: flex;
 	margin: 2% 1%;
@@ -292,24 +311,79 @@
 	width: 8%;
 }
 
-#siteDetails__commentList .commentList__content {
+#siteDetails__commentList .commentList__info {
 	display: flex;
 	flex-direction: column;
 	flex-basis: 100%;
 	justify-content: center;
+	
+	position: relative;
 }
 
 #siteDetails__commentList .commentList__author {
 	font-weight: bolder;
 }
 
-#siteDetails__commentList .commentList__comment p:nth-child(2) {
+#siteDetails__commentList .commentList__header p:nth-child(2) {
 	color: grey;
 	
 	font-size: 80%;
 	font-style: italic;
 }
 
-#siteDetails__commentList .commentList__text {
+#siteDetails__commentList .commentList__body {
 	margin: 1% 0;
+}
+
+#siteDetails__commentList .commentList__body .commentList__content {
+	width: 80%;
+}
+
+
+
+/* Action buttons */
+#siteDetails__commentList .commentList__footer {
+	position: absolute;
+	top: 16%;
+	right: 18%;
+	
+	display: flex;
+	width: 4%;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#siteDetails__commentList .commentList__editMode input {
+	width: 60%;
+	
+	border: none;
+	border-bottom: 1px solid black;
+	background: none;
+	outline: none;
+
+	padding: .4% .8%;
+}
+
+#siteDetails__commentList .commentList__editMode button, #siteDetails__commentList .commentList__footer a, #siteDetails__commentList .commentList__footer button {
+	border: none;
+	background: none;
+	outline: none;
+	
+	font-size: 108%;
+}
+
+#siteDetails__commentList .commentList__footer a {
+	font-size: 115%;
+}
+
+#siteDetails__commentList .commentList__editMode button:hover, #siteDetails__commentList .commentList__footer a:hover, #siteDetails__commentList .commentList__footer button:hover {
+	font-size: 130%;
+}
+
+#siteDetails__commentList .commentList__footer a:hover {
+	color: red;
+}
+
+#siteDetails__commentList .commentList__editMode button:hover {
+	color: green;
 }
