@@ -92,7 +92,7 @@ public class SectorDAOImpl implements SectorDAO {
 	public void deleteSector(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Sector> selectedSector = currentSession.createQuery("DELETE FROM Sector WHERE id=:sectorId", Sector.class);
+		Query selectedSector = currentSession.createQuery("DELETE FROM Sector WHERE id=:sectorId");
 		selectedSector.setParameter("sectorId", id);
 
 		selectedSector.executeUpdate();

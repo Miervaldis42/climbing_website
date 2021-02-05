@@ -119,7 +119,7 @@ public class LengthDAOImpl implements LengthDAO {
 	public void deleteLength(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Length> selectedLength = currentSession.createQuery("DELETE FROM Length WHERE id=:lengthId", Length.class);
+		Query selectedLength = currentSession.createQuery("DELETE FROM Length WHERE id=:lengthId");
 		selectedLength.setParameter("lengthId", id);
 
 		selectedLength.executeUpdate();

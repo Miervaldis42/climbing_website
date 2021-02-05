@@ -118,7 +118,7 @@ public class RouteDAOImpl implements RouteDAO {
 	public void deleteRoute(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Route> selectedRoute = currentSession.createQuery("DELETE FROM Route WHERE id=:routeId", Route.class);
+		Query selectedRoute = currentSession.createQuery("DELETE FROM Route WHERE id=:routeId");
 		selectedRoute.setParameter("routeId", id);
 
 		selectedRoute.executeUpdate();
