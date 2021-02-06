@@ -35,6 +35,15 @@ public class SiteServiceImpl implements SiteService {
 	private LengthDAO lengthDAO;
 	
 	
+	/*
+	 * CREATE
+	 */
+	@Override
+	@Transactional
+	public void saveSite(Site newSite) {
+		siteDAO.saveSite(newSite);
+	}
+	
 	
 	/*
 	 * READ
@@ -95,6 +104,15 @@ public class SiteServiceImpl implements SiteService {
 	public List<Site> searchSites(String searchedTerms, String tagFilter) {
 		List<Site> retrievedSites = siteDAO.searchSites(searchedTerms, tagFilter);
 		return retrievedSites;
+	}
+	
+	
+	
+	/*
+	 * Delete
+	 */
+	public void deleteSite(int id) {
+		siteDAO.deleteSite(id);
 	}
 
 }
