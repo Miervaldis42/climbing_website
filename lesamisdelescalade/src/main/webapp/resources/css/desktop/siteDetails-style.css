@@ -77,12 +77,8 @@
 	align-items: center;
 }
 
-#siteInfo__header:nth-child(2) {
-	font-size: 90%;
-	font-style: italic;
-}
-
 #siteInfo__header p:last-child {
+	font-style: italic;
 	margin: 2% 0;
 }
 
@@ -149,8 +145,15 @@
 #siteDetails__editMode form div {
 	display: flex;
 	flex-direction: column;
-	
-	margin-bottom: 2%;
+	align-items: center;
+}
+
+#siteDetails__editMode #editMode__siteTag, #siteDetails__editMode #editMode__siteDesc {
+	margin: 2% 0;
+} 
+
+#siteDetails__editMode .noElements {
+	text-align: center;
 }
 
 #siteDetails__editMode button:not([type="submit"]) {
@@ -198,14 +201,19 @@
 
 #siteDetails__editMode #editMode__components {
 	display: flex;
-	flex-direction: row;
-    justify-content: space-between;
+    flex-direction: row;
+    align-items: baseline;
     
-    width: 90%;
+    width: 95%;
 }
 
 #editMode__components div {
+	width: 40%;
 	margin: 2% 0;
+}
+
+#editMode__components h3 {
+	width: 45%;
 }
 
 #editMode__components label {
