@@ -2,47 +2,67 @@
  * Profile page - Desktop CSS file
  */
 
-:root{
-	--profile-buttonSize: 110%;
-}
-
-
 /*
  * Profile navigation
  */
 #profile__nav {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	
 	margin: 1% 5%;
 }
 
-#profile__nav button {
+#profile__nav a {
 	width: 10%;
 	
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 	
 	font-family: serif;
-	font-size: var(--profile-buttonSize);
-	font-weight: bolder;
+	font-size: 100%;
 	
 	border: none;
 	background: none;
 	
 	padding: .5%;
-	margin: 0% 4%;
 }
 
-#profile__nav button i {
+#profile__nav a i {
 	font-size: 150%;
     margin-bottom: 4%;
 }
 
-#profile__nav button:hover {
-	font-size: calc(var(--profile-buttonSize) + 10%);
+#profile__nav a i:nth-child(1) {
+	font-size: 165%;
+}
+
+#profile__nav a img {
+	width: 18%;
+    margin-bottom: 2%;
+}
+
+#profile__nav a:hover {
+	font-size: 120%;
+	font-weight: bolder;
+
 	color: var(--secondary-color);
+}
+
+#profile__nav a:hover i {
+	font-size: 130%;
+	color: black;
+
+	margin-bottom: 5%;
+}
+
+#profile__nav a:hover img {
+	width: 16%;
+	color: black;
+
+	margin-bottom: 2%;
 }
 
 
@@ -61,6 +81,8 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	
+	color: black;
 	
 	margin: 2% 0;
 }
@@ -87,7 +109,7 @@
 	flex-direction: column;
 	align-items: center;
 	
-	margin-top: 6%;
+	margin-top: 4%;
 }
 
 #profile__logoutButton i {
@@ -95,3 +117,14 @@
 
 	margin: 2% 0;
 }
+
+#profile__logoutButton:hover {
+	font-weight: bolder;
+	color: var(--secondary-color);
+}
+
+
+
+/*
+ * My topos
+ */
