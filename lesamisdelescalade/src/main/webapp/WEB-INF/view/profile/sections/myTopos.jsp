@@ -34,31 +34,38 @@
 							</c:if>
 							
 							<div class="myTopos__borrower">
-								<img class="myTopos__avatar" src="<%=request.getContextPath()%>/resources/assets/roles/${ topo.getBorrower().role.getRoleName() }.png">
-								<p>${ topo.getBorrower().firstname }</p>
+								<div class="myTopos__borrowerAvatar">
+									<img class="myTopos__avatar" src="<%=request.getContextPath()%>/resources/assets/roles/${ topo.getBorrower().role.getRoleName() }.png">
+									<p>${ topo.getBorrower().firstname }</p>
+								</div>
+								
+								<c:if test="${ topo.status == 'LENT' }">
+									<p class="myTopos__borrowerEmail">
+										<i class="fa fa-paper-plane"></i> ${ topo.getBorrower().email }
+									</p>
+								</c:if>
 							</div>
 						</div>	<!-- End of borrower -->
 
 
 						<!-- Action buttons -->
 						<div class="myTopos__actionIcons">
-							<c:url var="reservation" value="/lesamisdelescalade/profile/myTopos/reservation">
+							<c:url var="reservation" value="/profile/reservation">
 								<c:param name="topoId" value="${ topo.id }" />
-								<c:param name="topoStatus" value="${ fn:toLowerCase(topo.status) }" />
 							</c:url>
 							
 							<c:if test="${ topo.status == 'PENDING' }">
-								<a href="${ reservation }">
+								<a href="${ reservation }&reservationStatus=accept">
 									<i class="fa fa-check"></i>
 								</a>
 								
-								<a href="${ reservation }">
+								<a href="${ reservation }&reservationStatus=refuse">
 									<i class="fa fa-times"></i>
 								</a>
 							</c:if>
 							
 							<c:if test="${ topo.status == 'LENT' }">
-								<a href="${ reservation }">
+								<a href="${ reservation }&reservationStatus=end">
 									<i class="fa fa-eraser"></i>
 								</a>
 							</c:if>

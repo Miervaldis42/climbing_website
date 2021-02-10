@@ -223,9 +223,20 @@
 	align-items: center;
 }
 
+#myTopos__list .myTopos__pending p:first-child, #myTopos__list .myTopos__lent p:first-child {
+	font-style: italic;
+}
+
 
 /* My Topos borrower */
 #myTopos__list .myTopos__borrower {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#myTopos__list .myTopos__borrowerAvatar, #myTopos__list .myTopos__borrowerEmail {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -236,6 +247,14 @@
 	border-radius: 50%;
 	
 	margin: 4%;
+}
+
+#myTopos__list .myTopos__borrowerEmail {
+	margin-bottom: 2%;
+}
+
+#myTopos__list .myTopos__borrowerEmail i {
+	margin-right: 5%;
 }
 
 
