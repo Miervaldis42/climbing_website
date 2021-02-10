@@ -3,7 +3,7 @@ package com.miervaldis42.climbingwebsite.entity;
 public enum Status {
 	AVAILABLE("Disponible"),
 	PENDING("En cours d'étude"),
-	LENDED("Prêté");
+	LENT("Prêté");
 	
 	
 	// Display role name

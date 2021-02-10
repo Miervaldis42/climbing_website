@@ -4,7 +4,7 @@ CREATE TABLE `climbing_website_db`.`topos` (
   `site_id` INT NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   `description` VARCHAR(255) NULL DEFAULT NULL,
-  `status` VARCHAR(255) NOT NULL DEFAULT 'AVAILABLE',
+  `status` VARCHAR(255) NOT NULL DEFAULT '1',
   `publishedDate` DATETIME NOT NULL,
   `borrower_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
