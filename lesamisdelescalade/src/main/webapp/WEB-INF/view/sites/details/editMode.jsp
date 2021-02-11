@@ -1,43 +1,36 @@
 <!-- Edit icon -->
-<div id="siteDetails__editIcon" onclick="showEditDetails()">
-	<i class="fa fa-pencil-alt"></i>
-</div>
-
+<c:if test="${ not empty sessionScope.role }">
+	<div id="siteDetails__editIcon" onclick="showEditDetails()">
+		<i class="fa fa-pencil-alt"></i>
+	</div>
+</c:if>
 
 <!-- Edit mode -->
 <div id="siteDetails__editMode" style="display: none;">
-	<form:form action="editInfo" method="GET">
+	<form:form action="editInfo" method="POST">
 		<input type="hidden" name="siteId" value="${ site.id }" />
 		
-		<!-- Tag field -->
-		<div id="editMode__siteTag">
-			<label id="editMode__tag">Officiel ?</label>
-			<select id="editMode__tag" name="siteTag" value="${ site.tag }" readonly>
-				<option value="true">Officiel</option>
-				<option value="false">Non officiel</option>
-			</select>
+		<div id="editMode__header">
+			<h2>${ site.name }</h2>
+			<p>${ site.location }</p>
 		</div>
 		
-		
-		<!-- Name field -->
-		<div id="editMode__siteName">
-			<label for="editMode__name">Nom du site</label>
-			<input id="editMode__name" value="${ site.name }" readonly />
-		</div>
-		
-		
-		<!-- Location field -->
-		<div id="editMode__siteLocation">
-			<label for="editMode__location">Lieu</label>
-			<input id="editMode__location" value="${ site.location }" readonly />
-		</div>
-		
-		
-		<!-- Description field -->
-		<div id="editMode__siteDesc">
-			<label for="editMode__description">Description</label>
-			<textarea id="editMode__description" readonly> ${ site.description } </textarea>
-		</div>
+		<c:if test="${ not empty sessionScope.id && sessionScope.role != 'SUBSCRIBER' }">
+			<!-- Tag field -->
+			<div id="editMode__siteTag">
+				<label id="editMode__tag">Officiel ?</label>
+				<select id="editMode__tag" name="siteTag" value="${ site.tag }">
+					<option value="true">Officiel</option>
+					<option value="false">Non officiel</option>
+				</select>
+			</div>			
+			
+			<!-- Description field -->
+			<div id="editMode__siteDesc">
+				<label for="editMode__description">Description</label>
+				<textarea id="editMode__description" name="siteDesc" maxlength="255"> ${ site.description } </textarea>
+			</div>
+		</c:if>
 		
 		
 		<!-- Sectors, routes & lengths -->
@@ -86,7 +79,7 @@
 				
 				<div>
 					<c:if test="${ sectors == null }">
-						<p>Aucune route ne peut être créée si le site d'escalade n'a pas de secteurs !</p>
+						<p class="noElements">Aucune route ne peut être créée si le site d'escalade n'a pas de secteurs !</p>
 					</c:if>
 	
 					<c:if test="${ routes == null }">
@@ -141,7 +134,7 @@
 				
 				<div>
 					<c:if test="${ routes == null }">
-						<p>Aucune longueur ne peut être créée si le site d'escalade n'a pas de routes !</p>
+						<p class="noElements">Aucune longueur ne peut être créée si le site d'escalade n'a pas de routes !</p>
 					</c:if>
 					
 					<c:if test="${ lengths == null }">

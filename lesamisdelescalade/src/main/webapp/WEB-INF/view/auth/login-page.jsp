@@ -43,7 +43,6 @@
 			<h2>Bonjour jeune grimpeur(euse) !</h2>
 			
 			<form:form id="loginForm" action="connexion" modelAttribute="credentials" method="POST">
-
 				<label>Adresse email</label>
 				<form:input path="email" />
 				

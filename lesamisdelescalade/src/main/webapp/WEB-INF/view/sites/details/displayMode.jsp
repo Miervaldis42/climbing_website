@@ -1,9 +1,9 @@
 <div id="siteDetails__displayMode">	
-	<c:if test="${ site.tag }">
-		<i id="displayMode__tag" class="fa fa-award" aria-hidden="true"></i>
-	</c:if>
-
 	<div id="displayMode__siteInfo">
+		<c:if test="${ site.tag }">
+			<i id="displayMode__tag" class="fa fa-award" aria-hidden="true"></i>
+		</c:if>
+		
 		<div id="siteInfo__header">
 			<h2>${ site.name }</h2>
 			<p>${ site.location }</p>

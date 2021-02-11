@@ -1,3 +1,10 @@
+/**
+ *
+ * Site Details page - Desktop CSS file
+ *
+ */
+
+
 /* Variables */
 :root {
 	--details-height: 40vh;
@@ -20,7 +27,7 @@
 	flex-direction: column;
 	align-items: center;
 
-	margin-top: 2%;
+	overflow: auto;
 }
 
 
@@ -70,12 +77,8 @@
 	align-items: center;
 }
 
-#siteInfo__header:nth-child(2) {
-	font-size: 90%;
-	font-style: italic;
-}
-
 #siteInfo__header p:last-child {
+	font-style: italic;
 	margin: 2% 0;
 }
 
@@ -107,8 +110,7 @@
 }
 
 #siteDetails__editIcon i:hover {
-	font-size: 130%;
-	color: red;	
+	font-size: 130%;	
 }
 
 #siteDetails__editMode button[type="submit"] {
@@ -143,8 +145,15 @@
 #siteDetails__editMode form div {
 	display: flex;
 	flex-direction: column;
-	
-	margin-bottom: 2%;
+	align-items: center;
+}
+
+#siteDetails__editMode #editMode__siteTag, #siteDetails__editMode #editMode__siteDesc {
+	margin: 2% 0;
+} 
+
+#siteDetails__editMode .noElements {
+	text-align: center;
 }
 
 #siteDetails__editMode button:not([type="submit"]) {
@@ -192,14 +201,19 @@
 
 #siteDetails__editMode #editMode__components {
 	display: flex;
-	flex-direction: row;
-    justify-content: space-between;
+    flex-direction: row;
+    align-items: baseline;
     
-    width: 90%;
+    width: 95%;
 }
 
 #editMode__components div {
+	width: 40%;
 	margin: 2% 0;
+}
+
+#editMode__components h3 {
+	width: 45%;
 }
 
 #editMode__components label {
@@ -211,4 +225,173 @@
 	
 	padding: 0.5% 1%;
     margin: 3% 0;
+}
+
+
+/*
+ * Comment section
+ */
+
+#siteDetails__commentList {
+	width: var(--details-width);
+	
+	padding-top: 1.5%;
+	margin-left: 2%;
+}
+
+
+
+/* 
+ * Add comment form 
+ */
+#commentList__addCommentForm {
+	display: flex;
+	align-items: center;
+	
+	margin: 1%;
+}
+
+#siteDetails__commentList #addCommentForm__avatar {
+	width: 4%;
+}
+
+#siteDetails__commentList #addCommentForm__form {
+	display: flex;
+	flex-basis: var(--details-width);
+	align-items: center;
+}
+
+#addCommentForm__form input, #addCommentForm__form button {
+	border: none;
+	
+	background: none;
+	outline: none;
+}
+
+#addCommentForm__form input {
+	width: 80%;
+	color: #555;
+	
+	border-bottom: 1px solid black;
+	
+	padding: .6% 0;
+}
+
+#addCommentForm__form input::placeholder {
+	padding-left: 2%;
+	font-size: 95%;
+	font-style: italic;
+}
+
+#addCommentForm__form button[type="submit"] {
+	font-size: 120%;
+	margin-left: 2%;
+}
+
+#addCommentForm__form button[type="submit"]:hover {
+	color: green;
+	font-size: 140%;
+}
+
+#commentList__empty {
+	font-style: italic;
+	text-align: center;
+
+    margin: 5% 0;
+}
+
+
+
+/*
+ * Comment list
+ */	
+#siteDetails__commentList .commentList__comment {
+	display: flex;
+	margin: 2% 1%;
+}
+
+#siteDetails__commentList .commentList__avatar, #siteDetails__commentList #addCommentForm__avatar {
+	border-radius: 50%;
+	margin-right: 2%;
+}
+
+#siteDetails__commentList .commentList__avatar {
+	width: 8%;
+}
+
+#siteDetails__commentList .commentList__info {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 100%;
+	justify-content: center;
+	
+	position: relative;
+}
+
+#siteDetails__commentList .commentList__author {
+	font-weight: bolder;
+}
+
+#siteDetails__commentList .commentList__header p:nth-child(2) {
+	color: grey;
+	
+	font-size: 80%;
+	font-style: italic;
+}
+
+#siteDetails__commentList .commentList__body {
+	margin: 1% 0;
+}
+
+#siteDetails__commentList .commentList__body .commentList__content {
+	width: 80%;
+}
+
+
+
+/* Action buttons */
+#siteDetails__commentList .commentList__footer {
+	position: absolute;
+	top: 16%;
+	right: 18%;
+	
+	display: flex;
+	width: 4%;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#siteDetails__commentList .commentList__editMode input {
+	width: 60%;
+	
+	border: none;
+	border-bottom: 1px solid black;
+	background: none;
+	outline: none;
+
+	padding: .4% .8%;
+}
+
+#siteDetails__commentList .commentList__editMode button, #siteDetails__commentList .commentList__footer a, #siteDetails__commentList .commentList__footer button {
+	border: none;
+	background: none;
+	outline: none;
+	
+	font-size: 108%;
+}
+
+#siteDetails__commentList .commentList__footer a {
+	font-size: 115%;
+}
+
+#siteDetails__commentList .commentList__editMode button:hover, #siteDetails__commentList .commentList__footer a:hover, #siteDetails__commentList .commentList__footer button:hover {
+	font-size: 130%;
+}
+
+#siteDetails__commentList .commentList__footer a:hover {
+	color: red;
+}
+
+#siteDetails__commentList .commentList__editMode button:hover {
+	color: green;
 }

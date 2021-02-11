@@ -31,7 +31,8 @@
 		<!-- Container -->
 		<div id="siteDetailsContainer" class="container">
 			<h2 class="title">Détails du site</h2>
-			
+
+
 			<!-- Site details -->
 			<div id="siteDetails">
 				<img id="siteDetails__img" src="<%=request.getContextPath()%>/resources/assets/sites/${ site.name }.jpg" />
@@ -43,10 +44,15 @@
 				<%@ include file="./details/displayMode.jsp" %>
 			</div> <!-- End of SiteDetails -->
 
+
+			<!-- Site comments -->
+			<%@ include file="./comments/commentSection.jsp" %>
+
 		</div>	<!-- End of container -->
 		
 		<%@ include file="../common/footer.jsp" %>
 	</body>
 	
 	<script defer src="<%=request.getContextPath()%>/resources/js/editDetailsUtils.js"></script>
+	<script defer src="<%=request.getContextPath()%>/resources/js/editCommentUtils.js"></script>
 </html>

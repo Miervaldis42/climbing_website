@@ -16,6 +16,22 @@ public class SiteDAOImpl implements SiteDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	
+	/*
+	 * CREATE
+	 */
+	public void saveSite(Site newSite) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		currentSession.saveOrUpdate(newSite);
+	}
+	
+	
+	
+	/*
+	 * READ
+	 */
+	
 	@Override
 	public List<Site> getSites() {
 		Session currentSession = sessionFactory.getCurrentSession();
@@ -38,6 +54,7 @@ public class SiteDAOImpl implements SiteDAO {
 	@Override
     public List<Site> searchSites(String searchedTerms, String tagFilter) {
         Session currentSession = sessionFactory.getCurrentSession();
+        
         Query<Site> searchQuery = null;
         String HQLRequest = "FROM Site s";
         
@@ -64,5 +81,18 @@ public class SiteDAOImpl implements SiteDAO {
 
         return sites;
     }
+	
+	
+	
+	/*
+	 * DELETE
+	 */
+	public void deleteSite(int id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query selectedSite = currentSession.createQuery("DELETE FROM Site WHERE id=:siteId");
+		selectedSite.setParameter("siteId", id);
 
+		selectedSite.executeUpdate();
+	}
 }

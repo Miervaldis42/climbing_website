@@ -103,5 +103,14 @@ public class UserDAOImpl implements UserDAO {
 		// Return result
 		return users;
 	}
+	
+	@Override
+	public User getUser(int id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		User selectedUser = currentSession.get(User.class, id);
+		
+		return selectedUser;
+	}
 
 }
