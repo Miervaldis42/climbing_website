@@ -27,11 +27,8 @@ public class MainController {
 
 	
 	@RequestMapping("/sites")
-	public String showSiteListPage(HttpSession activeSession, Model session, Model search, Model cards) {	
-		// Check if a user session is present
-		checkSession(activeSession, session);
-		
-		// Searchbar
+	public String showSiteListPage(Model search, Model cards) {		
+		// Search bar
 		search.addAttribute("quotationDifficulties", Difficulty.EASY.getAllDifficulties());
 		
 		// Populate model to use for site cards
@@ -43,7 +40,13 @@ public class MainController {
 	
 	
 	@GetMapping("/search")
-    public String searchSites(HttpSession activeSession, Model session, @RequestParam("quotationFilter") String quotationFilter, @RequestParam("tagFilter") String tagFilter, @RequestParam("searchedTerms") String searchedTerms, Model search, Model cards) {		
+    public String searchSites(
+    	@RequestParam("quotationFilter") String quotationFilter,
+    	@RequestParam("tagFilter") String tagFilter,
+    	@RequestParam("searchedTerms") String searchedTerms,
+    	Model search,
+    	Model cards
+    ) {		
 		// Narrow down site list with user filters
 		List<Site> searchedSites = siteService.searchSites(searchedTerms, tagFilter);
 		setSiteCardInfo(searchedSites, cards);
@@ -66,9 +69,6 @@ public class MainController {
 		search.addAttribute("quotationDifficulties", Difficulty.EASY.getAllDifficulties());
 		search.addAttribute("chosenQuotationMode", quotationFilter);
 		
-		// Check if a user session is present
-		checkSession(activeSession, session);
-		
         return siteDir + "siteList-page";        
     }
 	
@@ -76,20 +76,7 @@ public class MainController {
 	
 	/*
 	 * 	Utils
-	 */
-
-	// Check if a user is currently in session
-	private void checkSession(HttpSession activeSession, Model session) {
-		if(activeSession.getAttribute("id") == null) {
-			session.addAttribute("firstname", "Vous ?");
-			session.addAttribute("redirection", "/lesamisdelescalade/auth/login");
-		} else {
-			session.addAttribute("id", activeSession.getAttribute("id"));
-			session.addAttribute("firstname", activeSession.getAttribute("firstname"));
-			session.addAttribute("redirection", "/lesamisdelescalade/auth/login");
-		}
-	}
-	
+	 */	
 	// Set info for each site card
 	private void setSiteCardInfo(List<Site> sites, Model cards) {
 		Map<Integer, List<Integer>> siteCardsInfo = siteService.getSiteCards(sites);		

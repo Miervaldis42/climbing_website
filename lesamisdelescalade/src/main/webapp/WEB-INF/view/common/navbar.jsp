@@ -14,9 +14,17 @@
 			Topos
 		</a>
 		
-		<a href="${ redirection }">
-			<img src="<%=request.getContextPath()%>/resources/assets/navbar/climber_icon.png" />
-			${ firstname }
-		</a>
+		<c:if test="${ empty sessionScope.id }">
+			<a href="/lesamisdelescalade/auth/login">
+				<img src="<%=request.getContextPath()%>/resources/assets/navbar/climber_icon.png" />
+				Vous ?
+			</a>
+		</c:if>
+		<c:if test="${ !empty sessionScope.id }">
+			<a href="/lesamisdelescalade/profile">
+				<img src="<%=request.getContextPath()%>/resources/assets/navbar/climber_icon.png" />
+				${ sessionScope.firstname }
+			</a>
+		</c:if>
 	</nav>
 </header>

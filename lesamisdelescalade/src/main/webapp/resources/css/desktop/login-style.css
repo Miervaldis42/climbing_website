@@ -78,13 +78,7 @@
 }
 
 #loginLinks a {	
-	color: var(--main-color);
 	font-style: italic;
 	
 	margin: 2% 0;
-}
-
-#loginLinks a:hover {
-	font-size: 105%;
-	color: var(--secondary-color);
 }

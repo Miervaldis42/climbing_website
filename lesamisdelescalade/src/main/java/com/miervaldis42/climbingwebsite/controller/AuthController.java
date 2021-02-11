@@ -81,6 +81,7 @@ public class AuthController {
 			toastCode = "404 - User Not Found";
 			return redirection;
 		} else {
+			activeSession.setAttribute("sessionId", activeSession.getId());
 			activeSession.setAttribute("id", user.getId());
 			activeSession.setAttribute("lastname", user.getLastname());
 			activeSession.setAttribute("firstname", user.getFirstname());
