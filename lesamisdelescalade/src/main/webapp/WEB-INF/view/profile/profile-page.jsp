@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
     
 <!DOCTYPE html>
@@ -33,20 +33,41 @@
 		<div id="profileContainer" class="container">
 			<h2 class="title">Profil</h2>
 			
+			<!-- Profile navigation -->
 			<div id="profile__nav">
-				<button onclick="displayInfoSection()">
+				<a href="infos">
 					<i class="fa fa-info"></i>
 					Info
-				</button>
+				</a>
+				
 				<c:if test="${ sessionScope.role == 'ADMIN' }">
-					<button onclick="displayDashbaordSection()">
+					<a href="#">
 						<i class="fa fa-tachometer-alt"></i>
 						Dashboard
-					</button>
+					</a>
 				</c:if>
+				
+				<a href="myTopos">
+					<img src="<%=request.getContextPath()%>/resources/assets/navbar/topos_icon.png" />
+					Mes topos
+				</a>
 			</div>
 			
-			<%@ include file="sections/userInfo.jsp" %>
+			<!-- User info -->
+			<c:if test="${ section.equals('infos') }">
+				<%@ include file="sections/userInfo.jsp" %>
+			</c:if>
+			
+			<!-- Dashboard -->
+			<c:if test="${ section.equals('dashboard') }">
+				<%@ include file="sections/dashboard.jsp" %>
+			</c:if>
+			
+			<!-- My topos -->
+			<c:if test="${ section.equals('myTopos') }">
+				<%@ include file="sections/myTopos.jsp" %>
+			</c:if>
+			
 		</div>	<!-- End of Container -->
 		
 		<%@ include file="../common/footer.jsp" %>

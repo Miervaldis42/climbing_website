@@ -53,6 +53,7 @@
 		<%@ include file="../common/footer.jsp" %>
 	</body>
 	
+	<!-- JS scripts -->
 	<script defer src="<%=request.getContextPath()%>/resources/js/editDetailsUtils.js"></script>
 	<script defer src="<%=request.getContextPath()%>/resources/js/editCommentUtils.js"></script>
 </html>

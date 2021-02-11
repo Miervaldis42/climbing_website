@@ -21,7 +21,7 @@
 			</a>
 		</c:if>
 		<c:if test="${ !empty sessionScope.id }">
-			<a href="/lesamisdelescalade/profile">
+			<a href="/lesamisdelescalade/profile/infos">
 				<img src="<%=request.getContextPath()%>/resources/assets/navbar/climber_icon.png" />
 				${ sessionScope.firstname }
 			</a>
