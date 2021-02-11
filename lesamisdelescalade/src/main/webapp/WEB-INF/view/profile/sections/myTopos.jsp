@@ -1,8 +1,35 @@
 <div id="profile__myTopos">	
+	<div id="myTopos__addForm">
+		<form id="myTopos__form" action="addMyTopo" method="POST">
+			<input type="hidden" name="ownerId" value="${ sessionScope.id }" />
+			
+			<label for="myTopo__name">Nom du topo</label>
+			<input id="myTopo__name" type="text" name="name" />
+			
+			<label for="myTopo__desc">Description</label>
+			<textarea id="myTopo__desc" type="text" name="desc" maxlength="255"></textarea>
+			
+			<label>Lié à quel site d'escalade ?</label>
+			<select name="site">
+				<c:forEach items="${ allSites }" var="site">
+					<option value="${ site.id }">${ site.name }</option>
+				</c:forEach>
+			</select>
+			
+			<button id="myTopo__submitButton" type="submit">
+				<i class="fa fa-check"></i>
+			</button>
+		</form>
+	</div>
+
+
+	<!-- Empty 'My Topos' list -->
 	<c:if test="${ empty myTopos && myTopos != null }">
 		<p div="myTopos__empty">Tu ne possèdes pas de topo pour l'instant.</p>
 	</c:if>
-	
+
+
+	<!-- Full 'My Topos' list -->
 	<c:if test="${ not empty myTopos }">
 		<div id="myTopos__list">
 			<c:forEach items="${ myTopos }" var="topo">
@@ -16,7 +43,7 @@
 					 	</div>
 					 	
 					 	<p class="myTopos__title">
-					 		<span>${ topo.name }</span> - <span>${ topo.getSite().location }</span>
+					 		<span>${ topo.name }</span> - <span>${ topo.getSite().name }</span>
 					 	</p>
 					 	
 					 	<p class="myTopos__desc">${ topo.description }</p>

@@ -115,6 +115,192 @@
 
 
 
+
 /*
- * My topos
+ * My Topos
  */
+#profile__myTopos {
+	height: 70vh;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	margin: 0 10%;
+	
+	overflow: auto;
+}
+
+/* My Topos form */
+#myTopos__addForm {
+	margin-bottom: 10%;
+}
+
+#myTopos__form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#myTopos__form *:nth-child(2n) {
+	margin-top: 10%; 
+}
+
+#myTopos__form input, #myTopos__form select, #myTopos__form textarea {
+	border: none;
+	border-bottom: 1px solid black;
+	background: none;
+	outline: none;
+}
+
+#myTopos__form input, #myTopos__form select {
+	padding: 1%;
+	margin: 4% 0;
+}
+
+#myTopos__form textarea {
+	padding: .2% .4%;
+}
+
+#myTopos__form #myTopo__submitButton {
+	font-size: 110%;
+	
+	background: none;
+	border: none;
+}
+
+#myTopos__form #myTopo__submitButton:hover {
+	font-size: 120%;
+	color: green;
+}
+
+
+/* My Topos list */
+#myTopos__list {
+	height: inherit;
+}
+
+#myTopos__list .myTopos__topo {
+	display: flex;
+	flex-direction: column;
+	width: 80vw;
+
+	margin: 5% 0;
+}
+
+
+/* My Topos status */
+#myTopos__list .myTopos__status {
+	height: 4%;
+}
+
+#myTopos__list .myTopos__status--available {
+	background-color: green;
+}
+
+#myTopos__list .myTopos__status--pending {
+	background-color: orange;
+}
+
+#myTopos__list .myTopos__status--lent {
+	background-color: grey;
+}
+
+
+/* My Topos body */
+#myTopos__list .myTopos__body {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 100%;
+	justify-content: center;
+	align-items: center;
+	
+	padding: 5%;
+	
+	background-color: cyan;
+}
+
+#myTopos__list .myTopos__body p:last-child {
+	word-break: break-all;
+	margin-top: 5%;	
+}
+
+#myTopos__list .myTopos__date {
+	font-size: 80%;
+	font-style: italic;
+	
+	display: flex;
+	align-items: flex-end;
+	
+	margin-bottom: 4%;
+}
+
+#myTopos__list .myTopos__date i {
+	font-size: 120%;
+}
+
+#myTopos__list .myTopos__title {
+	font-size: 110%;
+}
+
+#myTopos__list .myTopos__title span:first-child {
+	font-weight: bold;
+}
+
+#myTopos__list .myTopos__title span:last-child {
+	font-style: italic;
+}
+
+#myTopos__list .myTopos__lent {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 12%;
+	justify-content: center;
+	align-items: center;
+}
+
+#myTopos__list .myTopos__pending p:first-child, #myTopos__list .myTopos__lent p:first-child {
+	font-style: italic;
+}
+
+
+/* My Topos borrower */
+#myTopos__list .myTopos__borrower {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#myTopos__list .myTopos__borrowerAvatar, #myTopos__list .myTopos__borrowerEmail {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+ 
+#myTopos__list .myTopos__avatar {
+	width: 25%;
+	border-radius: 50%;
+	
+	margin: 4%;
+}
+
+#myTopos__list .myTopos__borrowerEmail {
+	margin-bottom: 2%;
+}
+
+#myTopos__list .myTopos__borrowerEmail i {
+	margin-right: 5%;
+}
+
+
+/* My Topos action icons */
+#myTopos__list .myTopos__actionIcons {
+	display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#myTopos__list .myTopos__actionIcons a i:hover {
+	font-size: 120%;
+}

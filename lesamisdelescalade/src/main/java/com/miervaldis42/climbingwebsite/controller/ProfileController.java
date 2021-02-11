@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +18,11 @@ import javax.servlet.http.HttpSession;
 
 // Entities
 import com.miervaldis42.climbingwebsite.entity.Topo;
+import com.miervaldis42.climbingwebsite.entity.User;
+import com.miervaldis42.climbingwebsite.service.SiteService;
 import com.miervaldis42.climbingwebsite.service.TopoService;
+import com.miervaldis42.climbingwebsite.service.UserService;
+import com.miervaldis42.climbingwebsite.entity.Site;
 import com.miervaldis42.climbingwebsite.entity.Status;
 
 
@@ -28,7 +34,12 @@ public class ProfileController {
 	
 	@Autowired
 	private TopoService topoService;
-
+	@Autowired
+	private SiteService siteService;
+	@Autowired
+	private UserService userService;
+	
+	
 	
 	// Profile page
 	@GetMapping("infos")
@@ -38,10 +49,15 @@ public class ProfileController {
 		return profilePath;
 	}
 	
-	// My topos
+	
+	
+	// My Topos
 	@GetMapping("myTopos")
 	public String showMyToposSection(Model displaySection, HttpSession activeSession, Model ownerToposList) {		
 		displaySection.addAttribute("section", "myTopos");
+		
+		List<Site> allSites = siteService.getSites();
+		ownerToposList.addAttribute("allSites", allSites);
 
 		int ownerId = (int) activeSession.getAttribute("id");
 		List<Topo> allOwnerTopos = topoService.getToposByOwner(ownerId);
@@ -58,6 +74,37 @@ public class ProfileController {
 		}
 
 		return profilePath;
+	}
+	
+	@PostMapping("addMyTopo")
+	public String addMyTopo(
+		@RequestParam("ownerId") int owner_id,
+		@RequestParam("name") String topoName,
+		@RequestParam("desc") String topoDesc,
+		@RequestParam("site") int site_id) 
+	{
+		Topo newTopo = new Topo();
+		
+		User owner = userService.getUser(owner_id);
+		newTopo.setOwner(owner);
+		newTopo.setStatus(Status.AVAILABLE);
+		
+		if(!topoName.isEmpty() && !topoDesc.isEmpty()) {
+			newTopo.setName(topoName);
+			newTopo.setDescription(topoDesc);
+		} else {
+			newTopo.setName("X-Files n°" + owner_id);
+			newTopo.setDescription("REDACTED");
+		}
+		
+		Site topoSite = siteService.getSite(site_id);
+		newTopo.setSite(topoSite);
+		
+		newTopo.setPublishedDate(new Date());
+		
+		topoService.saveTopo(newTopo);
+		
+		return "redirect:/profile/myTopos";
 	}
 	
 	@GetMapping("reservation")
