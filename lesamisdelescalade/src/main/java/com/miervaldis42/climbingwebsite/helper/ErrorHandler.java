@@ -16,6 +16,10 @@ public class ErrorHandler {
 		String messageToDisplay = "";
 		
 		switch(code) {
+			case "200 - Topo booked":
+				messageToDisplay = "Une demande de réservation a été envoyée au propriétaire du topo.";
+				break;
+			
 			case "201 - User created":
 				messageToDisplay = "Bienvenue parmi nous ! ^^";
 				break;
