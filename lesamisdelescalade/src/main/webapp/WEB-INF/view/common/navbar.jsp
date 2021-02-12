@@ -9,7 +9,7 @@
 			Sites
 		</a>
 	
-		<a href="#">
+		<a href="/lesamisdelescalade/topos/list">
 			<img src="<%=request.getContextPath()%>/resources/assets/navbar/topos_icon.png" />
 			Topos
 		</a>

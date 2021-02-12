@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.miervaldis42.climbingwebsite.dao.TopoDAO;
+import com.miervaldis42.climbingwebsite.entity.Status;
 import com.miervaldis42.climbingwebsite.entity.Topo;
 
 
@@ -41,6 +42,12 @@ public class TopoServiceImpl implements TopoService {
 	public List<Topo> getToposBySite(int siteId) {
 		return topoDAO.getToposBySite(siteId);
 	}
+	
+	@Override
+	@Transactional
+	public List<Topo> getToposByStatus(Status status) {
+		return topoDAO.getToposByStatus(status);
+	}	
 
 	@Override
 	@Transactional
