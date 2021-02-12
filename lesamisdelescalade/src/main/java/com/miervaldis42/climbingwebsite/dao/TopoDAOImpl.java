@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.miervaldis42.climbingwebsite.entity.Status;
 import com.miervaldis42.climbingwebsite.entity.Topo;
 
 
@@ -77,6 +78,22 @@ public class TopoDAOImpl implements TopoDAO {
         }
 		
 		return allSiteTopos;
+	}
+	
+	@Override
+	public List<Topo> getToposByStatus(Status status) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<Topo> allSelectedToposQuery = currentSession.createQuery("FROM Topo WHERE status=:status", Topo.class);
+		allSelectedToposQuery.setParameter("status", status);
+	
+		List<Topo> allSpecificTopos = null;
+		
+        if(!allSelectedToposQuery.getResultList().isEmpty()) {
+        	allSpecificTopos = allSelectedToposQuery.getResultList();
+        }
+		
+		return allSpecificTopos;
 	}
 
 	@Override

@@ -1,0 +1,161 @@
+/**
+ *
+ * Topos page - Desktop CSS file
+ *
+ */
+:root {
+	--topo-height: 40vh;
+	--topo-width: 12vw;
+}
+ 
+
+#topoContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#emptyList {
+	display: flex;
+	flex-direction: column;
+	flex-basis: var(--body-height);
+	width: var(--body-width);
+	align-content: center;
+	justify-content: center;
+}
+
+#emptyList p {
+	text-align: center;
+	margin: .5% 0;
+}
+
+
+/* Topo cards */
+#topoList {
+	display: flex;
+	flex-wrap: wrap;
+	width: calc(var(--body-width) - 20%);
+	justify-content: space-evenly;
+	align-items: center;
+
+	margin: 2% 0;
+}
+
+
+#topoList .topoCard {
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+	
+	height: var(--topo-height);
+	width: var(--topo-width);
+	
+	position: relative;
+	
+	transition: transform 1s;
+  	transform-style: preserve-3d;
+	
+	background-color: cyan;
+}
+
+#topoList .topoCard--turn:hover {
+	transform: rotateY(180deg) ;
+  	transition: transform 0.5s;
+}
+
+.front, .back {
+	position: absolute;
+    width: inherit;
+    height: inherit;
+	backface-visibility: hidden;
+}
+
+.back {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	transform: rotateY(180deg);
+}
+
+.back p {
+	text-align: center;
+	margin: 0 5%;
+}
+
+.back a {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	margin: 8% 0;
+}
+
+#topoList .topoCard__img {
+	height: 40%;
+	width: inherit;
+	
+	clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
+}
+
+#topoList .topoCard__header {
+	width: 35%;
+
+	position: absolute;
+    top: 20%;
+    right: 2%;
+    
+    text-align: center;
+    padding: 2%;
+    word-break: break-all;
+    
+    background-color: white;
+    border: solid black 4px;
+}
+
+#topoList .topoCard__body {
+	width: var(--topo-width);
+	
+	display: flex;
+    flex-direction: column;
+    height: 55%;
+    align-items: center;
+    
+    word-break: break-all;
+    padding: 4% 0;
+}
+
+#topoList .topoCard__info {
+	margin-bottom: 5%;
+}
+
+#topoList .topoCard__info .topoCard__name {
+	font-weight: bold;
+}
+
+#topoList .topoCard__info .topoCard__location {
+	font-style: italic;
+}
+
+#topoList .topoCard__desc {
+	padding: 0 5%;
+}
+
+#topoList .topoCard__footer {
+	position: absolute;
+	bottom: 2%;
+	right: 4%;
+	
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+#topoList .topoCard__avatar {
+	width: 10%;
+	border-radius: 50%;	
+	
+	margin-right: 4%;
+}
