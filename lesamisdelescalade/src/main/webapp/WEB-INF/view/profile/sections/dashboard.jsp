@@ -1,3 +1,47 @@
-<div id="profile__dashboard" style="display: none;">
-	<p>Dashboard</p>
+<div id="profile__dashboard">
+	<div id="dashboard__nav">
+		<!-- General -->
+		<a href="/lesamisdelescalade/profile/dashboard">
+			<i class="fa fa-tachometer-alt"></i>
+			Info-clés
+		</a>
+		
+		<!-- Users -->
+		<a href="/lesamisdelescalade/dashboard/users">
+			<i class="fa fa-users"></i>
+			Utilisateurs
+		</a>
+		
+		<!-- Sites -->
+		<a href="/lesamisdelescalade/dashboard/sites">
+			<img src="<%=request.getContextPath()%>/resources/assets/navbar/mountains_icon.png" />
+			Sites
+		</a>
+		
+		<!-- Topos -->
+		<a href="/lesamisdelescalade/dashboard/topos">
+			<img src="<%=request.getContextPath()%>/resources/assets/navbar/topos_icon.png" />
+			Topos
+		</a>
+		
+		
+	</div>
+	
+	<div id="dashboard__content">
+		<c:if test="${ section == 'dashboard' && dashSection == 'keyInfo' }">
+			<%@ include file="../dashboard/keyInfo.jsp" %>
+		</c:if>
+		
+		<c:if test="${ dashSection == 'users' }">
+			<%@ include file="../dashboard/users.jsp" %>
+		</c:if>
+		
+		<c:if test="${ dashSection == 'sites' }">
+			<%@ include file="../dashboard/sites.jsp" %>
+		</c:if>
+		
+		<c:if test="${ dashSection == 'topos' }">
+			<%@ include file="../dashboard/topos.jsp" %>
+		</c:if>
+	</div>
 </div>

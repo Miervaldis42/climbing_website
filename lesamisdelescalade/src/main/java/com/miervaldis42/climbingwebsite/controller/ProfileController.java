@@ -43,18 +43,29 @@ public class ProfileController {
 	
 	// Profile page
 	@GetMapping("infos")
-	public String showProfilePage(Model displaySection) {
-		displaySection.addAttribute("section", "infos");
+	public String showProfilePage(Model sectionModel) {
+		sectionModel.addAttribute("section", "infos");
 
 		return profilePath;
 	}
 	
 	
 	
+	// Dashboard
+	@GetMapping("dashboard")
+	public String showAdminDashboard(Model sectionModel, Model dashModel) {
+		sectionModel.addAttribute("section", "dashboard");
+		dashModel.addAttribute("dashSection", "keyInfo");
+
+		return profilePath; 
+	}
+	
+	
+	
 	// My Topos
 	@GetMapping("myTopos")
-	public String showMyToposSection(Model displaySection, HttpSession activeSession, Model ownerToposList) {		
-		displaySection.addAttribute("section", "myTopos");
+	public String showMyToposSection(Model sectionModel, HttpSession activeSession, Model ownerToposList) {		
+		sectionModel.addAttribute("section", "myTopos");
 		
 		List<Site> allSites = siteService.getSites();
 		ownerToposList.addAttribute("allSites", allSites);
@@ -108,7 +119,7 @@ public class ProfileController {
 	}
 	
 	@GetMapping("reservation")
-	public String manageReservation(@RequestParam("reservationStatus") String reservationStatus, @RequestParam("topoId") int id, Model displaySection) {
+	public String manageReservation(@RequestParam("reservationStatus") String reservationStatus, @RequestParam("topoId") int id, Model sectionModel) {
 		Topo selectedTopo = topoService.getTopo(id);
 		
 		if(reservationStatus.equals("accept")) {
@@ -122,7 +133,7 @@ public class ProfileController {
 		}
 		topoService.saveTopo(selectedTopo);
 		
-		displaySection.addAttribute("section", "myTopos");
+		sectionModel.addAttribute("section", "myTopos");
 
 		return "redirect:/profile/myTopos";
 	}
