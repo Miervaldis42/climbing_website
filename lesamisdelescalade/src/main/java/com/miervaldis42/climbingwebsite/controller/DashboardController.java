@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 // Entities
 import com.miervaldis42.climbingwebsite.entity.Comment;
+import com.miervaldis42.climbingwebsite.entity.Difficulty;
 import com.miervaldis42.climbingwebsite.entity.Length;
 import com.miervaldis42.climbingwebsite.entity.Role;
 import com.miervaldis42.climbingwebsite.entity.Route;
@@ -128,6 +129,7 @@ public class DashboardController {
 			dataModel.addAttribute("siteRoutes", allSiteRoutes);
 			dataModel.addAttribute("siteLengths", allSiteLengths);
 			dataModel.addAttribute("siteTopos", allSiteTopos);
+			dataModel.addAttribute("quotationList", Difficulty.EASY.getEntireStepList());
 		}
 
 		return profilePath;
@@ -157,5 +159,71 @@ public class DashboardController {
 		
 		return "redirect:/dashboard/sites";
 	}
-
+	
+	
+	/* Sectors */
+	@PostMapping("editSector")
+	public String editSector(
+		@RequestParam("sectorId") int id,
+		@RequestParam("name") String name)
+	{
+		Sector selectedSector = sectorService.getSector(id);
+		selectedSector.setName(name);
+		sectorService.saveSector(selectedSector);
+		
+		return "redirect:/dashboard/sites";
+	}
+	
+	@GetMapping("deleteSector")
+	public String deleteSector(@RequestParam("sectorId") int id) {
+		sectorService.deleteSector(id);
+		
+		return "redirect:/dashboard/sites";
+	}
+	
+	
+	/* Routes */
+	@PostMapping("editRoute")
+	public String editRoute(
+		@RequestParam("routeId") int id,
+		@RequestParam("name") String name,
+		@RequestParam("quotation") String quotation)
+	{
+		Route selectedRoute = routeService.getRoute(id);
+		selectedRoute.setName(name);
+		selectedRoute.setQuotation(quotation);
+		routeService.saveRoute(selectedRoute);
+		
+		return "redirect:/dashboard/sites";
+	}
+	
+	@GetMapping("deleteRoute")
+	public String deleteRoute(@RequestParam("routeId") int id) {
+		routeService.deleteRoute(id);
+		
+		return "redirect:/dashboard/sites";
+	}
+	
+	
+	/* Lengths */
+	@PostMapping("editLength")
+	public String editLength(
+		@RequestParam("lengthId") int id,
+		@RequestParam("name") String name,
+		@RequestParam("quotation") String quotation)
+	{
+		Length selectedLength = lengthService.getLength(id);
+		selectedLength.setName(name);
+		selectedLength.setQuotation(quotation);
+		lengthService.saveLength(selectedLength);
+		
+		return "redirect:/dashboard/sites";
+	}
+	
+	@GetMapping("deleteLength")
+	public String deleteLength(@RequestParam("lengthId") int id) {
+		lengthService.deleteLength(id);
+		
+		return "redirect:/dashboard/sites";
+	}
 }

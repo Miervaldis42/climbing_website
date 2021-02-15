@@ -24,3 +24,44 @@ function showSiteEditForm() {
 		siteEditForm.style.display = 'none';
 	}
 }
+
+
+function showSectorEditForm(id) {
+	var sectorEditForm = document.getElementById("sitesTab__editSectorForm"+id);
+	var sectorDetails = document.getElementById("sitesTab__sectorContent"+id);
+	
+	if(sectorDetails.style.display == '') {
+		sectorDetails.style.display = 'none';
+		sectorEditForm.style.display = '';
+	} else {
+		sectorDetails.style.display = '';
+		sectorEditForm.style.display = 'none';
+	}
+}
+
+
+function showRouteEditForm(id) {
+	var routeEditForm = document.getElementById("sitesTab__editRouteForm"+id);
+	var routeDetails = document.getElementById("sitesTab__routeContent"+id);
+	
+	if(routeDetails.style.display == '') {
+		routeDetails.style.display = 'none';
+		routeEditForm.style.display = '';
+	} else {
+		routeDetails.style.display = '';
+		routeEditForm.style.display = 'none';
+	}
+}
+
+function showLengthEditForm(id) {
+	var lengthEditForm = document.getElementById("sitesTab__lengthForm"+id);
+	var lengthDetails = document.getElementById("sitesTab__lengthContent"+id);
+	
+	if(lengthDetails.style.display == '') {
+		lengthDetails.style.display = 'none';
+		lengthEditForm.style.display = '';
+	} else {
+		lengthDetails.style.display = '';
+		lengthEditForm.style.display = 'none';
+	}
+}

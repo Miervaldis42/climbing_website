@@ -79,7 +79,7 @@
 					<c:url var="deleteSiteLink" value="/dashboard/deleteSite">
 						<c:param name="siteId" value="${ site.id }" />
 					</c:url>
-					<a onclick="if(!(confirm('Êtes-vous sûr de vouloir supprimer ce site d\'escalade ?'))) return false" href="${ deleteSiteLink }">
+					<a onclick="if(!(confirm('Êtes-vous sûr de vouloir supprimer le site d\'escalade \'${ site.name }\' ?'))) return false" href="${ deleteSiteLink }">
 						<i class="fa fa-times"></i>
 					</a>
 				</div>
@@ -91,10 +91,39 @@
 					<h4>Ses secteurs</h4>
 					
 					<c:forEach items="${ siteSectors }" var="s">
-						<h3>Id: ${ s.id }</h3>
-						<p>
-							<span>Nom:</span> ${ s.name }
-						</p>
+						<div class="sector_tile">
+							<div>
+								<h3>Id: ${ s.id }</h3>
+								<p id="sitesTab__sectorContent${ s.id }">
+									<span>Nom:</span> ${ s.name }
+								</p>
+							</div>
+							
+							<!-- Edit Sector -->
+							<form id="sitesTab__editSectorForm${ s.id }" action="/lesamisdelescalade/dashboard/editSector" method="POST" style="display: none;">
+								<input type="hidden" name="sectorId" value="${ s.id }" />
+								
+								<label>Nom</label>
+								<input type="text" name="name" value="${ s.name }" required />
+								
+								<button type="submit">
+									<i class="fa fa-check"></i>
+								</button>
+							</form>							
+							
+							<div class="actionButtons">
+								<a onclick="showSectorEditForm(${ s.id })">
+									<i class="fa fa-pencil-alt"></i>
+								</a>
+								
+								<c:url var="deleteSectorLink" value="/dashboard/deleteSector">
+									<c:param name="sectorId" value="${ s.id }" />
+								</c:url>
+								<a onclick="if(!(confirm('Êtes-vous sûr de vouloir supprimer le secteur \'${ s.name }\' ?'))) return false" href="${ deleteSectorLink }">
+									<i class="fa fa-times"></i>
+								</a>
+							</div>
+						</div>
 					</c:forEach>
 				</div>
 			</c:if>
@@ -106,15 +135,50 @@
 					
 					<c:forEach items="${ siteRoutes }" var="r">
 						<h3>Id: ${ r.id }</h3>
-						<p>
-							<span>Liée au secteur:</span> ${ r.sector.name }
-						</p>
-						<p>
-							<span>Nom:</span> ${ r.name }
-						</p>
-						<p>
-							<span>Cotation:</span> ${ r.quotation }
-						</p>
+						
+						<div id="sitesTab__routeContent${ r.id }">
+							<p>
+								<span>Nom:</span> ${ r.name }
+							</p>
+							<p>
+								<span>Cotation:</span> ${ r.quotation }
+							</p>
+							<p>
+								<span>Liée au secteur:</span> ${ r.sector.name }
+							</p>
+						</div>
+						
+						<!-- Edit Route -->
+						<form id="sitesTab__editRouteForm${ r.id }" action="/lesamisdelescalade/dashboard/editRoute" method="POST" style="display: none;">
+							<input type="hidden" name="routeId" value="${ r.id }" />
+							
+							<label>Nom</label>
+							<input type="text" name="name" value="${ r.name }" required />
+							
+							<label>Cotation</label>
+							<select name="quotation">
+								<c:forEach items="${ quotationList }" var="q">
+									<option value="${ q }" ${ r.quotation == q ? "selected" : "" }> ${ q } </option>
+								</c:forEach>
+							</select>
+							
+							<button type="submit">
+								<i class="fa fa-check"></i>
+							</button>
+						</form>							
+						
+						<div class="actionButtons">
+							<a onclick="showRouteEditForm(${ r.id })">
+								<i class="fa fa-pencil-alt"></i>
+							</a>
+							
+							<c:url var="deleteRouteLink" value="/dashboard/deleteRoute">
+								<c:param name="routeId" value="${ r.id }" />
+							</c:url>
+							<a onclick="if(!(confirm('Êtes-vous sûr de vouloir supprimer la route \'${ r.name }\' ?'))) return false" href="${ deleteRouteLink }">
+								<i class="fa fa-times"></i>
+							</a>
+						</div>
 					</c:forEach>
 				</div>
 			</c:if>
@@ -126,19 +190,55 @@
 					
 					<c:forEach items="${ siteLengths }" var="l">
 						<h3>Id: ${ l.id }</h3>
-						<p>
-							<span>Liée à la route:</span> ${ l.route.name }
+						
+						<div id="sitesTab__lengthContent${ l.id }">
+							<p>
+								<span>Liée à la route:</span> ${ l.route.name }
+							</p>
+							<p>
+								<span>Nom:</span> ${ l.name }
+							</p>
+							<p>
+								<span>Cotation:</span> ${ l.quotation }
 						</p>
-						<p>
-							<span>Nom:</span> ${ l.name }
-						</p>
-						<p>
-							<span>Cotation:</span> ${ l.quotation }
-						</p>
+						</div>
+						
+						<!-- Edit Length -->
+						<form id="sitesTab__editLengthForm${ l.id }" action="/lesamisdelescalade/dashboard/editLength" method="POST" style="display: none;">
+							<input type="hidden" name="lengthId" value="${ l.id }" />
+							
+							<label>Nom</label>
+							<input type="text" name="name" value="${ l.name }" required />
+							
+							<label>Cotation</label>
+							<select name="quotation">
+								<c:forEach items="${ quotationList }" var="q">
+									<option value="${ q }" ${ l.quotation == q ? "selected" : "" }> ${ q } </option>
+								</c:forEach>
+							</select>
+							
+							<button type="submit">
+								<i class="fa fa-check"></i>
+							</button>
+						</form>							
+						
+						<div class="actionButtons">
+							<a onclick="showLengthEditForm(${ l.id })">
+								<i class="fa fa-pencil-alt"></i>
+							</a>
+							
+							<c:url var="deleteLengthLink" value="/dashboard/deleteLength">
+								<c:param name="lengthId" value="${ l.id }" />
+							</c:url>
+							<a onclick="if(!(confirm('Êtes-vous sûr de vouloir supprimer la longueur \'${ l.name }\' ?'))) return false" href="${ deleteLengthLink }">
+								<i class="fa fa-times"></i>
+							</a>
+						</div>
 					</c:forEach>
 				</div>
 			</c:if>
 			
+
 			<!-- 5th column: List of all site topos -->
 			<c:if test="${ not empty siteTopos && siteTopos.size() > 0 }">
 				<div id="sitesTab__topoList">
