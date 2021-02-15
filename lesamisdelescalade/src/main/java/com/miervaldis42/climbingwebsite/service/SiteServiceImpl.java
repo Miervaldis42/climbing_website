@@ -111,6 +111,8 @@ public class SiteServiceImpl implements SiteService {
 	/*
 	 * Delete
 	 */
+	@Override
+	@Transactional
 	public void deleteSite(int id) {
 		siteDAO.deleteSite(id);
 	}
