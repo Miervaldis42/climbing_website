@@ -42,6 +42,22 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 	
 	@Override
+	public List<Comment> getCommentsByUser(int userId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<Comment> userCommentsQuery = currentSession.createQuery("FROM Comment WHERE user_id=:id", Comment.class);
+		userCommentsQuery.setParameter("id", userId);
+		
+		List<Comment> allUserComments = null;
+		
+        if(!userCommentsQuery.getResultList().isEmpty()) {
+        	allUserComments = userCommentsQuery.getResultList();
+        }
+		
+		return allUserComments;
+	}
+	
+	@Override
 	public Comment getComment(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		

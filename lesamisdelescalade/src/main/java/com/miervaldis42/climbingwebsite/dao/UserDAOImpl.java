@@ -28,7 +28,7 @@ public class UserDAOImpl implements UserDAO {
 
 
 	/*
-	 * Methods for CRU
+	 * Methods for CRUD
 	 */
 	
 	// Create method
@@ -113,4 +113,15 @@ public class UserDAOImpl implements UserDAO {
 		return selectedUser;
 	}
 
+	
+	// Delete method
+	@Override
+	public void deleteUser(int id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query selectedUser = currentSession.createQuery("DELETE FROM User WHERE id=:userId");
+		selectedUser.setParameter("userId", id);
+
+		selectedUser.executeUpdate();
+	}
 }

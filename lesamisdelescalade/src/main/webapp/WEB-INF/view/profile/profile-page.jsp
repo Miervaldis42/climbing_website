@@ -35,19 +35,19 @@
 			
 			<!-- Profile navigation -->
 			<div id="profile__nav">
-				<a href="infos">
+				<a href="/lesamisdelescalade/profile/infos">
 					<i class="fa fa-info"></i>
 					Info
 				</a>
 				
 				<c:if test="${ sessionScope.role == 'ADMIN' }">
-					<a href="#">
+					<a href="/lesamisdelescalade/profile/dashboard">
 						<i class="fa fa-tachometer-alt"></i>
 						Dashboard
 					</a>
 				</c:if>
 				
-				<a href="myTopos">
+				<a href="/lesamisdelescalade/profile/myTopos">
 					<img src="<%=request.getContextPath()%>/resources/assets/navbar/topos_icon.png" />
 					Mes topos
 				</a>
@@ -72,5 +72,8 @@
 		
 		<%@ include file="../common/footer.jsp" %>
 	</body>
+	
+	<!-- JS script -->
+	<script defer src="<%=request.getContextPath()%>/resources/js/dashboardUtils.js"></script>
 </html>
 
