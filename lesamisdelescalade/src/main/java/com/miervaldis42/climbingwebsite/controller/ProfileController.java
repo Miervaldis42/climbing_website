@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -19,9 +20,16 @@ import javax.servlet.http.HttpSession;
 // Entities
 import com.miervaldis42.climbingwebsite.entity.Topo;
 import com.miervaldis42.climbingwebsite.entity.User;
+import com.miervaldis42.climbingwebsite.service.LengthService;
+import com.miervaldis42.climbingwebsite.service.RouteService;
+import com.miervaldis42.climbingwebsite.service.SectorService;
 import com.miervaldis42.climbingwebsite.service.SiteService;
 import com.miervaldis42.climbingwebsite.service.TopoService;
 import com.miervaldis42.climbingwebsite.service.UserService;
+import com.miervaldis42.climbingwebsite.entity.Length;
+import com.miervaldis42.climbingwebsite.entity.Role;
+import com.miervaldis42.climbingwebsite.entity.Route;
+import com.miervaldis42.climbingwebsite.entity.Sector;
 import com.miervaldis42.climbingwebsite.entity.Site;
 import com.miervaldis42.climbingwebsite.entity.Status;
 
@@ -36,6 +44,12 @@ public class ProfileController {
 	private TopoService topoService;
 	@Autowired
 	private SiteService siteService;
+	@Autowired
+	private SectorService sectorService;
+	@Autowired
+	private RouteService routeService;
+	@Autowired
+	private LengthService lengthService;
 	@Autowired
 	private UserService userService;
 	
@@ -53,9 +67,47 @@ public class ProfileController {
 	
 	// Dashboard
 	@GetMapping("dashboard")
-	public String showAdminDashboard(Model sectionModel, Model dashModel) {
+	public String showAdminDashboard(Model sectionModel, Model dashModel, Model KPIModel) {
 		sectionModel.addAttribute("section", "dashboard");
 		dashModel.addAttribute("dashSection", "keyInfo");
+		
+		/* Users */
+		List<User> allUsers = userService.getUsers();
+		List<User> admins = new ArrayList<User>();
+		List<User> members = new ArrayList<User>();
+		List<User> subscribers = new ArrayList<User>();
+		
+		for(User u : allUsers) {
+			if(u.getRole() == Role.ADMIN) {
+				admins.add(u);
+			} else if(u.getRole() == Role.MEMBER) {
+				members.add(u);
+			} else {
+				subscribers.add(u);
+			}
+		}
+		
+		KPIModel.addAttribute("users", allUsers.size());
+		KPIModel.addAttribute("admins", admins.size());
+		KPIModel.addAttribute("members", members.size());
+		KPIModel.addAttribute("subscribers", subscribers.size());
+		
+		
+		/* Sites */
+		List<Site> allSites = siteService.getSites();
+		List<Sector> allSectors = sectorService.getSectors();
+		List<Route> allRoutes = routeService.getRoutes();
+		List<Length> allLengths = lengthService.getLengths();
+		
+		KPIModel.addAttribute("sites", allSites.size());
+		KPIModel.addAttribute("sectors", allSectors.size());
+		KPIModel.addAttribute("routes", allRoutes.size());
+		KPIModel.addAttribute("lengths", allLengths.size());
+		
+		
+		/* Topos */
+		List<Topo> allTopos = topoService.getTopos();
+		KPIModel.addAttribute("topos", allTopos.size());
 
 		return profilePath; 
 	}
