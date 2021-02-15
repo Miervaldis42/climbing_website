@@ -1,6 +1,9 @@
 /**
  * Profile page - Desktop CSS file
  */
+:root {
+	--profileSection-height: 70vh;
+}
 
 /*
  * Profile navigation
@@ -125,11 +128,146 @@
 
 
 
+
+/*
+ * Dashboard
+ */
+#profile__dashboard {
+	height: var(--profileSection-height);
+	display: flex;
+	
+	overflow: auto;
+} 
+
+#dashboard__nav {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 6%;
+	align-items: center;
+	justify-content: space-evenly;
+	
+	background-color: #5bb2fe;	
+}
+
+#dashboard__nav a {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+	
+#dashboard__nav i {
+	font-size: 140%;
+	margin-bottom: 4%;
+}
+
+#dashboard__nav img {
+	width: 28%;
+}
+
+#dashboard__content {
+	height: inherit;
+	width: calc(var(--body-width) - 4%);
+
+	background-color: pink;
+}
+
+
+/* Dashboard - Users */
+#dashboard__usersTab {
+	height: 97%;
+    padding: .5%;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+#usersTab__content {
+	height: 95%;
+
+	display: flex;
+	justify-content: space-around;
+	
+	padding-top: 1%;  
+}
+
+#usersTab__content h4 {
+	text-align: center;
+
+	margin-bottom: 4%;
+}
+
+#usersTab__content span:first-child {
+	font-weight: bolder;
+	font-style: italic;
+}
+
+#usersTab__userList {
+	height: inherit;
+    width: 15%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+      
+    overflow: auto;
+}
+
+
+#usersTab__userList .user__tile {
+	display: flex;
+    width: 75%;
+    align-items: center;
+
+    padding: 2%;
+    margin: 4% 0;
+
+	background-color: green;
+}
+
+#usersTab__userList .user__tile img {
+	width: 30%;
+	border-radius: 50%;
+	
+	margin: 1%;
+	margin-right: 10%;
+}
+
+#usersTab__userDetails {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    position: relative;
+}
+
+#usersTab__userDetailscontent * {
+	margin: 4% 0;
+}
+
+#usersTab__userDetails #usersTab__userActionButtons {	
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+	
+	margin: 4%;
+}
+
+#usersTab__userToposList, #usersTab__userCommentsList {
+	overflow: auto;
+}
+
+#usersTab__userToposList div, #usersTab__userCommentsList div {
+	margin-bottom: 4%;
+}
+
+	
+
 /*
  * My Topos
  */
 #profile__myTopos {
-	height: 70vh;
+	height: var(--profileSection-height);
 
 	display: flex;
 	flex-direction: column;

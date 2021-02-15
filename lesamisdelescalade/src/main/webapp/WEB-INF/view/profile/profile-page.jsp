@@ -72,5 +72,8 @@
 		
 		<%@ include file="../common/footer.jsp" %>
 	</body>
+	
+	<!-- JS script -->
+	<script defer src="<%=request.getContextPath()%>/resources/js/dashboardUtils.js"></script>
 </html>
 
