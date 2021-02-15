@@ -1,4 +1,6 @@
 <div id="profile__dashboard">
+
+	<!-- Dashboard navbar -->
 	<div id="dashboard__nav">
 		<!-- General -->
 		<a href="/lesamisdelescalade/profile/dashboard">
@@ -16,17 +18,11 @@
 		<a href="/lesamisdelescalade/dashboard/sites">
 			<img src="<%=request.getContextPath()%>/resources/assets/navbar/mountains_icon.png" />
 			Sites
-		</a>
-		
-		<!-- Topos -->
-		<a href="/lesamisdelescalade/dashboard/topos">
-			<img src="<%=request.getContextPath()%>/resources/assets/navbar/topos_icon.png" />
-			Topos
-		</a>
-		
-		
+		</a>		
 	</div>
 	
+
+	<!-- Dashboard content -->
 	<div id="dashboard__content">
 		<c:if test="${ section == 'dashboard' && dashSection == 'keyInfo' }">
 			<%@ include file="../dashboard/keyInfo.jsp" %>
@@ -38,10 +34,6 @@
 		
 		<c:if test="${ dashSection == 'sites' }">
 			<%@ include file="../dashboard/sites.jsp" %>
-		</c:if>
-		
-		<c:if test="${ dashSection == 'topos' }">
-			<%@ include file="../dashboard/topos.jsp" %>
 		</c:if>
 	</div>
 </div>

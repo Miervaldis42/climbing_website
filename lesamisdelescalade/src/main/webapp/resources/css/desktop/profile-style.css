@@ -241,7 +241,7 @@
     position: relative;
 }
 
-#usersTab__userDetailscontent * {
+#usersTab__userDetailsContent * {
 	margin: 4% 0;
 }
 
@@ -260,6 +260,91 @@
 #usersTab__userToposList div, #usersTab__userCommentsList div {
 	margin-bottom: 4%;
 }
+
+
+
+/* Dashboard - Sites */
+#dashboard__sitesTab {
+	height: 97%;
+    padding: .5%;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+#dashboard__sitesTab h3 {
+	display: flex;
+	align-items: center;
+}
+
+#dashboard__sitesTab h3 img {
+	width: 1.5%;
+	margin-right: .5%;
+}
+
+#sitesTab__content {
+	height: 95%;
+
+	display: flex;
+	justify-content: space-around;
+	
+	padding-top: 1%;
+}
+
+#sitesTab__content h4 {
+	text-align: center;
+
+	margin-bottom: 4%;
+}
+
+#sitesTab__content span:first-child {
+	font-weight: bolder;
+	font-style: italic;
+}
+
+#sitesTab__siteList {
+	height: inherit;
+    width: 15%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+      
+    overflow: auto;
+}
+
+
+#sitesTab__siteList .site__tile {
+	display: flex;
+    align-items: center;
+
+    padding: 5%;
+    margin-bottom: 10%;
+    
+    overflow: auto;
+
+	background-color: green;
+}
+
+#dashboard__sitesTab .details {
+	display: flex;
+    flex-direction: column;
+    width: 10%;
+    align-items: center;
+}
+
+#dashboard__sitesTab .details * {
+	margin: 4% 0;
+}
+
+#dashboard__sitesTab .details .actionButtons {	
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+	
+	margin: 4%;
+}
+
 
 	
 

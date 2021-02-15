@@ -14,7 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 // Entities
 import com.miervaldis42.climbingwebsite.entity.Comment;
+import com.miervaldis42.climbingwebsite.entity.Length;
 import com.miervaldis42.climbingwebsite.entity.Role;
+import com.miervaldis42.climbingwebsite.entity.Route;
+import com.miervaldis42.climbingwebsite.entity.Sector;
+import com.miervaldis42.climbingwebsite.entity.Site;
 import com.miervaldis42.climbingwebsite.entity.Topo;
 import com.miervaldis42.climbingwebsite.entity.User;
 import com.miervaldis42.climbingwebsite.service.CommentService;
@@ -105,24 +109,53 @@ public class DashboardController {
 	 * Sites tab
 	 */
 	@GetMapping("sites")
-	public String showSitesTab(Model sectionModel, Model dashModel) {
+	public String showSitesTab(Model sectionModel, Model dashModel, Model dataModel, @RequestParam("siteId") Optional<Integer> siteId) {
 		sectionModel.addAttribute("section", "dashboard");
 		dashModel.addAttribute("dashSection", "sites");
+		
+		List<Site> allSites = siteService.getSites();
+		dataModel.addAttribute("sites", allSites);
+		
+		if(siteId.isPresent()) {
+			Site selectedSite = siteService.getSite(siteId.get());
+			List<Sector> allSiteSectors = sectorService.getSectors(siteId.get());
+			List<Route> allSiteRoutes = routeService.getRoutesBySite(siteId.get());
+			List<Length> allSiteLengths = lengthService.getLengthsBySite(siteId.get());
+			List<Topo> allSiteTopos = topoService.getToposBySite(siteId.get());
+			
+			dataModel.addAttribute("site", selectedSite);
+			dataModel.addAttribute("siteSectors", allSiteSectors);
+			dataModel.addAttribute("siteRoutes", allSiteRoutes);
+			dataModel.addAttribute("siteLengths", allSiteLengths);
+			dataModel.addAttribute("siteTopos", allSiteTopos);
+		}
 
 		return profilePath;
 	}
 	
+	@PostMapping("editSite")
+	public String editSite(
+		@RequestParam("siteId") int id,
+		@RequestParam("tag") Boolean tag,
+		@RequestParam("name") String name,
+		@RequestParam("location") String location,
+		@RequestParam("desc") String desc)
+	{
+		Site selectedSite = siteService.getSite(id);
+		selectedSite.setTag(tag);
+		selectedSite.setName(name);
+		selectedSite.setLocation(location);
+		selectedSite.setDescription(desc);
+		siteService.saveSite(selectedSite);
+		
+		return "redirect:/dashboard/sites";
+	}
 	
-	
-	/*
-	 * Topos tab
-	 */
-	@GetMapping("topos")
-	public String showToposTab(Model sectionModel, Model dashModel) {
-		sectionModel.addAttribute("section", "dashboard");
-		dashModel.addAttribute("dashSection", "topos");
-
-		return profilePath;
+	@GetMapping("deleteSite")
+	public String deleteSite(@RequestParam("siteId") int id) {
+		siteService.deleteSite(id);
+		
+		return "redirect:/dashboard/sites";
 	}
 
 }
