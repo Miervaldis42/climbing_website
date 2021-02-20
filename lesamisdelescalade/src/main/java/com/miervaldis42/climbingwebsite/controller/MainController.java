@@ -3,7 +3,6 @@ package com.miervaldis42.climbingwebsite.controller;
 // Imports
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.Map;
 
-import com.miervaldis42.climbingwebsite.entity.Difficulty;
 import com.miervaldis42.climbingwebsite.entity.Site;
+import com.miervaldis42.climbingwebsite.enums.Difficulty;
 import com.miervaldis42.climbingwebsite.service.SiteService;
 
 
 @Controller
 public class MainController {
-	String siteDir = "sites/";
+	String siteListPath = "sites/siteList-page";
 	
 	@Autowired
 	private SiteService siteService;
@@ -35,7 +34,7 @@ public class MainController {
 		List<Site> sites = siteService.getSites();
 		setSiteCardInfo(sites, cards);
 		
-		return siteDir + "siteList-page";
+		return siteListPath;
 	}
 	
 	
@@ -69,7 +68,7 @@ public class MainController {
 		search.addAttribute("quotationDifficulties", Difficulty.EASY.getAllDifficulties());
 		search.addAttribute("chosenQuotationMode", quotationFilter);
 		
-        return siteDir + "siteList-page";        
+        return siteListPath;        
     }
 	
 	

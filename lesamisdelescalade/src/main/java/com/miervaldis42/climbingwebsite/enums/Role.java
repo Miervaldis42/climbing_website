@@ -1,4 +1,4 @@
-package com.miervaldis42.climbingwebsite.entity;
+package com.miervaldis42.climbingwebsite.enums;
 
 public enum Role {
 	ADMIN("Admin"),

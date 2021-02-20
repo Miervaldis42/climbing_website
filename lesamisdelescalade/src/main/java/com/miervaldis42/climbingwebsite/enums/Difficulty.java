@@ -1,4 +1,4 @@
-package com.miervaldis42.climbingwebsite.entity;
+package com.miervaldis42.climbingwebsite.enums;
 
 // Imports
 import java.util.*;

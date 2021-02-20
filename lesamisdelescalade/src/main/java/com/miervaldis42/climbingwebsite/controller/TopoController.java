@@ -11,12 +11,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-// Entities
-import com.miervaldis42.climbingwebsite.entity.Status;
 import com.miervaldis42.climbingwebsite.helper.ErrorHandler;
 
 import com.miervaldis42.climbingwebsite.entity.Topo;
 import com.miervaldis42.climbingwebsite.entity.User;
+import com.miervaldis42.climbingwebsite.enums.Status;
 import com.miervaldis42.climbingwebsite.service.TopoService;
 import com.miervaldis42.climbingwebsite.service.UserService;
 

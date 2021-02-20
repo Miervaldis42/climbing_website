@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 import javax.servlet.http.HttpSession;
 
-import com.miervaldis42.climbingwebsite.entity.Role;
 import com.miervaldis42.climbingwebsite.entity.User;
+import com.miervaldis42.climbingwebsite.enums.Role;
 import com.miervaldis42.climbingwebsite.service.UserService;
 
 import com.miervaldis42.climbingwebsite.helper.ErrorHandler;

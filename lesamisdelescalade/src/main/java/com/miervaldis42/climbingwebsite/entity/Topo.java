@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import com.miervaldis42.climbingwebsite.enums.Status;
 
 
 

@@ -14,14 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 // Entities
 import com.miervaldis42.climbingwebsite.entity.Comment;
-import com.miervaldis42.climbingwebsite.entity.Difficulty;
 import com.miervaldis42.climbingwebsite.entity.Length;
-import com.miervaldis42.climbingwebsite.entity.Role;
 import com.miervaldis42.climbingwebsite.entity.Route;
 import com.miervaldis42.climbingwebsite.entity.Sector;
 import com.miervaldis42.climbingwebsite.entity.Site;
 import com.miervaldis42.climbingwebsite.entity.Topo;
 import com.miervaldis42.climbingwebsite.entity.User;
+import com.miervaldis42.climbingwebsite.enums.Difficulty;
+import com.miervaldis42.climbingwebsite.enums.Role;
 import com.miervaldis42.climbingwebsite.service.CommentService;
 import com.miervaldis42.climbingwebsite.service.LengthService;
 import com.miervaldis42.climbingwebsite.service.RouteService;

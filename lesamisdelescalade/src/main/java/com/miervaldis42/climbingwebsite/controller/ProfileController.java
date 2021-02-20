@@ -20,6 +20,8 @@ import javax.servlet.http.HttpSession;
 // Entities
 import com.miervaldis42.climbingwebsite.entity.Topo;
 import com.miervaldis42.climbingwebsite.entity.User;
+import com.miervaldis42.climbingwebsite.enums.Role;
+import com.miervaldis42.climbingwebsite.enums.Status;
 import com.miervaldis42.climbingwebsite.service.LengthService;
 import com.miervaldis42.climbingwebsite.service.RouteService;
 import com.miervaldis42.climbingwebsite.service.SectorService;
@@ -27,11 +29,9 @@ import com.miervaldis42.climbingwebsite.service.SiteService;
 import com.miervaldis42.climbingwebsite.service.TopoService;
 import com.miervaldis42.climbingwebsite.service.UserService;
 import com.miervaldis42.climbingwebsite.entity.Length;
-import com.miervaldis42.climbingwebsite.entity.Role;
 import com.miervaldis42.climbingwebsite.entity.Route;
 import com.miervaldis42.climbingwebsite.entity.Sector;
 import com.miervaldis42.climbingwebsite.entity.Site;
-import com.miervaldis42.climbingwebsite.entity.Status;
 
 
 

@@ -3,8 +3,8 @@ package com.miervaldis42.climbingwebsite.service;
 //Imports
 import java.util.List;
 
-import com.miervaldis42.climbingwebsite.entity.Status;
 import com.miervaldis42.climbingwebsite.entity.Topo;
+import com.miervaldis42.climbingwebsite.enums.Status;
 
 
 // Service

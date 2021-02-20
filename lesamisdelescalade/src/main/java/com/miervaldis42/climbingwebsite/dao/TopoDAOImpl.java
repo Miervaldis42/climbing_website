@@ -8,8 +8,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.miervaldis42.climbingwebsite.entity.Status;
 import com.miervaldis42.climbingwebsite.entity.Topo;
+import com.miervaldis42.climbingwebsite.enums.Status;
 
 
 
