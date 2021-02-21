@@ -4,8 +4,10 @@
 
 /* Variables */
 :root {
-	--main-color: black;
-	--secondary-color: orange;
+	--main-color: #FF6725;
+	--secondary-color: #04B335;
+	--black-color: black;
+	--grey-color: #F8F8FB;
 	--white-color: white;
 	
 	--body-height: 100vh;
@@ -13,7 +15,6 @@
 	
 	--navbar-height: 10vh;
 	--navbar-width: 100vw;
-	--mobile-navbar-color: rgba(183, 147, 120, 1);
 	
 	--success-color: green;
 	--success-background: rgba(0, 156, 34, 1);
@@ -32,12 +33,12 @@
 
 a {
 	text-decoration: none;
-	color: var(--main-color);
+	color: var(--black-color);
 }
 
 a:hover {
 	font-size: 105%;
-	color: var(--secondary-color);
+	color: var(--white-color);
 }
 
 
@@ -53,7 +54,8 @@ html, body {
 	display: flex;
 	flex-direction: column;
 	
-	color: var(--main-color);
+	background-color: var(--white-color);
+	color: var(--black-color);
 	
 	margin: 0;
 	padding: 0;
@@ -167,19 +169,17 @@ html, body {
 	display: flex;
 	justify-content: space-around;
 	
+	border-radius: 10px 10px 0 0;
 	box-shadow: 0 -2px 5px -2px #333;
-	background-color: var(--mobile-navbar-color);
+	background-color: var(--main-color);
 }
 
 #header__navbar a {
 	display: flex;
 	flex-direction: column;
+	flex-basis: 20%;
 	align-items: center;
 	justify-content: center;
-	flex-basis: 20%;
-	
-	text-decoration: none;
-	color: var(--main-color);
 }
 
 #header__navbar img {
@@ -189,5 +189,4 @@ html, body {
 #header__navbar a:active {
 	line-height: 2;
 	font-weight: bolder;
-	color: var(--secondary-color);
 }

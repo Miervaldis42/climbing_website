@@ -11,38 +11,37 @@
 }
 
 
-/*
- * Body & Container
- */
-/* #siteBody {
-	background-image: url("../../assets/backgrounds/mountain_background.jpg");
-	background-size: cover;
-	background-position-x: right;
-} */
 
+
+/*
+ * Site container
+ */
+#siteBody {
+	background-image: url("../../assets/backgrounds/site_background.png");
+	background-size: cover;
+}
+ 
 #siteContainer {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	
-	overflow: auto;	
+	overflow: auto;
 }
+
 
 /*
  * Search section
  */
-#searchSection {
-    display: flex;
+#searchSection form {
+	display: flex;
     justify-content: center;
     align-items: center;
-    
-    margin: .5% 0;
 }
 
-#searchSection * {
+#searchSection form * {
 	margin: 0 2%;
 }
-
 
 #searchSection input, select {	
 	border: none;
@@ -77,7 +76,7 @@ button[type="submit"] i {
 }
 
 button[type="submit"]:hover {
-	line-height: 2;
+	font-size: 100%;
 	font-weight: bolder;
 	color: var(--secondary-color);
 }
@@ -93,6 +92,10 @@ button[type="submit"]:hover {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	
+	font-weight: bolder;
+	color: white;
+	line-height: 2;
 }
 
 #noSearchResult i {
@@ -108,14 +111,8 @@ button[type="submit"]:hover {
 #siteCards {
 	display: flex;
 	flex-wrap: wrap;
-	flex-basis: var(--body-width);
+	width: calc(var(--body-width) - 10%);
 	justify-content: space-around;
-	
-	padding: 1% 8%;
-}
-
-#siteCards a {
-	margin: 1%;
 }
 
 .siteCard {
@@ -133,12 +130,10 @@ button[type="submit"]:hover {
 	
 	color: white;
 	text-shadow: 1px 1px 2px grey;
-	
-	margin: 2%;
 }
 	
 .siteCard:hover {
-	padding: 0 0 2% 2%;
+	padding: .5%;
 	box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, .2);
 }
 

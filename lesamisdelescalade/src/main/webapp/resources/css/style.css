@@ -25,8 +25,12 @@
 }
 
 a {
+	height: fit-content;
+
 	color: var(--main-color);
 	text-decoration: none;
+	
+	margin: 2%;
 }
 
 a:hover {
@@ -97,7 +101,7 @@ html, body {
 }
 
 #header__navbar a:hover {
-	line-height: 2;
+	line-height: 1.8;
 	font-weight: bolder;
 	color: var(--secondary-color);
 }

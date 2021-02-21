@@ -20,6 +20,7 @@
 		<link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="<%=request.getContextPath()%>/resources/css/style.css" />
 		<link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="<%=request.getContextPath()%>/resources/css/desktop/siteList-style.css" />
 		
+		<!-- Fontawesome -->
 		<script src="https://kit.fontawesome.com/b67ef61f81.js"></script>
 		
 		<!-- Tab name -->
@@ -34,35 +35,37 @@
 			<h2 class="title">Sites d'escalade</h2>
 			
 			<!--  Search box -->
-            <form:form id="searchSection" action="search" method="GET">
-            	<!-- Name or location filter -->
-                <input id="textSearch" name="searchedTerms" value="${ keywords }" type="text" placeholder="Cherchez par nom ou par lieu (ex: Alpes, France)" />
-                
-                <!-- Certification filter -->
-                <select name="tagFilter">
-                	<option value="all" ${chosenTag == "all" ? "selected" : ""}>Tout</option>
-                	<option value="true" ${chosenTag == "true" ? "selected" : ""}>Officiel</option>
-                	<option value="false" ${chosenTag == "false" ? "selected" : ""}>Non officiel</option>
-                </select>
-                
-                <!-- Quotation filter -->
-                <select name="quotationFilter">
-               		<option value="all">Toutes difficultés</option>
-                	<c:forEach items="${ quotationDifficulties }" var="quotationDifficulty">
-                		<option value="${ quotationDifficulty }" ${ chosenQuotationMode != "all" && chosenQuotationMode == quotationDifficulty ? "selected" : ""}>${ quotationDifficulty.getMode() }</option>
-                	</c:forEach>
-                </select>
-                
-                <button type="submit">
-				    <i class="fa fa-search-location"></i>
-				</button>
-            </form:form>
+			<div id="searchSection">
+	            <form action="search" method="GET">
+	            	<!-- Name or location filter -->
+	                <input id="textSearch" name="searchedTerms" value="${ keywords }" type="text" placeholder="Cherchez par nom ou par lieu (ex: Alpes, France)" />
+	                
+	                <!-- Certification filter -->
+	                <select name="tagFilter">
+	                	<option value="all" ${chosenTag == "all" ? "selected" : ""}>Tout</option>
+	                	<option value="true" ${chosenTag == "true" ? "selected" : ""}>Officiel</option>
+	                	<option value="false" ${chosenTag == "false" ? "selected" : ""}>Non officiel</option>
+	                </select>
+	                
+	                <!-- Quotation filter -->
+	                <select name="quotationFilter">
+	               		<option value="all">Toutes difficultés</option>
+	                	<c:forEach items="${ quotationDifficulties }" var="quotationDifficulty">
+	                		<option value="${ quotationDifficulty }" ${ chosenQuotationMode != "all" && chosenQuotationMode == quotationDifficulty ? "selected" : ""}>${ quotationDifficulty.getMode() }</option>
+	                	</c:forEach>
+	                </select>
+	                
+	                <button type="submit">
+					    <i class="fa fa-search-location"></i>
+					</button>
+	            </form>
+            </div>
             
 
             <!-- If no sites -->
             <c:if test="${ empty sites }">
             	<div id="noSearchResult">
-            		<i class="fa fa-map-signs" aria-hidden="true"></i>
+            		<i class="fas fa-compass" aria-hidden="true"></i>
 	            	<p>Le Mont Olympe que tu cherches n'existe pas encore sur notre site malheureusement...</p>
 	            	<p>Mais nous avons d'autres merveilleux sites d'escalade qui n'attendent que toi !</p>
             	</div>
