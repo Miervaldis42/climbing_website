@@ -1,13 +1,15 @@
 /**
+ *
  * Login page - Mobile CSS file
+ *
  */
  
 
 /* Body & Container */
 #loginBody {
-	/* background-image: url(../../assets/backgrounds/climber_background.png); */
+	background-image: url(../../assets/backgrounds/auth_background.png);
 	background-size: cover;
-	background-position-x: right;
+	background-position-x: center;
 }
  
 #loginContainer {
@@ -26,15 +28,23 @@
 #loginForm {
 	display: flex;
     flex-direction: column;
+    flex-basis: 48%;
     align-items: center;
     justify-content: center;
-    flex-basis: 80%;
 }
 
 #loginForm * {
 	display: block;
 	text-align: center;
 	margin: 2%;
+}
+
+#loginForm label {
+	font-weight: bolder;
+}
+
+#loginForm label:nth-child(3) {
+	margin-top: 10%;
 }
 
 #loginForm input[type="text"], #loginForm input[type="password"] {
@@ -56,11 +66,11 @@
 #loginButton {
 	border-radius: 20px;
 	
-	background-color: var(--main-color);
-	color: var(--secondary-color);
+	color: var(--main-color);
+	background-color: var(--black-color);
 	
 	padding: 4% 10%;
-	margin: 8% 0;
+	margin-top: 10%;
 }
 
 #loginButton:hover {
@@ -77,15 +87,8 @@
     flex-direction: row;
     justify-content: space-around;
     width: 100vw;	
-}
-
-#loginLinks a {
-	font-style: italic;
-	
-	margin: 2% 0;
-}
-
-
-#header__logo, #footer {
-	display: none;
+    
+    font-style: italic;
+    
+    margin: 2% 0;
 }

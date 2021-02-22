@@ -7,16 +7,16 @@
 
 /* Body & Container */
 #inscriptionBody {
-	/* background-image: url(../../assets/backgrounds/climber_background.png); */
+	background-image: url(../../assets/backgrounds/auth_background.png);
 	background-size: cover;
-	background-position-x: right;
 }
 
 #inscriptionContainer {
 	display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+
+    margin-top: 2%;
 }
 
 
