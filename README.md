@@ -17,12 +17,47 @@
 
 
 ## Table of contents
+* Databases
+    * [MySQL](#setting-up-mysql)
+    * [SQL script order](#setting-up-sql-scripts)
 * Deployment
     * [Tomcat in Eclipse](#tomcat-in-eclipse)
-    * [Tomcat installation in Eclipse](#installation-in-eclipse)
+        * [Tomcat setup](#downlaod-tomcat)
+        * [Set up in Eclipse](#installation-in-eclipse)
 * Troubleshooting
     * [Tomcat - Change ports](#change-tomcat-ports)
 
+
+## Databases
+
+### Setting up MySQL
+1. Download [MySQL](http://dev.mysql.com/downloads/)
+2. Select "MySQL Community Server"
+3. Install the software & during the installation, type any password you want for the root user
+4. In MySQL software, go to the "localhost - root" to create a new MySQL user
+5. Go to File > Run SQL script and select 'create_sqlUser.sql' SQL script
+6. To check the SQL user creation, close the "localhost - root" and in the main window of MySQL, click on the "+" to create a new connection
+7. In the "New connection setup", do the following in the corrsponding fields:
+    * **Connection Name:** Les amis de l'escalade
+    * **Username:** admin
+8. Click on "Test connection", a pop-up window will appear & ask the password: `lesamisdelescalade`
+9. If the connection is successful, close the pop-up window & click on "ok" button.
+
+
+### Setting up SQL scripts
+_All SQL scripts can be found in the project folder in docs > SQLScripts._
+
+* Go into the newly created connection 'Les amis de l'escalade' in MySQL
+* Click on File > Run SQL script...
+
+The order to run the SQL scripts are :
+1. user_tracker.sql
+2. climbingsite_tracker.sql
+3. sector_tracker.sql
+4. route_tracker.sql
+5. length_tracker.sql
+6. comment_tracker.sql
+7. topo_tracker.sql
 
 
 ## Deployment
