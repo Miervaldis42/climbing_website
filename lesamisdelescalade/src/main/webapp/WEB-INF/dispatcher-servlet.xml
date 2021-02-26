@@ -37,12 +37,11 @@
 	
 	
 	<!-- Database connection -->
-	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-          destroy-method="close">
+	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/climbing_website_db?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Paris" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/climbing_website_db?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Paris" />
         <property name="user" value="admin" />
-        <property name="password" value="lesamisdelescalade" /> 
+        <property name="password" value="lesamisdelescalade" />
 
         <!-- these are connection pool properties for C3P0 -->
         <property name="minPoolSize" value="5" />
@@ -51,8 +50,7 @@
 	</bean>  
 	
     <!-- Session factory -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
 		<property name="packagesToScan" value="com.miervaldis42.climbingwebsite.entity" />
 		<property name="hibernateProperties">
