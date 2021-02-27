@@ -2,6 +2,7 @@ package com.miervaldis42.climbingwebsite.enums;
 
 public enum Status {
 	AVAILABLE("Disponible"),
+	WITHHELD("Indisponible"),
 	PENDING("En cours d'étude"),
 	LENT("Prêté");
 	

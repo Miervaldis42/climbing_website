@@ -1,4 +1,6 @@
 <div id="profile__myTopos">	
+	<h3 class="title">Mes Topos</h3>
+
 	<div id="myTopos__addForm">
 		<h3 class="title">Ajouter un nouveau Topo</h3>
 
@@ -33,12 +35,10 @@
 
 	<!-- Full 'My Topos' list -->
 	<c:if test="${ not empty myTopos }">
-		<h3 class="title">Mes Topos</h3>
-
 		<div id="myTopos__list">
 			<c:forEach items="${ myTopos }" var="topo">
 				<div class="myTopos__topo">
-					<div class="myTopos__status myTopos__status--${fn:toLowerCase(topo.status)}"></div>
+					<a class="myTopos__status myTopos__status--${fn:toLowerCase(topo.status)}" href="/lesamisdelescalade/profile/changeMyTopoStatus?topoId=${ topo.id }"></a>
 					
 					<!-- Body -->
 					<div class="myTopos__body">

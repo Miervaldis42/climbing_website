@@ -170,6 +170,23 @@ public class ProfileController {
 		return "redirect:/profile/myTopos";
 	}
 	
+	@GetMapping("changeMyTopoStatus")
+	public String changeTopoStatus(@RequestParam("topoId") int id) {
+		Topo selectedTopo = topoService.getTopo(id);
+		
+		if(selectedTopo.getStatus().equals(Status.WITHHELD)) {
+			selectedTopo.setStatus(Status.AVAILABLE);
+			selectedTopo.setBorrower(null);
+		} else {
+			selectedTopo.setStatus(Status.WITHHELD);
+			selectedTopo.setBorrower(null);
+		}
+
+		topoService.saveTopo(selectedTopo);
+		
+		return "redirect:/profile/myTopos";
+	}
+	
 	@GetMapping("reservation")
 	public String manageReservation(@RequestParam("reservationStatus") String reservationStatus, @RequestParam("topoId") int id, Model sectionModel) {
 		Topo selectedTopo = topoService.getTopo(id);
