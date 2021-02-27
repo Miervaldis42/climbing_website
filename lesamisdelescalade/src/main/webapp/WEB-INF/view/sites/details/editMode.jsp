@@ -7,7 +7,7 @@
 
 <!-- Edit mode -->
 <div id="siteDetails__editMode" style="display: none;">
-	<form:form action="editInfo" method="POST">
+	<form action="editInfo" method="POST">
 		<input type="hidden" name="siteId" value="${ site.id }" />
 		
 		<div id="editMode__header">
@@ -181,5 +181,5 @@
 		<button type="submit">
 			<i class="fa fa-check"></i>
 		</button>
-	</form:form>
+	</form>
 </div>

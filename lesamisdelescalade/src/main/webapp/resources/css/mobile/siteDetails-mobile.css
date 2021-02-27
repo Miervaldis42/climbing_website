@@ -4,11 +4,11 @@
 }
 
 
-/* #siteDetailsBody {
-	background-image: url("../../assets/backgrounds/mountain_background.jpg");
+#siteDetailsBody {
+	background-image: url("https://i.pinimg.com/originals/e0/28/7d/e0287d851660e8e40facdd2233066bca.jpg");
 	background-size: cover;
 	background-position-x: right;
-} */
+}
 
 
 /*
@@ -231,8 +231,11 @@
  * Comment section
  */
 #siteDetails__commentList {
-	width: var(--card-width);
-	padding-top: 5%;
+	padding: 2%;
+	margin: 5%;
+	margin-top: 10%;
+	
+	background-color: rgb(245 245 245 / 74%);
 }
  
 #commentList__addCommentForm {
@@ -302,7 +305,7 @@
 	font-style: italic;
 	text-align: center;
 
-    margin: 30% 5%;
+    margin: 18% 5%;
 }
 
 

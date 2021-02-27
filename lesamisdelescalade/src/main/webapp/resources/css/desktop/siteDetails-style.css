@@ -15,11 +15,10 @@
 /*
  * Body & Container
  */
-/* #siteDetailsBody {
-	background-image: url("../../assets/backgrounds/mountain_background.jpg");
+#siteDetailsBody {
+	background-image: url("https://i.pinimg.com/originals/e0/28/7d/e0287d851660e8e40facdd2233066bca.jpg");
 	background-size: cover;
-	background-position-x: right;
-} */
+}
 
 
 #siteDetailsContainer {
@@ -221,7 +220,7 @@
 }
 
 #editMode__components input, #editMode__components select {
-	width: 100%;
+	width: 80%;
 	
 	padding: 0.5% 1%;
     margin: 3% 0;
@@ -233,17 +232,15 @@
  */
 
 #siteDetails__commentList {
-	width: var(--details-width);
+	width: calc(var(--details-width) - 2%);
 	
-	padding-top: 1.5%;
-	margin-left: 2%;
+	padding: 1%;
+	margin-top: 2%;
+	
+	background-color: rgb(245 245 245 / 74%);
 }
 
-
-
-/* 
- * Add comment form 
- */
+/* Add comment form */
 #commentList__addCommentForm {
 	display: flex;
 	align-items: center;

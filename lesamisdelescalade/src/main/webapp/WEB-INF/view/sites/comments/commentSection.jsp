@@ -9,6 +9,7 @@
 			
 			<div id="addCommentForm__form">
 				<input id="addCommentForm__input" type="text" name="content" placeholder="Partager vos impressions sur ce site ici !" maxlength="255" />
+				
 				<button id="addCommentForm__submitButton" type="submit">
 					<i class="fa fa-check"></i>
 				</button>
