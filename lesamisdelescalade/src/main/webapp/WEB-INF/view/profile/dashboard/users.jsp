@@ -7,7 +7,7 @@
 	<div id="usersTab__content">
 		<!-- 1st column: List of all users -->
 		<div id="usersTab__userList">
-			<h4>Liste des utilisateurs</h4>
+			<h3>Liste des utilisateurs</h3>
 	
 			<c:forEach items="${ users }" var="u">
 				<a href="/lesamisdelescalade/dashboard/users?userId=${ u.id }" class="user__tile">
@@ -21,15 +21,14 @@
 		
 		<c:if test="${ not empty user }">
 			<!-- 2nd column: User detail card -->
-			<div id="usersTab__userDetails">					
+			<div id="usersTab__userDetails" class="tile">					
 				<h3>Id: ${ user.id }</h3>
 						
-				<div id="usersTab__userDetailscontent">
-					<p>
-						<span>Rôle:</span> ${ user.role.getRoleName() }
-					</p>
-					
-					<div class="user__info">
+				<div id="usersTab__userDetailsContent">
+					<div id="user__info">
+						<p>
+							<span>Rôle:</span> ${ user.role.getRoleName() }
+						</p>
 						<p>
 							<span>Nom de famille:</span> ${ user.lastname }
 						</p>
@@ -41,7 +40,7 @@
 						</p>
 					</div>
 					
-					<div class="user__dates">
+					<div id="user__dates">
 						<p>
 							<span>Date de création:</span> ${ userCreationDates.get(user.id) }
 						</p>
@@ -66,17 +65,17 @@
 					
 					<div>
 						<label>Nom de famille</label>
-						<input type="text" name="lastname" value="${ user.lastname }" required />
+						<input type="text" name="lastname" value="${ user.lastname }" maxlength="45" />
 					</div>
 					
 					<div>
 						<label>Prénom</label>
-						<input type="text" name="firstname" value="${ user.firstname }" required />
+						<input type="text" name="firstname" value="${ user.firstname }" maxlength="45" />
 					</div>
 					
 					<div>
 						<label>Adresse email</label>
-						<input type="text" name="email" value="${ user.email }" required />
+						<input type="text" name="email" value="${ user.email }" maxlength="255" />
 					</div>
 					
 					<button type="submit">
@@ -100,8 +99,8 @@
 			
 			<!-- 3rd column: His/Her topos  -->
 			<c:if test="${ not empty userTopos && userTopos.size() > 0 }">
-				<div id="usersTab__userToposList">
-					<h4>Ses topos</h4>
+				<div id="usersTab__userToposList" class="tile">
+					<h3>Ses topos</h3>
 
 					<c:forEach items="${ userTopos }" var="t">
 						<div>
@@ -133,8 +132,8 @@
 			
 			<!-- 4th column: His/Her comments  -->
 			<c:if test="${ not empty userComments && userComments.size() > 0 }">
-				<div id="usersTab__userCommentsList">
-					<h4>Ses commentaires</h4>
+				<div id="usersTab__userCommentsList" class="tile">
+					<h3>Ses commentaires</h3>
 					
 					<c:forEach items="${ userComments }" var="c">
 						<div>

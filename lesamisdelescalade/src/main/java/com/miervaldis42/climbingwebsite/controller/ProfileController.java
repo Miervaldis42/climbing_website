@@ -26,9 +26,6 @@ import com.miervaldis42.climbingwebsite.service.SectorService;
 import com.miervaldis42.climbingwebsite.service.SiteService;
 import com.miervaldis42.climbingwebsite.service.TopoService;
 import com.miervaldis42.climbingwebsite.service.UserService;
-import com.miervaldis42.climbingwebsite.entity.Length;
-import com.miervaldis42.climbingwebsite.entity.Route;
-import com.miervaldis42.climbingwebsite.entity.Sector;
 import com.miervaldis42.climbingwebsite.entity.Site;
 
 
@@ -94,20 +91,20 @@ public class ProfileController {
 		
 		
 		/* Sites */
-		List<Site> allSites = siteService.getSites();
-		List<Sector> allSectors = sectorService.getSectors();
-		List<Route> allRoutes = routeService.getRoutes();
-		List<Length> allLengths = lengthService.getLengths();
+		int allSites = siteService.getSites() != null ? siteService.getSites().size() : 0;
+		int allSectors = sectorService.getSectors() != null ? sectorService.getSectors().size() : 0;
+		int allRoutes = routeService.getRoutes() != null ? routeService.getRoutes().size() : 0;
+		int allLengths = lengthService.getLengths() != null ? lengthService.getLengths().size() : 0;
 		
-		KPIModel.addAttribute("sites", allSites.size());
-		KPIModel.addAttribute("sectors", allSectors.size());
-		KPIModel.addAttribute("routes", allRoutes.size());
-		KPIModel.addAttribute("lengths", allLengths.size());
+		KPIModel.addAttribute("sites", allSites);
+		KPIModel.addAttribute("sectors", allSectors);
+		KPIModel.addAttribute("routes", allRoutes);
+		KPIModel.addAttribute("lengths", allLengths);
 		
 		
 		/* Topos */
-		List<Topo> allTopos = topoService.getTopos();
-		KPIModel.addAttribute("topos", allTopos.size());
+		int allTopos = topoService.getTopos() != null ? topoService.getTopos().size() : 0;
+		KPIModel.addAttribute("topos", allTopos);
 
 		return profilePath; 
 	}

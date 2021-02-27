@@ -1,3 +1,9 @@
+<div id="noDashboard">
+	<p>Malheureusement, le dashboard ne peut être parcouru sur l'application mobile...</p>
+	<p>Rejoignons-nous donc sur la version ordinateur !</p>
+</div>
+
+
 <div id="profile__dashboard">
 
 	<!-- Dashboard navbar -->

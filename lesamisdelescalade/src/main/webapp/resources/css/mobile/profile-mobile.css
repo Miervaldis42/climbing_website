@@ -125,6 +125,28 @@
 
 
 
+/*
+ * Dashoboard
+ */
+#noDashboard {
+	display: flex;
+	height: 70vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+	font-style: italic;
+	text-align: center;
+	line-height: 1.8;
+	
+	margin: 0 10%
+}
+
+#profile__dashboard {
+	display: none;
+}
+
+
 
 /*
  * My Topos
