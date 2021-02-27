@@ -8,27 +8,33 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.*;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
+
+// Entities
+import com.miervaldis42.climbingwebsite.enums.Role;
+import com.miervaldis42.climbingwebsite.enums.Code;
+
+import com.miervaldis42.climbingwebsite.helper.AuthHelper;
+import com.miervaldis42.climbingwebsite.helper.ToastHandler;
 
 import com.miervaldis42.climbingwebsite.entity.User;
-import com.miervaldis42.climbingwebsite.enums.Role;
 import com.miervaldis42.climbingwebsite.service.UserService;
 
-import com.miervaldis42.climbingwebsite.helper.ErrorHandler;
+
 
 
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
-	String authDir = "auth/";
+	private String authDir = "auth/";
+	
+	private AuthHelper checkerBot = new AuthHelper();
+	private ToastHandler paperBoy = new ToastHandler();
+	private Code toastCode = null;
 	
 	@Autowired
 	private UserService userService;
-	
-	// Variables for error handling
-	ErrorHandler errorDetector = new ErrorHandler();
-	String toastCode = ""; 
 	
 	
 	
@@ -42,17 +48,14 @@ public class AuthController {
 		User unknownUser = new User();
 		credentialsModel.addAttribute("credentials", unknownUser);
 		
-		// Toast to display
-		if(toastCode == "201 - User created") {
-			String message = errorDetector.displayToastMessage(toastCode);
-			toastModel.addAttribute("success", message);
-		} else if(toastCode == "409 - Pre-existing Email") {
-			toastCode = "";
-		} else {
-			String message = errorDetector.displayToastMessage(toastCode);
-			toastModel.addAttribute("error", message);
+		// Toast
+		if(toastCode != null) {
+			String toastStatus = paperBoy.throwToastStatus(toastCode);
+			String toastMessage = paperBoy.throwToastMessage(toastCode);
+
+			toastModel.addAttribute(toastStatus, toastMessage);
+			toastCode = null;
 		}
-		toastCode = "";
 
 		return authDir + "login-page";
 	}
@@ -65,20 +68,21 @@ public class AuthController {
 		
 		// Possible error list
 		if(unknownUser.getEmail().isEmpty() || unknownUser.getPassword().isEmpty()) {
-			toastCode = "400 - Empty input";
-			return redirection;
+			toastCode = Code.FORM_EMPTYINPUT;
 
-		} else if(!errorDetector.checkEmail(unknownUser.getEmail()) && !Objects.equals(unknownUser.getEmail(), "admin")) {
-			toastCode = "400 - Invalid email";
 			return redirection;
-
+		} else if(!checkerBot.checkEmailFormat(unknownUser.getEmail()) && !unknownUser.getEmail().equals("admin")) {
+			toastCode = Code.EMAIL_INVALID;
+			
+			return redirection;
 		}
 		
 		// If no errors detected, execute transaction
 		User user = userService.getUserByCredentials(unknownUser);
 
 		if(user == null) {
-			toastCode = "404 - User Not Found";
+			toastCode = Code.USER_NOTFOUND;
+			
 			return redirection;
 		} else {
 			activeSession.setAttribute("sessionId", activeSession.getId());
@@ -106,10 +110,13 @@ public class AuthController {
 		User newUser = new User();
 		userModel.addAttribute("user", newUser);
 
-		// Toast to display
-		if(toastCode != "201 - User created") {
-			String message = errorDetector.displayToastMessage(toastCode);
-			toastModel.addAttribute("error", message);
+		// Toast
+		if(toastCode != null && toastCode != Code.USER_CREATED) {
+			String toastStatus = paperBoy.throwToastStatus(toastCode);
+			String toastMessage = paperBoy.throwToastMessage(toastCode);
+
+			toastModel.addAttribute(toastStatus, toastMessage);
+			toastCode = null;
 		}
 		
 		return authDir + "userInscription-page";
@@ -121,28 +128,28 @@ public class AuthController {
 	public String saveUser(@ModelAttribute("user") User newUser) {
 		String redirection = "redirect:/auth/login";
 		
-		// Check cases
 		if(newUser.getLastname().isEmpty() || newUser.getFirstname().isEmpty() || newUser.getEmail().isEmpty() || newUser.getPassword().isEmpty()) {
-			toastCode = "400 - Empty input";
-			redirection = "redirect:/auth/userInscription";
-			return redirection;
+
+			toastCode = Code.FORM_EMPTYINPUT;
+			return "redirect:/auth/userInscription";
 			
-		} else if(!errorDetector.checkEmail(newUser.getEmail())) {
-			toastCode = "400 - Invalid email";
-			redirection = "redirect:/auth/userInscription";
-			return redirection;
+		} else if(checkerBot.checkEmailFormat(newUser.getEmail()) == false) {
+
+			toastCode = Code.EMAIL_INVALID;
+			return "redirect:/auth/userInscription";
 
 		} else if(userService.checkEmailExists(newUser.getEmail())) {
-			toastCode = "409 - Pre-existing Email";
-			redirection = "redirect:/auth/userInscription";
-			return redirection;
+
+			toastCode = Code.EMAIL_EXISTING;
+			return "redirect:/auth/userInscription";
+
 		} else {
-			Date today = new Date();
-			newUser.setCreatedAt(today);
+
+			newUser.setCreatedAt(new Date());
 			newUser.setRole(Role.SUBSCRIBER);
 			userService.saveUser(newUser);
 			
-			toastCode = "201 - User created";
+			toastCode = Code.USER_CREATED;
 		}
 
 		return redirection;

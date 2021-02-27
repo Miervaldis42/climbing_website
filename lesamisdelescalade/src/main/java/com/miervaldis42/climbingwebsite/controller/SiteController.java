@@ -1,24 +1,23 @@
 package com.miervaldis42.climbingwebsite.controller;
 
 // Imports
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.miervaldis42.climbingwebsite.enums.Code;
 // Entities
-import com.miervaldis42.climbingwebsite.entity.Site;
 import com.miervaldis42.climbingwebsite.enums.Difficulty;
+import com.miervaldis42.climbingwebsite.helper.DateFormatter;
+import com.miervaldis42.climbingwebsite.helper.ToastHandler;
+import com.miervaldis42.climbingwebsite.entity.Site;
 import com.miervaldis42.climbingwebsite.entity.Length;
 import com.miervaldis42.climbingwebsite.entity.Route;
 import com.miervaldis42.climbingwebsite.entity.Sector;
@@ -34,6 +33,10 @@ import com.miervaldis42.climbingwebsite.service.LengthService;
 @Controller
 public class SiteController {
 	String siteDir = "sites/";
+	
+	DateFormatter dateFormatter = new DateFormatter();
+	private ToastHandler paperBoy = new ToastHandler();
+	private Code toastCode = null;
 
 	@Autowired
 	private SiteService siteService;
@@ -48,7 +51,7 @@ public class SiteController {
 
 
 	@GetMapping("/details") 
-	public String showSiteDetailsPage(@RequestParam("siteId") int siteId, Model siteDetails) {		
+	public String showSiteDetailsPage(@RequestParam("siteId") int siteId, Model siteDetails, Model toastModel) {		
 		Site site = siteService.getSite(siteId);
 		List<Sector> siteSectors = sectorService.getSectors(siteId);
 		List<Route> siteRoutes = routeService.getRoutesBySite(siteId);
@@ -61,26 +64,28 @@ public class SiteController {
 		siteDetails.addAttribute("lengths", siteLengths);
 		siteDetails.addAttribute("quotations", Difficulty.EASY.getEntireStepList());
 		
+
 		// Comments & Date
 		List<Comment> siteComments = commentService.getCommentsBySite(siteId);
+		
 		if(siteComments != null && !siteComments.isEmpty()) {
-			DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy à HH:mm");
-			Map<Integer, String> commentCreationDates = new HashMap<Integer, String>();
-			for(Comment c : siteComments) {
-				commentCreationDates.put(c.getId(), formatter.format(c.getCreatedAt()));
-			}
-			Map<Integer, String> commentUpdateDates = new HashMap<Integer, String>();
-			for(Comment c : siteComments) {
-				if(c.getUpdatedAt() != null) {
-					commentUpdateDates.put(c.getId(), formatter.format(c.getUpdatedAt()));
-				}
-			}
+			// Convert Comment dates 
+			Map<Integer, String> commentCreationDates = dateFormatter.formatDate(siteComments, true);
+			Map<Integer, String> commentUpdateDates = dateFormatter.formatDate(siteComments, false);
 			
 			// Attributes to model
 			siteDetails.addAttribute("comments", siteComments);
 			siteDetails.addAttribute("commentCreationDates", commentCreationDates);
 			siteDetails.addAttribute("commentUpdateDates", commentUpdateDates);
-		}		
+		}
+		
+		if(toastCode != null) {
+			String toastStatus = paperBoy.throwToastStatus(toastCode);
+			String toastMessage = paperBoy.throwToastMessage(toastCode);
+	
+			toastModel.addAttribute(toastStatus, toastMessage);
+			toastCode = null;
+		}
 
 		return siteDir + "siteDetails-page";
 	}

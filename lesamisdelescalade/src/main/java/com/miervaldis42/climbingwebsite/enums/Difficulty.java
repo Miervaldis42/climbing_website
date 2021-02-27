@@ -13,10 +13,11 @@ public enum Difficulty {
 	VERYDIFFICULT("Très difficile", Arrays.asList(new String[] {"7a", "7a+", "7b", "7b+", "7c", "7c+"})),
 	SKYISTHELIMIT("Rien ne peut t'arrêter !", Arrays.asList(new String[] {"8a", "8a+", "8b", "8b+", "8c", "8c+", "9a", "9a+", "9b"}));
 
+	
+	// Constructor
 	private String mode;
 	private List<String> steps;
 	
-	// Constructor
 	private Difficulty(String mode, List<String> steps) {
 		this.mode = mode;
 		this.steps = steps;
@@ -24,7 +25,7 @@ public enum Difficulty {
 	
 	
 	/*
-	 * Getters & Setters
+	 * Getters
 	 */
 	public String getMode() {
 		return mode;
@@ -133,5 +134,5 @@ public enum Difficulty {
 		
 		return filteredList;
 	}
-	
+
 }

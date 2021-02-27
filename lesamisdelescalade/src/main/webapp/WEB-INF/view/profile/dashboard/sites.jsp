@@ -259,7 +259,7 @@
 							<span>Description:</span> ${ t.description }
 						</p>
 						<p>
-							<span>Date de parution:</span> ${ t.publishedDate }
+							<span>Date de parution:</span> ${ siteTopoDates.get(t.id) }
 						</p>
 						<c:if test="${ not empty t.getBorrower() }">
 							<p>

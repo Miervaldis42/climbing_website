@@ -9,12 +9,20 @@ import java.security.spec.InvalidKeySpecException;
 
 
 /*
- * Class to hash password
+ * Class for Auth controller
  */
-public class HashPassword {
+public class AuthHelper {
+	
+	// Email validator
+	public Boolean checkEmailFormat(String email) {
+		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+		Boolean validate = email.matches(regex);
+		
+		return validate;
+	}
+	
 
  	public byte[] hashPassword(final String userPassword) {
- 
 		// Variables for hashing
  		final char[] password = userPassword.toCharArray();
  		

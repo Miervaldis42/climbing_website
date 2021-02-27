@@ -2,7 +2,7 @@
 	<h3>Commentaires (${ empty comments.size() ? 0 : comments.size() })</h3>
 	
 	<c:if test="${ not empty sessionScope.role }">
-		<form:form id="commentList__addCommentForm" action="addComment" method="POST">
+		<form id="commentList__addCommentForm" action="addComment" method="POST">
 			<input type="hidden" name="siteId" value="${ site.getId() }"/>
 	
 			<img id="addCommentForm__avatar" src="<%=request.getContextPath()%>/resources/assets/roles/${ sessionScope.role.getRoleName() }.png">
@@ -13,7 +13,7 @@
 					<i class="fa fa-check"></i>
 				</button>
 			</div>
-		</form:form>
+		</form>
 	</c:if>
 	
 	<c:if test="${ empty comments }">
@@ -53,17 +53,17 @@
 					
 					<!-- Comment edit mode -->
 					<div id="modifiedComment${ comment.getId() }" class="commentList__editMode" style="display: none;">
-						<form:form action="editComment" method="POST">
+						<form action="editComment" method="POST">
 							<input type="hidden" name="commentId" value="${ comment.getId() }" />
 							<input type="hidden" name="siteId" value="${ site.id }" />
 							<input type="hidden" name="userId" value="${ sessionScope.id }" />
 							
-							<input type="text" name="modifiedComment" value="${ comment.getContent() }" />
+							<input type="text" name="modifiedComment" value="${ comment.getContent() }" maxlength="255" />
 							
 							<button type="submit">
 								<i class="fa fa-check"></i>
 							</button>
-						</form:form>
+						</form>
 					</div>
 				</div>
 

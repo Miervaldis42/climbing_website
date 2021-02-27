@@ -8,11 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -22,6 +19,7 @@ import com.miervaldis42.climbingwebsite.entity.Topo;
 import com.miervaldis42.climbingwebsite.entity.User;
 import com.miervaldis42.climbingwebsite.enums.Role;
 import com.miervaldis42.climbingwebsite.enums.Status;
+import com.miervaldis42.climbingwebsite.helper.DateFormatter;
 import com.miervaldis42.climbingwebsite.service.LengthService;
 import com.miervaldis42.climbingwebsite.service.RouteService;
 import com.miervaldis42.climbingwebsite.service.SectorService;
@@ -39,6 +37,8 @@ import com.miervaldis42.climbingwebsite.entity.Site;
 @RequestMapping("/profile")
 public class ProfileController {
 	String profilePath = "profile/profile-page";
+	
+	DateFormatter dateFormatter = new DateFormatter();
 	
 	@Autowired
 	private TopoService topoService;
@@ -117,25 +117,26 @@ public class ProfileController {
 	// My Topos
 	@GetMapping("myTopos")
 	public String showMyToposSection(Model sectionModel, HttpSession activeSession, Model ownerToposList) {		
+		// Indicate which tab in Profile the user goes
 		sectionModel.addAttribute("section", "myTopos");
 		
-		List<Site> allSites = siteService.getSites();
-		ownerToposList.addAttribute("allSites", allSites);
 
+		// My Topos list
 		int ownerId = (int) activeSession.getAttribute("id");
 		List<Topo> allOwnerTopos = topoService.getToposByOwner(ownerId);
 		ownerToposList.addAttribute("myTopos", allOwnerTopos);
 		
 		if(allOwnerTopos != null && allOwnerTopos.size() > 0) {
-			DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy à HH:mm");
-			Map<Integer, String> ownerTopoDates = new HashMap<Integer, String>();
-			for(Topo t : allOwnerTopos) {
-				ownerTopoDates.put(t.getId(), formatter.format(t.getPublishedDate()));
-			}
-			
+			Map<Integer, String> ownerTopoDates = dateFormatter.formatDate(allOwnerTopos);
 			ownerToposList.addAttribute("myToposDates", ownerTopoDates);
 		}
-
+		
+		// Sites for "add topo" form
+		List<Site> allSites = siteService.getSites();
+		ownerToposList.addAttribute("allSites", allSites);
+		
+		
+		
 		return profilePath;
 	}
 	
@@ -162,7 +163,6 @@ public class ProfileController {
 		
 		Site topoSite = siteService.getSite(site_id);
 		newTopo.setSite(topoSite);
-		
 		newTopo.setPublishedDate(new Date());
 		
 		topoService.saveTopo(newTopo);

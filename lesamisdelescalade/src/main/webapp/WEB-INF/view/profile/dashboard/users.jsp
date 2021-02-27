@@ -43,10 +43,10 @@
 					
 					<div class="user__dates">
 						<p>
-							<span>Date de création:</span> ${ user.createdAt }
+							<span>Date de création:</span> ${ userCreationDates.get(user.id) }
 						</p>
 						<p>
-							<span>Dernière modification:</span> ${ empty user.updatedAt ? '---' : user.updatedAt }
+							<span>Dernière modification:</span> ${ empty user.updatedAt ? '---' : userUpdateDates.get(user.id) }
 						</p>
 					</div>					
 				</div>
@@ -118,7 +118,7 @@
 								<span>Description:</span> ${ t.description }
 							</p>
 							<p>
-								<span>Date de parution:</span> ${ t.publishedDate }
+								<span>Date de parution:</span> ${ userTopoDates.get(t.id) }
 							</p>
 							<c:if test="${ not empty t.getBorrower() }">
 								<p>
@@ -145,12 +145,12 @@
 								<span>Contenu:</span> ${ c.content }
 							</p>
 							<p>
-								<span>Créé le:</span> ${ c.createdAt }
+								<span>Créé le:</span> ${ userCommentCreationDates.get(c.id) }
 							</p>
 							
 							<c:if test="${ not empty c.updatedAt }">
 								<p>
-									<span>Modifié le:</span> ${ c.updatedAt }
+									<span>Modifié le:</span> ${ userCommentUpdateDates.get(c.id) }
 								</p>
 								<p>
 									<span>Modifié par:</span> ${ c.modifiedLastBy.firstname }

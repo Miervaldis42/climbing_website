@@ -2,28 +2,28 @@ package com.miervaldis42.climbingwebsite.dao;
 
 // Imports
 import org.springframework.stereotype.Repository;
-import java.util.List;
-import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.hibernate.SessionFactory;
-import org.apache.commons.codec.binary.Hex;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import com.miervaldis42.climbingwebsite.helper.*;
+import java.util.List;
+import java.util.Objects;
+import org.apache.commons.codec.binary.Hex;
+
+// Entities
+import com.miervaldis42.climbingwebsite.helper.AuthHelper;
 import com.miervaldis42.climbingwebsite.entity.User;
 
 
 
-/* DAO implementation */
 @Repository
-public class UserDAOImpl implements UserDAO {	
-	// Inject the session factory
+public class UserDAOImpl implements UserDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	// Helper class
-	HashPassword hasherMachine = new HashPassword();
+	AuthHelper hasherMachine = new AuthHelper();
 
 
 
@@ -70,6 +70,7 @@ public class UserDAOImpl implements UserDAO {
 			// Hash given password
 			byte[] hashedBytes = hasherMachine.hashPassword(unknownUser.getPassword());
 			String hashedPassword = Hex.encodeHexString(hashedBytes);
+			
 			unknownUser.setPassword(hashedPassword);
 		}
 	    
@@ -81,10 +82,8 @@ public class UserDAOImpl implements UserDAO {
         matchFound.setParameter("email", unknownUser.getEmail());
         matchFound.setParameter("pwd", unknownUser.getPassword());
 
-        User user;
-        if(matchFound.getResultList().isEmpty()) {
-        	user = null; 
-        } else {
+        User user = null;
+        if(!matchFound.getResultList().isEmpty()) {
         	user = matchFound.getSingleResult();
         }
 
