@@ -8,7 +8,7 @@ import java.util.List;
 
 // Service
 public interface UserService {
-	public void saveUser(User newUser);
+	public void saveUser(User newUser, Boolean creation);
 	
 	public Boolean checkEmailExists(String providedEmail);
 	public User getUserByCredentials(User unknownUser);

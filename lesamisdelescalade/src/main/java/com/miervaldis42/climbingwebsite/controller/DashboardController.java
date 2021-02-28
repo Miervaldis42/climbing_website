@@ -126,7 +126,7 @@ public class DashboardController {
 		selectedUser.setFirstname(firstname);
 		selectedUser.setEmail(email);
 		selectedUser.setUpdatedAt(new Date());
-		userService.saveUser(selectedUser);
+		userService.saveUser(selectedUser, false);
 		
 		return "redirect:/dashboard/users";
 	}

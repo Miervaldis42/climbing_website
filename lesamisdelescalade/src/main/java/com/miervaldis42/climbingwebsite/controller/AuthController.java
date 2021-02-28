@@ -147,7 +147,7 @@ public class AuthController {
 
 			newUser.setCreatedAt(new Date());
 			newUser.setRole(Role.SUBSCRIBER);
-			userService.saveUser(newUser);
+			userService.saveUser(newUser, true);
 			
 			toastCode = Code.USER_CREATED;
 		}

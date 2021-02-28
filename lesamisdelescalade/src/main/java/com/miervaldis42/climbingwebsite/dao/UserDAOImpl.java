@@ -33,13 +33,15 @@ public class UserDAOImpl implements UserDAO {
 	
 	// Create method
 	@Override
-	public void saveUser(User newUser) {
+	public void saveUser(User newUser, Boolean creation) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		// Hashing password
-		byte[] hashedBytes = hasherMachine.hashPassword(newUser.getPassword());
-		String hashedPassword = Hex.encodeHexString(hashedBytes);
-	    newUser.setPassword(hashedPassword);
+		if(creation) {
+			// Hashing password
+			byte[] hashedBytes = hasherMachine.hashPassword(newUser.getPassword());
+			String hashedPassword = Hex.encodeHexString(hashedBytes);
+		    newUser.setPassword(hashedPassword);
+		}
 		
 		currentSession.saveOrUpdate(newUser);
 	}

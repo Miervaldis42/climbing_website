@@ -7,7 +7,7 @@ import java.util.List;
 // DAO
 public interface UserDAO {
 
-	public void saveUser(User newUser);
+	public void saveUser(User newUser, Boolean creation);
 	
 	public Boolean checkEmailExists(String providedEmail);
 	public User getUserByCredentials(User unknownUser);
