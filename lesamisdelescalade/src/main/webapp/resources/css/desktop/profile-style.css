@@ -149,8 +149,6 @@
 	box-shadow: #00000059 8px 10px;
 	
 	margin: 0 2%;
-	
-	overflow: auto;
 } 
 
 #dashboard__nav {
@@ -185,6 +183,8 @@
 
 	background-color: #ffff;
 	box-shadow: inset #00000059 5px 0px;
+	
+	overflow: auto;
 }
 
 
@@ -322,14 +322,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-      
-    overflow: auto;
 }
 
 
 #usersTab__userList .user__tile {
 	display: flex;
-    width: 45%;
+    width: 60%;
     align-items: center;
 
     padding: 2%;
@@ -420,10 +418,6 @@
 	font-style: italic;
 }
 
-#usersTab__userToposList, #usersTab__userCommentsList {
-	overflow: auto;
-}
-
 #usersTab__userToposList div, #usersTab__userCommentsList div {
 	margin-bottom: 4%;
 }
@@ -456,8 +450,6 @@
 	justify-content: space-around;
 	
 	padding-top: 1%;
-	
-	overflow: auto;
 }
 
 #sitesTab__content h4 {
@@ -554,10 +546,9 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	
-	overflow: auto;
 
 	height: 63vh;
+	overflow: auto;
 }
 
 /* My Topos form */
