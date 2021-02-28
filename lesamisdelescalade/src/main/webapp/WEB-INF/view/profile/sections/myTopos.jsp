@@ -1,10 +1,14 @@
 <div id="profile__myTopos">	
+	<h3 class="title">Mes Topos</h3>
+
 	<div id="myTopos__addForm">
+		<h3 class="title">Ajouter un nouveau Topo</h3>
+
 		<form id="myTopos__form" action="addMyTopo" method="POST">
 			<input type="hidden" name="ownerId" value="${ sessionScope.id }" />
 			
 			<label for="myTopo__name">Nom du topo</label>
-			<input id="myTopo__name" type="text" name="name" />
+			<input id="myTopo__name" type="text" name="name" maxlength="45" />
 			
 			<label for="myTopo__desc">Description</label>
 			<textarea id="myTopo__desc" type="text" name="desc" maxlength="255"></textarea>
@@ -34,7 +38,7 @@
 		<div id="myTopos__list">
 			<c:forEach items="${ myTopos }" var="topo">
 				<div class="myTopos__topo">
-					<div class="myTopos__status myTopos__status--${fn:toLowerCase(topo.status)}"></div>
+					<a class="myTopos__status myTopos__status--${fn:toLowerCase(topo.status)}" href="/lesamisdelescalade/profile/changeMyTopoStatus?topoId=${ topo.id }"></a>
 					
 					<!-- Body -->
 					<div class="myTopos__body">

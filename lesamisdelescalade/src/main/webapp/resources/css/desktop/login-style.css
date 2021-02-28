@@ -1,14 +1,15 @@
 /**
+ *
  * Login page - Desktop CSS file
+ *
  */
  
  
 
 /* Body & Container */
 #loginBody {
-	/* background-image: url(../../assets/backgrounds/climber_background.png); */
+	background-image: url(../../assets/backgrounds/auth_background.png);
 	background-size: cover;
-	background-position-x: right;
 }
 
 #loginContainer {

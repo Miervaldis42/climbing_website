@@ -8,8 +8,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.miervaldis42.climbingwebsite.entity.Difficulty;
 import com.miervaldis42.climbingwebsite.entity.Site;
+import com.miervaldis42.climbingwebsite.enums.Difficulty;
 import com.miervaldis42.climbingwebsite.dao.SiteDAO;
 import com.miervaldis42.climbingwebsite.dao.SectorDAO;
 import com.miervaldis42.climbingwebsite.dao.RouteDAO;

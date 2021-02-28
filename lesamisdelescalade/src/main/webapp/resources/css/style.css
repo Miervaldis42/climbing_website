@@ -2,6 +2,8 @@
 :root {
 	--main-color: black;
 	--secondary-color: orange;
+	--black-color: black;
+	--grey-color: #F8F8FB;
 	--white-color: white;
 	
 	--body-height: 100vh;
@@ -25,8 +27,12 @@
 }
 
 a {
+	height: fit-content;
+
 	color: var(--main-color);
 	text-decoration: none;
+	
+	margin: 2%;
 }
 
 a:hover {
@@ -97,7 +103,7 @@ html, body {
 }
 
 #header__navbar a:hover {
-	line-height: 2;
+	line-height: 1.8;
 	font-weight: bolder;
 	color: var(--secondary-color);
 }

@@ -1,17 +1,13 @@
 package com.miervaldis42.climbingwebsite.controller;
 
 // Imports
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -22,19 +18,26 @@ import com.miervaldis42.climbingwebsite.entity.Length;
 import com.miervaldis42.climbingwebsite.entity.Route;
 import com.miervaldis42.climbingwebsite.entity.Sector;
 import com.miervaldis42.climbingwebsite.entity.Comment;
-import com.miervaldis42.climbingwebsite.entity.Difficulty;
-
 import com.miervaldis42.climbingwebsite.service.SiteService;
 import com.miervaldis42.climbingwebsite.service.SectorService;
 import com.miervaldis42.climbingwebsite.service.RouteService;
 import com.miervaldis42.climbingwebsite.service.CommentService;
 import com.miervaldis42.climbingwebsite.service.LengthService;
 
+import com.miervaldis42.climbingwebsite.enums.Difficulty;
+import com.miervaldis42.climbingwebsite.enums.Code;
+import com.miervaldis42.climbingwebsite.helper.DateFormatter;
+import com.miervaldis42.climbingwebsite.helper.ToastHandler;
+
 
 
 @Controller
 public class SiteController {
 	String siteDir = "sites/";
+	
+	DateFormatter dateFormatter = new DateFormatter();
+	private ToastHandler paperBoy = new ToastHandler();
+	private Code toastCode = null;
 
 	@Autowired
 	private SiteService siteService;
@@ -49,7 +52,7 @@ public class SiteController {
 
 
 	@GetMapping("/details") 
-	public String showSiteDetailsPage(@RequestParam("siteId") int siteId, Model siteDetails) {		
+	public String showSiteDetailsPage(@RequestParam("siteId") int siteId, Model siteDetails, Model toastModel) {		
 		Site site = siteService.getSite(siteId);
 		List<Sector> siteSectors = sectorService.getSectors(siteId);
 		List<Route> siteRoutes = routeService.getRoutesBySite(siteId);
@@ -62,26 +65,28 @@ public class SiteController {
 		siteDetails.addAttribute("lengths", siteLengths);
 		siteDetails.addAttribute("quotations", Difficulty.EASY.getEntireStepList());
 		
+
 		// Comments & Date
 		List<Comment> siteComments = commentService.getCommentsBySite(siteId);
+		
 		if(siteComments != null && !siteComments.isEmpty()) {
-			DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy à HH:mm");
-			Map<Integer, String> commentCreationDates = new HashMap<Integer, String>();
-			for(Comment c : siteComments) {
-				commentCreationDates.put(c.getId(), formatter.format(c.getCreatedAt()));
-			}
-			Map<Integer, String> commentUpdateDates = new HashMap<Integer, String>();
-			for(Comment c : siteComments) {
-				if(c.getUpdatedAt() != null) {
-					commentUpdateDates.put(c.getId(), formatter.format(c.getUpdatedAt()));
-				}
-			}
+			// Convert Comment dates 
+			Map<Integer, String> commentCreationDates = dateFormatter.formatDate(siteComments, true);
+			Map<Integer, String> commentUpdateDates = dateFormatter.formatDate(siteComments, false);
 			
 			// Attributes to model
 			siteDetails.addAttribute("comments", siteComments);
 			siteDetails.addAttribute("commentCreationDates", commentCreationDates);
 			siteDetails.addAttribute("commentUpdateDates", commentUpdateDates);
-		}		
+		}
+		
+		if(toastCode != null) {
+			String toastStatus = paperBoy.throwToastStatus(toastCode);
+			String toastMessage = paperBoy.throwToastMessage(toastCode);
+	
+			toastModel.addAttribute(toastStatus, toastMessage);
+			toastCode = null;
+		}
 
 		return siteDir + "siteDetails-page";
 	}
@@ -122,34 +127,33 @@ public class SiteController {
 		// Save sectors
 		Sector newSector = null;
 
-		if(sectorIds.isPresent()) {
-			if(sectorIds.get().length > 0) {
-				String[] existingSectorNames = Arrays.copyOfRange(sectorNames.get(), 0, sectorIds.get().length);
-				String[] otherSectorNames = Arrays.copyOfRange(sectorNames.get(), sectorIds.get().length, sectorNames.get().length);
+		if(sectorIds.isPresent() && sectorIds.get().length > 0) {
+			String[] existingSectorNames = Arrays.copyOfRange(sectorNames.get(), 0, sectorIds.get().length);
+			String[] otherSectorNames = Arrays.copyOfRange(sectorNames.get(), sectorIds.get().length, sectorNames.get().length);
+			
+			for(int i=0; i < sectorIds.get().length; i++) {	
+				newSector = sectorService.getSector(sectorIds.get()[i]);
+				newSector.setName(!existingSectorNames[i].isEmpty() ? existingSectorNames[i] : "X-File n°" + i);
 				
-				for(int i=0; i < sectorIds.get().length; i++) {	
-					newSector = sectorService.getSector(sectorIds.get()[i]);
-					newSector.setName(!existingSectorNames[i].isEmpty() ? existingSectorNames[i] : "X-File n°" + i);
-					
-					sectorService.saveSector(newSector);
-				}
+				sectorService.saveSector(newSector);
+			}
+			
+			for(int i=0; i < otherSectorNames.length; i++) {
+				newSector = new Sector();
+				newSector.setSite(associatedSite);
+				newSector.setName(!otherSectorNames[i].isEmpty() ? otherSectorNames[i] : "X-File n°" + i);
+
+				sectorService.saveSector(newSector);
+			}
 				
-				for(int i=0; i < otherSectorNames.length; i++) {
-					newSector = new Sector();
-					newSector.setSite(associatedSite);
-					newSector.setName(!otherSectorNames[i].isEmpty() ? otherSectorNames[i] : "X-File n°" + i);
-	
-					sectorService.saveSector(newSector);
-				}
-				
-			} else {
-				for(int i=0; i < sectorNames.get().length; i++) {
-					newSector = new Sector();
-					newSector.setSite(associatedSite);
-					newSector.setName(!sectorNames.get()[i].isEmpty() ? sectorNames.get()[i] : "X-File n°" + i);
-	
-					sectorService.saveSector(newSector);
-				}
+		} else if(!sectorIds.isPresent() && sectorNames.isPresent() && sectorNames.get().length > 0) {
+			
+			for(int i=0; i < sectorNames.get().length; i++) {
+				newSector = new Sector();
+				newSector.setSite(associatedSite);
+				newSector.setName(!sectorNames.get()[i].isEmpty() ? sectorNames.get()[i] : "X-File n°" + i);
+
+				sectorService.saveSector(newSector);
 			}
 		}
 		
@@ -157,38 +161,36 @@ public class SiteController {
 		// Save routes
 		Route newRoute = null;
 
-		if(routeIds.isPresent()) {
-			if(routeIds.get().length > 0) {		
-				String[] existingRouteNames = Arrays.copyOfRange(routeNames.get(), 0, routeIds.get().length);
-				String[] otherRouteNames = Arrays.copyOfRange(routeNames.get(), routeIds.get().length, routeNames.get().length);
-				String[] existingRouteQuotations = Arrays.copyOfRange(routeQuotations.get(), 0, routeIds.get().length);
-				String[] otherRouteQuotations = Arrays.copyOfRange(routeQuotations.get(), routeIds.get().length, routeNames.get().length);
+		if(routeIds.isPresent() && routeIds.get().length > 0) {		
+			String[] existingRouteNames = Arrays.copyOfRange(routeNames.get(), 0, routeIds.get().length);
+			String[] otherRouteNames = Arrays.copyOfRange(routeNames.get(), routeIds.get().length, routeNames.get().length);
+			String[] existingRouteQuotations = Arrays.copyOfRange(routeQuotations.get(), 0, routeIds.get().length);
+			String[] otherRouteQuotations = Arrays.copyOfRange(routeQuotations.get(), routeIds.get().length, routeNames.get().length);
+			
+			for(int i=0; i < routeIds.get().length; i++) {	
+				newRoute = routeService.getRoute(routeIds.get()[i]);
+				newRoute.setName(!existingRouteNames[i].isEmpty() ? existingRouteNames[i] : "X-File n°" + i);
+				newRoute.setQuotation(existingRouteQuotations[i]);
 				
-				for(int i=0; i < routeIds.get().length; i++) {	
-					newRoute = routeService.getRoute(routeIds.get()[i]);
-					newRoute.setName(!existingRouteNames[i].isEmpty() ? existingRouteNames[i] : "X-File n°" + i);
-					newRoute.setQuotation(existingRouteQuotations[i]);
-					
-					routeService.saveRoute(newRoute);
-				}
-				
-				for(int i=0; i < otherRouteNames.length; i++) {
-					newRoute = new Route();
-					newRoute.setSector(sectorService.getSector(routeSectorIds.get()[i]));
-					newRoute.setName(!otherRouteNames[i].isEmpty() ? otherRouteNames[i] : "X-File n°" + i);		
-					newRoute.setQuotation(otherRouteQuotations[i]);
-	
-					routeService.saveRoute(newRoute);
-				}
-			} else {
-				for(int i=0; i < routeNames.get().length; i++) {
-					newRoute = new Route();
-					newRoute.setSector(sectorService.getSector(routeSectorIds.get()[i]));
-					newRoute.setName(!routeNames.get()[i].isEmpty() ? routeNames.get()[i] : "X-File n°" + i);
-					newRoute.setQuotation(routeQuotations.get()[i]);
-	
-					routeService.saveRoute(newRoute);
-				}
+				routeService.saveRoute(newRoute);
+			}
+			
+			for(int i=0; i < otherRouteNames.length; i++) {
+				newRoute = new Route();
+				newRoute.setSector(sectorService.getSector(routeSectorIds.get()[i]));
+				newRoute.setName(!otherRouteNames[i].isEmpty() ? otherRouteNames[i] : "X-File n°" + i);		
+				newRoute.setQuotation(otherRouteQuotations[i]);
+
+				routeService.saveRoute(newRoute);
+			}
+		} else if(!routeIds.isPresent() && routeNames.isPresent() && routeNames.get().length > 0) {
+			for(int i=0; i < routeNames.get().length; i++) {
+				newRoute = new Route();
+				newRoute.setSector(sectorService.getSector(routeSectorIds.get()[i]));
+				newRoute.setName(!routeNames.get()[i].isEmpty() ? routeNames.get()[i] : "X-File n°" + i);
+				newRoute.setQuotation(routeQuotations.get()[i]);
+
+				routeService.saveRoute(newRoute);
 			}
 		}
 		
@@ -196,8 +198,7 @@ public class SiteController {
 		// Save lengths
 		Length newLength = null;
 
-		if(lengthIds.isPresent()) {
-			if(lengthIds.get().length > 0) {		
+		if(lengthIds.isPresent() && lengthIds.get().length > 0) {		
 				String[] existingLengthNames = Arrays.copyOfRange(lengthNames.get(), 0, lengthIds.get().length);
 				String[] otherLengthNames = Arrays.copyOfRange(lengthNames.get(), lengthIds.get().length, lengthNames.get().length);
 				String[] existingLengthQuotations = Arrays.copyOfRange(lengthQuotations.get(), 0, lengthIds.get().length);
@@ -219,15 +220,14 @@ public class SiteController {
 	
 					lengthService.saveLength(newLength);
 				}
-			} else {
-				for(int i=0; i < lengthNames.get().length; i++) {
-					newLength = new Length();
-					newLength.setRoute(routeService.getRoute(lengthRouteIds.get()[i]));
-					newLength.setName(!lengthNames.get()[i].isEmpty() ? lengthNames.get()[i] : "X-File n°" + i);		
-					newLength.setQuotation(lengthQuotations.get()[i]);
-	
-					lengthService.saveLength(newLength);
-				}
+		} else if(!lengthIds.isPresent() && lengthNames.isPresent() && lengthNames.get().length > 0) {
+			for(int i=0; i < lengthNames.get().length; i++) {
+				newLength = new Length();
+				newLength.setRoute(routeService.getRoute(lengthRouteIds.get()[i]));
+				newLength.setName(!lengthNames.get()[i].isEmpty() ? lengthNames.get()[i] : "X-File n°" + i);		
+				newLength.setQuotation(lengthQuotations.get()[i]);
+
+				lengthService.saveLength(newLength);
 			}
 		}
 

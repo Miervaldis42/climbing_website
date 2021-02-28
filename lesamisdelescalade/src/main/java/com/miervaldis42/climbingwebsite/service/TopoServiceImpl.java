@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.miervaldis42.climbingwebsite.dao.TopoDAO;
-import com.miervaldis42.climbingwebsite.entity.Status;
 import com.miervaldis42.climbingwebsite.entity.Topo;
+import com.miervaldis42.climbingwebsite.enums.Status;
 
 
 @Service

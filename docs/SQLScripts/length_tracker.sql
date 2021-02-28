@@ -1,8 +1,10 @@
+SET NAMES utf8;
+
 CREATE TABLE `climbing_website_db`.`lengths` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `route_id` INT NOT NULL,
-  `name` VARCHAR(255) NOT NULL,
-  `quotation` VARCHAR(10) NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `quotation` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `route_id_idx` (`route_id` ASC) VISIBLE,
 
@@ -11,7 +13,7 @@ CREATE TABLE `climbing_website_db`.`lengths` (
     REFERENCES `climbing_website_db`.`routes` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-);
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 --

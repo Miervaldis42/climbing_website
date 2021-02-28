@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
-
+import com.miervaldis42.climbingwebsite.enums.Role;
 import java.util.Date;
 
 

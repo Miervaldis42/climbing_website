@@ -1,11 +1,11 @@
 /* Mobile Style */
-#splashscreen {
+#splash {
 	background-image: url("../../assets/splashscreen/splashscreen_background_mobile.png");
 	background-size: cover;
 	background-position-x: 86%;
 }
 
-#logo {
+#splash__logo {
 	display: block;
 
 	margin-top: 10%;
@@ -15,6 +15,6 @@
 	width: 40%;
 }
 
-#quote {
+#splash__quote {
 	display: none;
 }

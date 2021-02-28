@@ -1,8 +1,14 @@
 /**
  * Profile page - Desktop CSS file
  */
-:root {
-	--profileSection-height: 70vh;
+
+
+/*
+ * Profile body
+ */
+#profileBody {
+	background-image: url(../../assets/backgrounds/profile_background.png);
+    background-size: cover;
 }
 
 /*
@@ -13,7 +19,7 @@
 	justify-content: center;
 	align-items: center;
 	
-	margin: 1% 5%;
+	margin: 0% 5%;
 }
 
 #profile__nav a {
@@ -31,6 +37,7 @@
 	background: none;
 	
 	padding: .5%;
+	margin: 1%;
 }
 
 #profile__nav a i {
@@ -132,11 +139,16 @@
 /*
  * Dashboard
  */
+#noDashboard {
+	display: none;
+}
+ 
 #profile__dashboard {
-	height: var(--profileSection-height);
+	height: 65vh;
 	display: flex;
+	box-shadow: #00000059 8px 10px;
 	
-	overflow: auto;
+	margin: 0 2%;
 } 
 
 #dashboard__nav {
@@ -146,7 +158,7 @@
 	align-items: center;
 	justify-content: space-evenly;
 	
-	background-color: #5bb2fe;	
+	background-color: #b9b6e2;	
 }
 
 #dashboard__nav a {
@@ -169,17 +181,30 @@
 	height: inherit;
 	width: calc(var(--body-width) - 4%);
 
-	background-color: pink;
+	background-color: #ffff;
+	box-shadow: inset #00000059 5px 0px;
+	
+	overflow: auto;
 }
 
 
 /* Dashboard - KPI */
 #dashboard__display {
-	height: 97%;
-    padding: .5%;
-    
+	height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
+
+    padding: 1%;
+}
+
+#dashboard__display h3 {
+	display: flex;
+	align-items: center;
+}
+
+#dashboard__display h3 i {
+	font-size: 150%;
+	margin-right: .5%;
 }
 
 #dashboard__display #kpiTab__content {
@@ -193,18 +218,81 @@
 	text-align: center;
 }
 
-#dashboard__display #kpiTab__content * {
-	margin: 4% 0;
-} 
+#dashboard__display .kpiTab__card {
+	width: 12vw;
+    height: 40vh;
+
+	background-color: #93cef8;
+	color: var(--white-color);
+	
+	padding: 1%;
+	padding-top: 0;
+}
+
+#dashboard__display .kpiTab__cardTitle {
+	font-size: 150%;
+	background-color: #282896;
+
+	padding: 5%;
+}
+
+#dashboard__display .kpiTab__cardBody {
+	display: flex;
+	height: 90%;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;	
+	
+	color: var(--black-color);
+}
+
+#dashboard__display .kpiTab__cardBody div:first-child {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;	
+
+	margin: 2% 0;
+}
+
+#dashboard__display .kpiTab__cardBody div:first-child p:first-child {
+	font-size: 280%;
+	font-weight: bolder;
+}
+
+#dashboard__display .kpiTab__cardBody div:first-child p:nth-child(2) {
+	font-size: 260%;
+}
+
+#dashboard__display .kpiTab__cardBody div:nth-child(2) {
+	font-style: italic;
+	line-height: 1.5;
+}
+
+#dashboard__display .kpiTab__cardBody div:nth-child(2) span {
+	font-size: 140%;
+	font-weight: bolder;
+}
+
 
 
 /* Dashboard - Users */
 #dashboard__usersTab {
-	height: 97%;
-    padding: .5%;
+	height: -webkit-fill-available;
+    padding: 1%;
     
     display: flex;
     flex-direction: column;
+}
+
+#dashboard__usersTab h3 {
+	display: flex;
+	align-items: center;
+}
+
+#dashboard__usersTab h3 i {
+	font-size: 150%;
+	margin-right: 1%;
 }
 
 #usersTab__content {
@@ -216,38 +304,36 @@
 	padding-top: 1%;  
 }
 
-#usersTab__content h4 {
-	text-align: center;
+#usersTab__content div {
+	width: 15vw;
+	height: fit-content;
 
-	margin-bottom: 4%;
+    padding: 1%
 }
 
-#usersTab__content span:first-child {
-	font-weight: bolder;
-	font-style: italic;
+#usersTab__content * h3 {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 5%;
 }
 
 #usersTab__userList {
-	height: inherit;
-    width: 15%;
-    
+	height: inherit;    
     display: flex;
     flex-direction: column;
     align-items: center;
-      
-    overflow: auto;
 }
 
 
 #usersTab__userList .user__tile {
 	display: flex;
-    width: 75%;
+    width: 60%;
     align-items: center;
 
     padding: 2%;
     margin: 4% 0;
 
-	background-color: green;
+	background-color: #ffb8a6;
 }
 
 #usersTab__userList .user__tile img {
@@ -258,6 +344,10 @@
 	margin-right: 10%;
 }
 
+#usersTab__content .tile {
+	background-color: #ff7979;
+}
+
 #usersTab__userDetails {
 	display: flex;
     flex-direction: column;
@@ -266,8 +356,18 @@
     position: relative;
 }
 
-#usersTab__userDetailsContent * {
-	margin: 4% 0;
+#usersTab__userDetailsContent #user__info, #usersTab__userDetailsContent #user__dates {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	line-height: 2;
+}
+
+#usersTab__userDetailsContent #user__info span, #usersTab__userDetailsContent #user__dates span {
+	font-style: italic;
+	font-weight: bolder;
 }
 
 #usersTab__userDetails #usersTab__userActionButtons {	
@@ -275,11 +375,47 @@
 	width: 100%;
 	justify-content: space-around;
 	
-	margin: 4%;
+	margin-top: 4%;
 }
 
-#usersTab__userToposList, #usersTab__userCommentsList {
-	overflow: auto;
+#usersTab__editUserForm label {
+	font-weight: bolder;
+	margin-right: 4%;
+}
+
+#usersTab__editUserForm input, #usersTab__editUserForm select {	
+	width: 40%;
+	
+	border: none;
+	border-bottom: 1px solid black;
+	background: none;
+	outline: none;
+
+	padding: .2% .4%;
+	
+	z-index: 1;
+}
+
+#usersTab__editUserForm button[type="submit"] {	
+	margin: 5% auto;
+    width: -webkit-fill-available;
+    
+    border: none;
+    background: none;
+}
+
+#usersTab__editUserForm button[type="submit"] i {
+	font-size: 150%;
+}
+
+#usersTab__userToposList div, #usersTab__userCommentsList div {
+	background-color: #ffb8a6;
+	padding: 1%;
+}
+
+#usersTab__userToposList span, #usersTab__userCommentsList span {
+	font-weight: bolder;
+	font-style: italic;
 }
 
 #usersTab__userToposList div, #usersTab__userCommentsList div {
@@ -290,8 +426,8 @@
 
 /* Dashboard - Sites */
 #dashboard__sitesTab {
-	height: 97%;
-    padding: .5%;
+	height: -webkit-fill-available;
+    padding: 1%;
     
     display: flex;
     flex-direction: column;
@@ -303,12 +439,12 @@
 }
 
 #dashboard__sitesTab h3 img {
-	width: 1.5%;
-	margin-right: .5%;
+	width: 2%;
+	margin-right: 1%;
 }
 
 #sitesTab__content {
-	height: 95%;
+	height: 90%;
 
 	display: flex;
 	justify-content: space-around;
@@ -327,49 +463,79 @@
 	font-style: italic;
 }
 
-#sitesTab__siteList {
-	height: inherit;
-    width: 15%;
-    
+#sitesTab__siteList {    
     display: flex;
     flex-direction: column;
     align-items: center;
-      
-    overflow: auto;
 }
 
 
 #sitesTab__siteList .site__tile {
+	width: 20vw;
 	display: flex;
+	justify-content: center;
     align-items: center;
 
     padding: 5%;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
     
-    overflow: auto;
+    word-break: break-all;
 
-	background-color: green;
+	background-color: #a6e8a6;
 }
 
-#dashboard__sitesTab .details {
+#dashboard__sitesTab .details,  #dashboard__sitesTab #sitesTab__sectorList, #dashboard__sitesTab #sitesTab__routeList,  #dashboard__sitesTab #sitesTab__lengthList,  #dashboard__sitesTab #sitesTab__topoList{
+	width: 10%;
+    height: min-content;
+
 	display: flex;
     flex-direction: column;
-    width: 10%;
     align-items: center;
+    
+    background-color: #a6e8a6;
+    padding: 1%;
 }
 
 #dashboard__sitesTab .details * {
 	margin: 4% 0;
 }
 
-#dashboard__sitesTab .details .actionButtons {	
+#siteTab__sectorList form input, #siteTab__sectorList form select {	
+	width: 40%;
+	
+	border: none;
+	border-bottom: 1px solid black;
+	background: none;
+	outline: none;
+
+	padding: .2% .4%;
+	
+	z-index: 1;
+}
+
+#siteTab__sectorList form button[type="submit"] {	
+	margin: 5% auto;
+    width: -webkit-fill-available;
+    
+    border: none;
+    background: none;
+}
+
+#siteTab__sectorList form button[type="submit"] i {
+	font-size: 150%;
+}
+
+#dashboard__sitesTab .actionButtons {	
 	display: flex;
-	width: 100%;
+	width: 80%;
 	justify-content: space-around;
 	
 	margin: 4%;
 }
 
+#sitesTab__topoList div {
+	margin-bottom: 10%;
+}
 
 	
 
@@ -377,26 +543,36 @@
  * My Topos
  */
 #profile__myTopos {
-	height: var(--profileSection-height);
-
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	
-	margin: 0 10%;
-	
+
+	height: 63vh;
 	overflow: auto;
 }
 
 /* My Topos form */
 #myTopos__addForm {
+	background-color: lightblue;
+	border-radius: 5px;
+
+	padding: 1%;	
 	margin-bottom: 2%;
+}
+
+#myTopos__addForm h3 {
+	text-align: center;
+	margin-bottom: 5%;	
 }
 
 #myTopos__form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+#myTopos__form label {
+	font-weight: bolder;
 }
 
 #myTopos__form *:nth-child(2n) {
@@ -447,6 +623,9 @@
 /* My Topos status */
 #myTopos__list .myTopos__status {
 	width: 5%;
+	clip-path: circle(40% at 50% 50%);
+
+    padding: 1%;
 }
 
 #myTopos__list .myTopos__status--available {
@@ -461,6 +640,10 @@
 	background-color: grey;
 }
 
+#myTopos__list .myTopos__status--withheld {
+	background-color: black;
+}
+
 
 /* My Topos body */
 #myTopos__list .myTopos__body {
@@ -470,11 +653,14 @@
 	justify-content: center;
 	align-items: center;
 	
+	border-radius: 8px;
+	
 	padding: 1%;
+	margin: 0;
 	
 	position: relative;
 	
-	background-color: cyan;
+	background-color: white;
 }
 
 #myTopos__list .myTopos__body p:last-child {

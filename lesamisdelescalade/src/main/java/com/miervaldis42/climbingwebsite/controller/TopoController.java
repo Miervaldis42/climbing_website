@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 // Entities
-import com.miervaldis42.climbingwebsite.entity.Status;
-import com.miervaldis42.climbingwebsite.helper.ErrorHandler;
+import com.miervaldis42.climbingwebsite.helper.DateFormatter;
+import com.miervaldis42.climbingwebsite.helper.ToastHandler;
+import com.miervaldis42.climbingwebsite.enums.Status;
+import com.miervaldis42.climbingwebsite.enums.Code;
 
 import com.miervaldis42.climbingwebsite.entity.Topo;
 import com.miervaldis42.climbingwebsite.entity.User;
@@ -27,9 +27,9 @@ import com.miervaldis42.climbingwebsite.service.UserService;
 public class TopoController {
 	String topoDir = "/topos/";
 
-	// Variables for error handling
-	ErrorHandler errorDetector = new ErrorHandler();
-	String toastCode = ""; 
+	DateFormatter dateFormatter = new DateFormatter();
+	ToastHandler paperBoy = new ToastHandler();
+	Code toastCode = null; 
 	
 	@Autowired
 	private TopoService topoService;
@@ -44,21 +44,17 @@ public class TopoController {
 		topoListModel.addAttribute("topoList", allAvailableTopos);
 		
 		if(allAvailableTopos != null && allAvailableTopos.size() > 0) {
-			DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-			Map<Integer, String> availableTopoDates = new HashMap<Integer, String>();
-			for(Topo t : allAvailableTopos) {
-				availableTopoDates.put(t.getId(), formatter.format(t.getPublishedDate()));
-			}
-			
+			Map<Integer, String> availableTopoDates = dateFormatter.formatDate(allAvailableTopos);
 			topoListModel.addAttribute("toposDates", availableTopoDates);
 		}
 		
-		if(toastCode.equals("200 - Topo booked")) {
-			String message = errorDetector.displayToastMessage(toastCode);
-			toastModel.addAttribute("success", message);
+		if(toastCode != null && toastCode.equals(Code.TOPO_BOOKED)) {
+			String toastStatus = paperBoy.throwToastStatus(toastCode);
+			String toastMessage = paperBoy.throwToastMessage(toastCode);
+			
+			toastModel.addAttribute(toastStatus, toastMessage);
+			toastCode = null;
 		}
-		
-		toastCode = "";
 		
 		return topoDir + "topos-page";
 	}
@@ -74,8 +70,9 @@ public class TopoController {
 		
 		topoService.saveTopo(selectedTopo);
 		
+
 		// Toast
-		toastCode = "200 - Topo booked";
+		toastCode = Code.TOPO_BOOKED;
 		
 		return "redirect:/topos/list";
 	}

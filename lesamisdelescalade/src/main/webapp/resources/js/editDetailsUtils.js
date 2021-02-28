@@ -30,6 +30,7 @@ function addASector() {
 	newSectorInput.type = "text";
 	newSectorInput.name = "sector";
 	newSectorInput.placeholder = "Nom du nouveau secteur...";
+	newSectorInput.maxLength = "45";
 	
 	sectorsList.appendChild(newSectorLabel);
 	sectorsList.appendChild(newSectorInput);
@@ -51,6 +52,7 @@ function addARoute() {
 	newRouteInput.type = "text";
 	newRouteInput.name = "route";
 	newRouteInput.placeholder = "Nom de la nouvelle route...";
+	newRouteInput.maxLength = "45";
 	
 	// Quotation list
 	var newRouteQuotationSelect = routeQuotationSelect.cloneNode(true);
@@ -85,6 +87,7 @@ function addALength() {
 	newLengthInput.type = "text";
 	newLengthInput.name = "length";
 	newLengthInput.placeholder = "Nom de la nouvelle longueur...";
+	newLengthInput.maxLength = "45";
 
 	// Quotation list
 	var newLengthQuotationSelect = lengthQuotationSelect.cloneNode(true);

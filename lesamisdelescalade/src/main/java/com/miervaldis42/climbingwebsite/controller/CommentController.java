@@ -73,8 +73,8 @@ public class CommentController {
 		
 		commentService.saveComment(alteredComment);		
 		
+
 		return "redirect:/details?siteId="+siteId;
-		
 	}
 	
 	

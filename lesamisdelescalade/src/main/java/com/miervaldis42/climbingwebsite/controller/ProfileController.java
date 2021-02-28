@@ -8,11 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -20,18 +17,16 @@ import javax.servlet.http.HttpSession;
 // Entities
 import com.miervaldis42.climbingwebsite.entity.Topo;
 import com.miervaldis42.climbingwebsite.entity.User;
+import com.miervaldis42.climbingwebsite.enums.Role;
+import com.miervaldis42.climbingwebsite.enums.Status;
+import com.miervaldis42.climbingwebsite.helper.DateFormatter;
 import com.miervaldis42.climbingwebsite.service.LengthService;
 import com.miervaldis42.climbingwebsite.service.RouteService;
 import com.miervaldis42.climbingwebsite.service.SectorService;
 import com.miervaldis42.climbingwebsite.service.SiteService;
 import com.miervaldis42.climbingwebsite.service.TopoService;
 import com.miervaldis42.climbingwebsite.service.UserService;
-import com.miervaldis42.climbingwebsite.entity.Length;
-import com.miervaldis42.climbingwebsite.entity.Role;
-import com.miervaldis42.climbingwebsite.entity.Route;
-import com.miervaldis42.climbingwebsite.entity.Sector;
 import com.miervaldis42.climbingwebsite.entity.Site;
-import com.miervaldis42.climbingwebsite.entity.Status;
 
 
 
@@ -39,6 +34,8 @@ import com.miervaldis42.climbingwebsite.entity.Status;
 @RequestMapping("/profile")
 public class ProfileController {
 	String profilePath = "profile/profile-page";
+	
+	DateFormatter dateFormatter = new DateFormatter();
 	
 	@Autowired
 	private TopoService topoService;
@@ -94,20 +91,20 @@ public class ProfileController {
 		
 		
 		/* Sites */
-		List<Site> allSites = siteService.getSites();
-		List<Sector> allSectors = sectorService.getSectors();
-		List<Route> allRoutes = routeService.getRoutes();
-		List<Length> allLengths = lengthService.getLengths();
+		int allSites = siteService.getSites() != null ? siteService.getSites().size() : 0;
+		int allSectors = sectorService.getSectors() != null ? sectorService.getSectors().size() : 0;
+		int allRoutes = routeService.getRoutes() != null ? routeService.getRoutes().size() : 0;
+		int allLengths = lengthService.getLengths() != null ? lengthService.getLengths().size() : 0;
 		
-		KPIModel.addAttribute("sites", allSites.size());
-		KPIModel.addAttribute("sectors", allSectors.size());
-		KPIModel.addAttribute("routes", allRoutes.size());
-		KPIModel.addAttribute("lengths", allLengths.size());
+		KPIModel.addAttribute("sites", allSites);
+		KPIModel.addAttribute("sectors", allSectors);
+		KPIModel.addAttribute("routes", allRoutes);
+		KPIModel.addAttribute("lengths", allLengths);
 		
 		
 		/* Topos */
-		List<Topo> allTopos = topoService.getTopos();
-		KPIModel.addAttribute("topos", allTopos.size());
+		int allTopos = topoService.getTopos() != null ? topoService.getTopos().size() : 0;
+		KPIModel.addAttribute("topos", allTopos);
 
 		return profilePath; 
 	}
@@ -117,25 +114,26 @@ public class ProfileController {
 	// My Topos
 	@GetMapping("myTopos")
 	public String showMyToposSection(Model sectionModel, HttpSession activeSession, Model ownerToposList) {		
+		// Indicate which tab in Profile the user goes
 		sectionModel.addAttribute("section", "myTopos");
 		
-		List<Site> allSites = siteService.getSites();
-		ownerToposList.addAttribute("allSites", allSites);
 
+		// My Topos list
 		int ownerId = (int) activeSession.getAttribute("id");
 		List<Topo> allOwnerTopos = topoService.getToposByOwner(ownerId);
 		ownerToposList.addAttribute("myTopos", allOwnerTopos);
 		
 		if(allOwnerTopos != null && allOwnerTopos.size() > 0) {
-			DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy à HH:mm");
-			Map<Integer, String> ownerTopoDates = new HashMap<Integer, String>();
-			for(Topo t : allOwnerTopos) {
-				ownerTopoDates.put(t.getId(), formatter.format(t.getPublishedDate()));
-			}
-			
+			Map<Integer, String> ownerTopoDates = dateFormatter.formatDate(allOwnerTopos);
 			ownerToposList.addAttribute("myToposDates", ownerTopoDates);
 		}
-
+		
+		// Sites for "add topo" form
+		List<Site> allSites = siteService.getSites();
+		ownerToposList.addAttribute("allSites", allSites);
+		
+		
+		
 		return profilePath;
 	}
 	
@@ -162,10 +160,26 @@ public class ProfileController {
 		
 		Site topoSite = siteService.getSite(site_id);
 		newTopo.setSite(topoSite);
-		
 		newTopo.setPublishedDate(new Date());
 		
 		topoService.saveTopo(newTopo);
+		
+		return "redirect:/profile/myTopos";
+	}
+	
+	@GetMapping("changeMyTopoStatus")
+	public String changeTopoStatus(@RequestParam("topoId") int id) {
+		Topo selectedTopo = topoService.getTopo(id);
+		
+		if(selectedTopo.getStatus().equals(Status.WITHHELD)) {
+			selectedTopo.setStatus(Status.AVAILABLE);
+			selectedTopo.setBorrower(null);
+		} else {
+			selectedTopo.setStatus(Status.WITHHELD);
+			selectedTopo.setBorrower(null);
+		}
+
+		topoService.saveTopo(selectedTopo);
 		
 		return "redirect:/profile/myTopos";
 	}

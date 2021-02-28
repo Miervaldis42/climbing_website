@@ -245,28 +245,30 @@
 					<h4>Ses topos</h4>
 					
 					<c:forEach items="${ siteTopos }" var="t">
-						<h3>Id: ${ t.id }</h3>
-						<p>
-							<span>Propriétaire:</span> ${ t.owner.firstname }
-						</p>
-						<p>
-							<span>Nom:</span> ${ t.name }
-						</p>
-						<p>
-							<span>Status:</span> ${ t.status.getStatusName() }
-						</p>
-						<p>
-							<span>Description:</span> ${ t.description }
-						</p>
-						<p>
-							<span>Date de parution:</span> ${ t.publishedDate }
-						</p>
-						<c:if test="${ not empty t.getBorrower() }">
+						<div>
+							<h3>Id: ${ t.id }</h3>
 							<p>
-								<span>Demande d'emprunt ou prêté à:</span>
-								 ${ t.getBorrower().firstname }
+								<span>Propriétaire:</span> ${ t.owner.firstname }
 							</p>
-						</c:if>
+							<p>
+								<span>Nom:</span> ${ t.name }
+							</p>
+							<p>
+								<span>Status:</span> ${ t.status.getStatusName() }
+							</p>
+							<p>
+								<span>Description:</span> ${ t.description }
+							</p>
+							<p>
+								<span>Date de parution:</span> ${ siteTopoDates.get(t.id) }
+							</p>
+							<c:if test="${ not empty t.getBorrower() }">
+								<p>
+									<span>Demande d'emprunt ou prêté à:</span>
+									 ${ t.getBorrower().firstname }
+								</p>
+							</c:if>
+						</div>
 					</c:forEach>
 				</div>
 			</c:if>

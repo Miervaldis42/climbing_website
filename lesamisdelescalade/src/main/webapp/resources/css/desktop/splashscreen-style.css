@@ -14,7 +14,7 @@
 /* 
  * Body
  */
-#splashscreen {
+#splash {
   background-image: url("../../assets/splashscreen/splashscreen_background.png");
   background-size: cover;
   background-position-x: 100%;
@@ -27,7 +27,7 @@
 /*
  * Logo
  */
-#logo {
+#splash__logo {
 	height: 10%;
 	margin: 1.5% 1%; 
 }
@@ -36,7 +36,7 @@
 /*
  * Quote
  */
-#quote {
+#splash__quote {
 	position: absolute;
 	top: 30%;
 	left: 20%;
@@ -46,7 +46,7 @@
 	color: black;
 }
 
-#author {
+#splash__author {
 	text-align: right;
 	font-style: italic;
 	

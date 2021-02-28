@@ -11,29 +11,31 @@
         <!-- CSS -->
 		<link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/resources/assets/favicon.ico" />
 		
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/style.css" />
+		<link rel="stylesheet" type="text/css" media="screen and (max-width: 767.98px)" href="<%=request.getContextPath()%>/resources/css/style-mobile.css" />
 		<link rel="stylesheet" type="text/css" media="screen and (max-width: 767.98px)" href="<%=request.getContextPath()%>/resources/css/mobile/splashscreen-mobile.css" />
+		
+		<link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="<%=request.getContextPath()%>/resources/css/style.css" />
 		<link rel="stylesheet" type="text/css"  media="screen and (min-width: 768px)" href="<%=request.getContextPath()%>/resources/css/desktop/splashscreen-style.css" />
 		
 		<title>Les amis de l'escalade</title>
 	</head>
 
 	<!-- Body -->
-	<body id="splashscreen">
+	<body id="splash">
 		<!-- Logo -->
-		<img id="logo" src="<%=request.getContextPath()%>/resources/assets/logo.png" alt="logo" />
+		<img id="splash__logo" src="<%=request.getContextPath()%>/resources/assets/logo.png" alt="Logo de l'association de Les amis de l'escalade" />
 	
 		<!-- Quote -->
-		<div id="quote">
+		<div id="splash__quote">
 			<p>
 				Si vous n'escaladez pas de montagnes,
 				<br />Vous ne profiterez jamais de la vue.
 			</p>
-			<p id="author">Pablo Neruda</p>
+			<p id="splash__author">Pablo Neruda</p>
 		</div>
 	</body>
 
 	<!-- After 5s, redirection to the main page -->
-	<script defer src="<%=request.getContextPath()%>/resources/js/splashscreenTransition.js"></script>
+	<script defer src="<%=request.getContextPath()%>/resources/js/splashscreenUtils.js"></script>
 </html>
 

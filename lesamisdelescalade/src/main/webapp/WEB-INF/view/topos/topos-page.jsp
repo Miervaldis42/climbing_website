@@ -26,7 +26,7 @@
 	</head>
 
 	<!-- Body -->
-	<body id="siteBody">
+	<body id="topoBody">
 		<%@ include file="../common/navbar.jsp" %>
 		
 		<div id="topoContainer" class="container">
@@ -39,9 +39,14 @@
 			
 			<!-- Empty Topo list -->
 			<c:if test="${ empty topoList || topoList.size() < 0 }">
-				<div id="emptyList">
-					<p>Tous les topos sont malheureusement soit déjà prêtés, soit en attente de confirmation.</p>
-					<p>N'hésite pas à revenir plus tard pour peut-être découvrir de nouveaux topos !</p>
+				<div id="emptyTopoList">
+					<p>
+						<i class="fa fa-address-book"></i>
+						<br />
+						Tous les topos sont malheureusement soit déjà prêtés, soit en attente de confirmation.
+						<br />
+						N'hésite pas à revenir plus tard pour peut-être découvrir de nouveaux topos !
+					</p>
 				</div>
 			</c:if>
 			

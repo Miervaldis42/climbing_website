@@ -7,7 +7,7 @@
 
 <!-- Edit mode -->
 <div id="siteDetails__editMode" style="display: none;">
-	<form:form action="editInfo" method="POST">
+	<form action="editInfo" method="POST">
 		<input type="hidden" name="siteId" value="${ site.id }" />
 		
 		<div id="editMode__header">
@@ -18,7 +18,7 @@
 		<c:if test="${ not empty sessionScope.id && sessionScope.role != 'SUBSCRIBER' }">
 			<!-- Tag field -->
 			<div id="editMode__siteTag">
-				<label id="editMode__tag">Officiel ?</label>
+				<label for="editMode__tag">Officiel ?</label>
 				<select id="editMode__tag" name="siteTag" value="${ site.tag }">
 					<option value="true">Officiel</option>
 					<option value="false">Non officiel</option>
@@ -58,8 +58,9 @@
 						<c:if test="${ not empty sector.id }">
 							<input type="hidden" name="sectorId" value="${ sector.id }" />
 						</c:if>
+
 						<label for="sectorCreation"> Secteur: </label>
-						<input id="sectorCreation" name="sector" value="${ sector.name }" />
+						<input id="sectorCreation" name="sector" value="${ sector.name }" maxlength="45" />
 					</c:forEach>
 				</div>
 			</div>	<!-- End of Sector list -->
@@ -93,7 +94,7 @@
 						</c:if>
 						
 						<label for="existingRoutes"> Route: </label>
-						<input id="existingRoutes" name="route" type="text" value="${ route.name }" />
+						<input id="existingRoutes" name="route" type="text" value="${ route.name }" maxlength="45" />
 						
 						<select name="routeQuotation">
 							<c:forEach items="${ quotations }" var="q">
@@ -148,7 +149,7 @@
 						</c:if>
 	
 						<label for="existingLengths"> Longueur: </label>
-						<input type="text" id="existingLengths" name="length" value="${ length.name }" />
+						<input type="text" id="existingLengths" name="length" value="${ length.name }" maxlength="45" />
 						
 						<select name="lengthQuotation">
 							<c:forEach items="${ quotations }" var="q">
@@ -180,5 +181,5 @@
 		<button type="submit">
 			<i class="fa fa-check"></i>
 		</button>
-	</form:form>
+	</form>
 </div>
