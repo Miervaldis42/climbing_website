@@ -81,6 +81,20 @@ The order to run the SQL scripts are :
     => The server should be up on running now !
 
 
+### Membres fédérés de l'association
+During your exploration of the website, you can follow to be one of those 3 users :
+* _Hal_ : the admin,
+* _Sony_ : a member of the association,
+* and _Alix_ : a subscriber _(or a 'connected user')_
+
+```
+_(user : username, password)_
+Hal : admin, admin
+Sony : sony@gmail.com, sony
+Alix : alix@gmail.com, alix
+```
+
+
 ## Troubleshooting
 
 ### Change Tomcat ports
