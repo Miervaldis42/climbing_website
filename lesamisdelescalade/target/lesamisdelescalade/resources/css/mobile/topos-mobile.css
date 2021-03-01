@@ -1,0 +1,188 @@
+/**
+ *
+ * Topos page - Mobile CSS file
+ *
+ */
+:root {
+	--topo-height: 40vh;
+	--topo-width: 60vw;
+}
+
+
+
+/* Topo containers */
+#topoBody {
+	background-image: url("../../assets/backgrounds/topo_background.png");
+}
+
+#topoContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+
+
+/* Topo cards */
+#emptyTopoList {
+	display: flex;
+	flex-direction: column;
+	flex-basis: var(--body-height);
+	width: calc(var(--body-width) - 10%);
+	align-content: center;
+	justify-content: center;
+}
+
+#emptyTopoList i {
+	font-size: 200%;
+} 
+
+#emptyTopoList p {
+	text-align: center;
+	line-height: 2;
+	font-weight: bolder;
+}
+
+#topoList {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	
+	overflow: auto;
+}
+
+
+#topoList .topoCard {
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+	
+	height: var(--topo-height);
+	width: var(--topo-width);
+	
+	position: relative;
+	
+	margin: 5% 0;
+	
+	transition: transform 1s;
+  	transform-style: preserve-3d;
+	
+	background-color: var(--white-color);
+}
+
+#topoList .topoCard--turn:hover {
+	transform: rotateY(180deg) ;
+  	transition: transform 0.5s;
+}
+
+.front, .back {
+	position: absolute;
+    
+    width: inherit;
+    height: inherit;
+    
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, .2);
+    
+	backface-visibility: hidden;
+}
+
+#topoList .topoCard__img {
+	height: 40%;
+	width: inherit;
+	
+	clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
+}
+
+#topoList .topoCard__header {
+	width: 35%;
+
+	position: absolute;
+    top: 20%;
+    right: 2%;
+    
+    text-align: center;
+    padding: 2%;
+    word-break: break-all;
+    
+    background-color: white;
+    border: solid black 4px;
+}
+
+#topoList .topoCard__body {
+	width: var(--topo-width);
+	
+	display: flex;
+    flex-direction: column;
+    height: 55%;
+    align-items: center;
+    
+    word-break: break-all;
+    padding: 4% 0;
+}
+
+#topoList .topoCard__info {
+	width: calc(var(--topo-width) - 4%);
+	text-align: center;
+	margin-bottom: 5%;
+}
+
+#topoList .topoCard__info .topoCard__name {
+	font-weight: bold;
+}
+
+#topoList .topoCard__info .topoCard__location {
+	font-style: italic;
+}
+
+#topoList .topoCard__desc {
+	height: 85%;
+    width: 90%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#topoList .topoCard__footer {
+	position: absolute;
+	bottom: 2%;
+	right: 4%;
+	
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+#topoList .topoCard__avatar {
+	width: 10%;
+	border-radius: 50%;	
+	
+	margin-right: 4%;
+}
+
+.back {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	transform: rotateY(180deg);
+}
+
+.back p {
+	text-align: center;
+	margin: 0 5%;
+}
+
+.back a {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	margin: 8% 0;
+}
+
+.back i {
+	font-size: 180%;
+}

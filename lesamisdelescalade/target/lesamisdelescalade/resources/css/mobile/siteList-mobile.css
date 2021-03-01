@@ -1,0 +1,200 @@
+/**
+ *
+ * Site List page - Mobile CSS file
+ *
+ */
+
+:root {
+	--card-height: 20vh;
+	--card-width: 90vw;
+}
+
+
+
+/*
+ * Site container
+ */
+#siteBody {
+	background-image: url("../../assets/backgrounds/site_background.png");
+}
+
+#siteContainer {
+	display: flex;
+	flex-direction: column;
+	
+	overflow: scroll;
+}
+
+#siteContainer h2 {
+	order: 2;
+}
+
+
+/*
+ * Search section
+ */
+#searchSection {
+	order: 1;
+	
+	padding: 2%;
+	background-color: var(--grey-color);
+}
+
+#textSearch {
+	width: -webkit-fill-available;
+
+    padding: 1%;
+    margin: 2%;
+}
+
+#textSearch::placeholder {
+	font-size: 85%;
+	font-style: italic;
+}
+
+#searchSection select {
+	width: 45.8%;
+	margin-left: 2%;
+}
+
+button[type="submit"] {
+	position: absolute;
+	top: 2.23%;
+	right: 6%;
+	
+    font-size: 120%;
+
+    border: none;
+    background: none;
+}
+
+button[type="submit"]:active {
+	font-weight: bolder;
+	color: var(--secondary-color);
+}
+
+
+
+/* 
+ * Site cards
+ */
+#noSearchResult {
+	order: 3;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    line-height: 200%;
+    text-align: center;
+    
+    margin: 10%;
+}
+
+#noSearchResult i {
+	font-size: 200%;
+	margin-bottom: 5%;
+}
+
+
+#siteCards {
+	order: 3;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	overflow-y: auto;
+}
+
+.siteCard {
+	height: var(--card-height);
+	width: var(--card-width);
+	margin-bottom: 8%;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+
+	border-radius: 10px;	
+	background-size: cover;
+	
+	color: var(--white-color);
+	text-shadow: 1px 1px 5px black;
+	
+	position: relative;
+}
+
+
+/* 
+ * Site tag
+ */
+.siteTag i {
+	position: absolute;
+	top: 6%;
+    left: 3%;
+	
+	font-size: 150%;
+	color: red;	
+}
+
+.siteTag p {
+	display: none;
+}
+
+
+/* 
+ * Site main info
+ */
+.siteMainInfo {
+	width: inherit;
+    height: inherit;
+}
+
+.siteMainInfo .siteCardName {
+	position: relative;
+    top: 40%;
+	
+	font-size: 130%;
+	font-weight: bolder;
+
+	text-align: center;
+}
+
+.siteMainInfo .siteCardLocation {
+	width: 45%;
+	
+	position: absolute;
+    bottom: 7%;
+    left: 1%;
+}
+
+.siteMainInfo p {
+	padding: 0 2%;
+}
+
+
+/* 
+ * Site sub info
+ */
+.siteSubInfo {
+	position: absolute;
+	bottom: 5%;
+	
+	display: flex;
+	justify-content: flex-end;
+	
+	margin-right: 3%; 
+}
+
+.siteSubInfo div {
+	display: flex;
+	
+	text-shadow: 1px 1px 2px grey;
+	margin: 0 8%;
+}
+
+.siteSubInfo div i {
+	padding-right: 18%;
+}

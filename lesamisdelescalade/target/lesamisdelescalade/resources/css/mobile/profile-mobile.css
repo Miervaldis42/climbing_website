@@ -1,0 +1,350 @@
+/**
+ * Profile page - Mobile CSS file
+ */
+
+
+/*
+ * Profile body
+ */
+#profileBody {
+	background-image: url(../../assets/backgrounds/profile_background.png);
+    background-position-x: center;
+}
+
+/*
+ * Profile navigation
+ */
+#profile__nav {
+	display: flex;
+	justify-content: space-evenly;
+	
+	margin: 2% 0;
+}
+
+#profile__nav a {
+	width: 30%;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+	font-family: serif;
+	font-size: 100%;
+	
+	border: none;
+	background: none;
+	
+	padding: .5%;
+}
+
+#profile__nav a i {
+	font-size: 150%;
+    margin-bottom: 4%;
+}
+
+#profile__nav a i:nth-child(1) {
+	margin-bottom: 6%;
+}
+
+#profile__nav a img {
+	width: 25%;
+    margin-bottom: 3%;
+}
+
+#profile__nav a:hover {
+	font-size: 110%;
+	font-weight: bolder;
+	color: var(--secondary-color);
+}
+
+#profile__nav a:hover i {
+	font-size: 130%;
+	color: black;
+	
+	margin-bottom: 5%;
+}
+
+
+
+/*
+ * User info section
+ */
+#profile__userInfo {
+	height: 83%;
+ 
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center; 
+}
+
+
+#profile__role {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	font-weight: bold;
+}
+
+#profile__role img {
+	width: 40%;
+	border-radius: 50%;
+	
+	margin-bottom: 2%; 
+}
+
+
+#profile__info p {
+	margin-bottom: 12%;
+}
+
+#profile__info span {
+	font-style: italic;
+	font-weight: bold;
+}
+
+
+#profile__logoutButton {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#profile__logoutButton i {
+	font-size: 200%;
+
+	margin: 2% 0;
+}
+
+#profile__logoutButton:hover {
+	font-weight: bolder;
+	color: var(--secondary-color);
+}
+
+
+
+/*
+ * Dashoboard
+ */
+#noDashboard {
+	display: flex;
+	height: 70vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+	font-style: italic;
+	text-align: center;
+	line-height: 1.8;
+	
+	margin: 0 10%
+}
+
+#profile__dashboard {
+	display: none;
+}
+
+
+
+/*
+ * My Topos
+ */
+#profile__myTopos {
+	height: 70vh;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	padding: 0 10%;
+	
+	overflow: auto;
+}
+
+/* My Topos form */
+#myTopos__addForm {
+	background-color: lightblue;
+	border-radius: 5px;
+
+	padding: 4% 8%;	
+	margin-bottom: 8%;
+}
+
+#myTopos__form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#myTopos__form *:nth-child(2n) {
+	margin-top: 10%; 
+}
+
+#myTopos__form input, #myTopos__form select, #myTopos__form textarea {
+	border: none;
+	border-bottom: 1px solid black;
+	background: none;
+	outline: none;
+}
+
+#myTopos__form input, #myTopos__form select {
+	padding: 1%;
+	margin: 4% 0;
+}
+
+#myTopos__form textarea {
+	padding: .2% .4%;
+}
+
+#myTopos__form #myTopo__submitButton {
+	font-size: 110%;
+	
+	background: none;
+	border: none;
+}
+
+#myTopos__form #myTopo__submitButton:hover {
+	font-size: 120%;
+	color: green;
+}
+
+
+/* My Topos list */
+#myTopos__list {
+	height: inherit;
+}
+
+#myTopos__list .myTopos__topo {
+	display: flex;
+	flex-direction: column;
+	width: 80vw;
+
+	margin: 8% 0;
+}
+
+
+/* My Topos status */
+#myTopos__list .myTopos__status {
+	height: 4vh;
+}
+
+#myTopos__list .myTopos__status--available {
+	background-color: green;
+}
+
+#myTopos__list .myTopos__status--pending {
+	background-color: orange;
+}
+
+#myTopos__list .myTopos__status--lent {
+	background-color: grey;
+}
+
+#myTopos__list .myTopos__status--withheld {
+	background-color: black;
+}
+
+
+/* My Topos body */
+#myTopos__list .myTopos__body {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 100%;
+	justify-content: center;
+	align-items: center;
+	
+	padding: 5%;
+	
+	background-color: white;
+}
+
+#myTopos__list .myTopos__body p:last-child {
+	word-break: break-all;
+	margin-top: 5%;	
+}
+
+#myTopos__list .myTopos__date {
+	font-size: 80%;
+	font-style: italic;
+	
+	display: flex;
+	align-items: flex-end;
+	
+	margin-bottom: 4%;
+}
+
+#myTopos__list .myTopos__date i {
+	font-size: 120%;
+}
+
+#myTopos__list .myTopos__title {
+	font-size: 110%;
+}
+
+#myTopos__list .myTopos__title span:first-child {
+	font-weight: bold;
+}
+
+#myTopos__list .myTopos__title span:last-child {
+	font-style: italic;
+}
+
+#myTopos__list .myTopos__lent {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 12%;
+	justify-content: center;
+	align-items: center;
+	
+	margin-top: 2%;
+}
+
+#myTopos__list .myTopos__pending p:first-child, #myTopos__list .myTopos__lent p:first-child {
+	font-style: italic;
+}
+
+
+/* My Topos borrower */
+#myTopos__list .myTopos__borrower {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#myTopos__list .myTopos__borrowerAvatar, #myTopos__list .myTopos__borrowerEmail {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+ 
+#myTopos__list .myTopos__avatar {
+	width: 25%;
+	border-radius: 50%;
+	
+	margin: 4%;
+}
+
+#myTopos__list .myTopos__borrowerEmail {
+	margin-bottom: 2%;
+}
+
+#myTopos__list .myTopos__borrowerEmail i {
+	margin-right: 15%;
+}
+
+
+/* My Topos action icons */
+#myTopos__list .myTopos__actionIcons {
+	display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+    margin: 2%;
+}
+
+#myTopos__list .myTopos__actionIcons a i:hover {
+	font-size: 120%;
+}

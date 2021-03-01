@@ -1,0 +1,54 @@
+/**
+ *
+ * Splashscreen - Desktop CSS file
+ *
+ */
+
+/* Fonts */
+@font-face {
+	font-family: "My Empire Wont Fall";
+	src: "../fonts/My Empire Wont Fall.ttf";
+}
+
+
+/* 
+ * Body
+ */
+#splash {
+  background-image: url("../../assets/splashscreen/splashscreen_background.png");
+  background-size: cover;
+  background-position-x: 100%;
+  background-repeat: no-repeat;
+  
+  display: block;
+}
+
+
+/*
+ * Logo
+ */
+#splash__logo {
+	height: 10%;
+	margin: 1.5% 1%; 
+}
+
+
+/*
+ * Quote
+ */
+#splash__quote {
+	position: absolute;
+	top: 30%;
+	left: 20%;
+	
+	font-family: "My Empire Wont Fall", Helvetica, "Times New Roman", serif;
+	font-size: 2em;
+	color: black;
+}
+
+#splash__author {
+	text-align: right;
+	font-style: italic;
+	
+	margin: 2%;
+}
