@@ -30,4 +30,19 @@ CREATE TABLE `climbing_website_db`.`topos` (
     REFERENCES `climbing_website_db`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1;
+
+
+--
+-- Dumping data for table `topos`
+--
+
+LOCK TABLES `climbing_website_db`.`topos` WRITE;
+
+INSERT INTO `climbing_website_db`.`topos` VALUES 
+	(1, 1, 1, "Topo n°1", "1001 façons de traverser les Alpes ! (Topo pour débutants)", 0, '2020-01-01 10:10:10', null),
+  (2, 1, 2, "Topo n°2", "1001 façons de traverser les Vosges ! (Topo pour débutants)", 1, '2020-02-01 10:40:10', null),
+  (3, 1, 2, "Topo n°3", "1001 façons de traverser les Vosges ! (Topo pour experts)", 2, '2020-03-01 12:10:10', 2),
+  (4, 1, 4, "Astuces de grimpe", "Attention, ce topo est renouvelé tous les ans !", 3, '2020-04-11 06:10:10', 3);
+
+UNLOCK TABLES;

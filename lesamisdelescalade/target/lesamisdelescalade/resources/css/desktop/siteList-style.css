@@ -1,0 +1,222 @@
+/**
+ *
+ * Site List page - Desktop CSS file
+ *
+ */
+
+/* Variables */
+:root {
+	--card-height: 22vh;
+	--card-width: 22vw;
+}
+
+
+
+
+/*
+ * Site container
+ */
+#siteBody {
+	background-image: url("../../assets/backgrounds/site_background.png");
+	background-size: cover;
+}
+ 
+#siteContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	overflow: auto;
+}
+
+
+/*
+ * Search section
+ */
+#searchSection form {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchSection form * {
+	margin: 0 2%;
+}
+
+#searchSection input, select {	
+	border: none;
+	border-bottom: 1px solid black;
+	
+	background: none;
+	outline: none;
+	
+	color: #555;
+	padding: 1% 0;
+	
+	z-index: 1;
+}
+
+#textSearch {
+	min-width: 70%;
+}
+
+#textSearch::placeholder {
+	padding-left: 2%;
+	font-size: 85%;
+	font-style: italic;
+}
+
+button[type="submit"] {
+	border: none;
+	background: none;
+}
+
+button[type="submit"] i {
+	font-size: 190%;
+}
+
+button[type="submit"]:hover {
+	font-size: 100%;
+	font-weight: bolder;
+	color: var(--secondary-color);
+}
+
+
+
+/*
+ * No search result
+ */
+#noSearchResult {	
+	display: flex;
+	flex-basis: calc(var(--body-height) - var(--navbar-height) - var(--footer-height));
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+	font-weight: bolder;
+	color: white;
+	line-height: 2;
+}
+
+#noSearchResult i {
+	font-size: 200%;
+	margin: 1% 0;
+}
+
+
+
+/* 
+ * Site cards
+ */
+#siteCards {
+	display: flex;
+	flex-wrap: wrap;
+	width: calc(var(--body-width) - 10%);
+	justify-content: space-around;
+}
+
+.siteCard {
+	height: var(--card-height);
+	width: var(--card-width);
+	
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+
+	border-radius: 20px;	
+	background-size: cover;
+	
+	position: relative;
+	
+	color: white;
+	text-shadow: 1px 1px 2px grey;
+}
+	
+.siteCard:hover {
+	padding: .5%;
+	box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, .2);
+}
+
+
+
+/* 
+ * Site tag
+ */
+.siteTag {	
+	position: absolute;
+    top: 7%;
+    right: -6.2%; 
+    
+    padding: 1% 4%;
+    padding-bottom: 8%;
+  
+	background-color: brown;
+	
+	clip-path: polygon(0 0, 100% 0, 100% 50%, 87% 87%, 87% 50%, 0 50%);
+}
+
+.siteTag i {
+	display: none;
+}
+
+.siteTag p {
+	text-align: center;
+	font-size: small;
+	font-weight: bold;
+	color: white;
+}
+
+
+
+/* 
+ * Site main info
+ */
+.siteMainInfo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);	
+}
+
+.siteCardName {
+	font-size: 150%;
+	text-shadow: 1px 1px 10px black;
+	text-align: center;
+	font-weight: bolder;
+}
+
+.siteCardLocation {
+	display: flex;
+	justify-content: center;
+	font-style: italic;
+}
+
+.siteCardLocation i {
+	padding-right: 8%;
+}
+
+
+
+/* 
+ * Site sub info
+ */
+.siteSubInfo {
+	position: absolute;
+	bottom: 5%;
+	
+	display: flex;
+	justify-content: flex-end;
+	
+	margin-right: 3%; 
+}
+
+.siteSubInfo div {
+	display: flex;
+	
+	text-shadow: 1px 1px 2px grey;
+	margin: 0 8%;
+}
+
+.siteSubInfo div i {
+	padding-right: 18%;
+}

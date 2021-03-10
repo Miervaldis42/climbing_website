@@ -1,0 +1,20 @@
+/* Mobile Style */
+#splash {
+	background-image: url("../../assets/splashscreen/splashscreen_background_mobile.png");
+	background-size: cover;
+	background-position-x: 86%;
+}
+
+#splash__logo {
+	display: block;
+
+	margin-top: 10%;
+	margin-left: auto;
+	margin-right: auto;
+
+	width: 40%;
+}
+
+#splash__quote {
+	display: none;
+}

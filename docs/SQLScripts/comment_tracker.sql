@@ -30,4 +30,18 @@ CREATE TABLE `climbing_website_db`.`comments` (
     ON DELETE CASCADE
     ON UPDATE CASCADE
 
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1;
+
+
+
+--
+-- Dumping data for table `comments`
+--
+
+LOCK TABLES `climbing_website_db`.`comments` WRITE;
+
+INSERT INTO `climbing_website_db`.`comments` VALUES 
+	(1, 3, 1, "J'ai visité ce site l'année dernière, c'était cool ! :D", '2020-01-01 10:10:10', '2020-01-02 22:22:22', 1),
+  (2, 2, 2, "Ce site est de nouveau en ligne !", '2020-02-01 10:10:10', null, null);
+
+UNLOCK TABLES;

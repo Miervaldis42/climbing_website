@@ -1,0 +1,394 @@
+/**
+ *
+ * Site Details page - Desktop CSS file
+ *
+ */
+
+
+/* Variables */
+:root {
+	--details-height: 40vh;
+	--details-width: 70vw;
+}
+
+
+/*
+ * Body & Container
+ */
+#siteDetailsBody {
+	background-image: url("https://i.pinimg.com/originals/e0/28/7d/e0287d851660e8e40facdd2233066bca.jpg");
+	background-size: cover;
+}
+
+
+#siteDetailsContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	overflow: auto;
+}
+
+
+/*
+ * Site details
+ */
+#siteDetails {
+	height: var(--details-height);
+	width: var(--details-width);
+	
+	position: relative;
+	display: flex;
+	
+	box-shadow: 6px 6px 2px 1px rgba(0, 0, 0, .2);	
+	background-color: #0FD281;
+}
+
+#siteDetails__img {
+	width: 12vw;
+}
+
+
+
+/*
+ * Display mode
+ */
+#siteDetails__displayMode {
+	width: var(--details-width);
+	padding: 1%;
+	
+	overflow: auto;
+}
+
+#displayMode__tag {
+	font-size: 200%;
+	color: red;
+}
+
+#displayMode__siteInfo {
+	display: flex;
+	flex-direction: column;
+}
+
+#siteInfo__header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#siteInfo__header p:last-child {
+	font-style: italic;
+	margin: 2% 0;
+}
+
+#siteInfo__elements {
+	width: -webkit-fill-available;
+	
+	display: flex;
+	justify-content: space-around;
+
+	padding: 1% 2%;
+}
+
+#siteInfo__elements * h3 {
+	padding-bottom: 8%;
+}
+
+
+
+
+/*
+ * Edit mode
+ */
+#siteDetails__editIcon {
+	position: absolute;
+	top: 2%;
+	right: 1.5%;
+	
+	font-size: 120%;
+}
+
+#siteDetails__editIcon i:hover {
+	font-size: 130%;	
+}
+
+#siteDetails__editMode button[type="submit"] {
+	position: absolute;
+	top: 2%;
+	right: 5%;
+	
+	border: none;
+    background: none;
+}
+
+#siteDetails__editMode button[type="submit"] i {
+	font-size: 150%;
+}
+
+#siteDetails__editMode button[type="submit"] i:hover {
+	font-size: 170%;
+	color: green;
+}
+
+
+#siteDetails__editMode {	
+	width: var(--details-width);
+	overflow: auto;
+}
+
+
+#siteDetails__editMode form {
+	margin: 2% 3%;
+}
+
+#siteDetails__editMode form div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#siteDetails__editMode #editMode__siteTag, #siteDetails__editMode #editMode__siteDesc {
+	margin: 2% 0;
+} 
+
+#siteDetails__editMode .noElements {
+	text-align: center;
+}
+
+#siteDetails__editMode button:not([type="submit"]) {
+	width: 1%;
+	margin: 5%;
+	
+	border: none;
+    background: none;
+}
+
+#siteDetails__editMode button:not([type="submit"]):hover {
+	font-size: 100%;
+	color: red;
+}
+
+#siteDetails__editMode label {
+	font-weight: bold; 
+	margin-bottom: .5%;
+}
+
+#siteDetails__editMode input, #siteDetails__editMode select {	
+	width: 15%;
+	
+	border: none;
+	border-bottom: 1px solid black;
+	background: none;
+	outline: none;
+
+	padding: .2% .4%;
+	
+	z-index: 1;
+}
+
+#siteDetails__editMode textarea {
+	width: 70%;
+
+	border: dashed;
+	outline: none;
+	
+	background: white;
+	padding: .8% 1%;
+	
+	z-index: 1;
+}
+
+#siteDetails__editMode #editMode__components {
+	display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    
+    width: 95%;
+}
+
+#editMode__components div {
+	width: 40%;
+	margin: 2% 0;
+}
+
+#editMode__components h3 {
+	width: 45%;
+}
+
+#editMode__components label {
+	top-margin: 1%;
+}
+
+#editMode__components input, #editMode__components select {
+	width: 80%;
+	
+	padding: 0.5% 1%;
+    margin: 3% 0;
+}
+
+
+/*
+ * Comment section
+ */
+
+#siteDetails__commentList {
+	width: calc(var(--details-width) - 2%);
+	
+	padding: 1%;
+	margin-top: 2%;
+	
+	background-color: rgb(245 245 245 / 74%);
+}
+
+/* Add comment form */
+#commentList__addCommentForm {
+	display: flex;
+	align-items: center;
+	
+	margin: 1%;
+}
+
+#siteDetails__commentList #addCommentForm__avatar {
+	width: 4%;
+}
+
+#siteDetails__commentList #addCommentForm__form {
+	display: flex;
+	flex-basis: var(--details-width);
+	align-items: center;
+}
+
+#addCommentForm__form input, #addCommentForm__form button {
+	border: none;
+	
+	background: none;
+	outline: none;
+}
+
+#addCommentForm__form input {
+	width: 80%;
+	color: #555;
+	
+	border-bottom: 1px solid black;
+	
+	padding: .6% 0;
+}
+
+#addCommentForm__form input::placeholder {
+	padding-left: 2%;
+	font-size: 95%;
+	font-style: italic;
+}
+
+#addCommentForm__form button[type="submit"] {
+	font-size: 120%;
+	margin-left: 2%;
+}
+
+#addCommentForm__form button[type="submit"]:hover {
+	color: green;
+	font-size: 140%;
+}
+
+#commentList__empty {
+	font-style: italic;
+	text-align: center;
+
+    margin: 5% 0;
+}
+
+
+
+/*
+ * Comment list
+ */	
+#siteDetails__commentList .commentList__comment {
+	display: flex;
+	margin: 2% 1%;
+}
+
+#siteDetails__commentList .commentList__avatar, #siteDetails__commentList #addCommentForm__avatar {
+	border-radius: 50%;
+	margin-right: 2%;
+}
+
+#siteDetails__commentList .commentList__avatar {
+	width: 8%;
+}
+
+#siteDetails__commentList .commentList__info {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 100%;
+	justify-content: center;
+	
+	position: relative;
+}
+
+#siteDetails__commentList .commentList__author {
+	font-weight: bolder;
+}
+
+#siteDetails__commentList .commentList__header p:nth-child(2) {
+	color: grey;
+	
+	font-size: 80%;
+	font-style: italic;
+}
+
+#siteDetails__commentList .commentList__body {
+	margin: 1% 0;
+}
+
+#siteDetails__commentList .commentList__body .commentList__content {
+	width: 80%;
+}
+
+
+
+/* Action buttons */
+#siteDetails__commentList .commentList__footer {
+	position: absolute;
+	top: 16%;
+	right: 18%;
+	
+	display: flex;
+	width: 4%;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#siteDetails__commentList .commentList__editMode input {
+	width: 60%;
+	
+	border: none;
+	border-bottom: 1px solid black;
+	background: none;
+	outline: none;
+
+	padding: .4% .8%;
+}
+
+#siteDetails__commentList .commentList__editMode button, #siteDetails__commentList .commentList__footer a, #siteDetails__commentList .commentList__footer button {
+	border: none;
+	background: none;
+	outline: none;
+	
+	font-size: 108%;
+}
+
+#siteDetails__commentList .commentList__footer a {
+	font-size: 115%;
+}
+
+#siteDetails__commentList .commentList__editMode button:hover, #siteDetails__commentList .commentList__footer a:hover, #siteDetails__commentList .commentList__footer button:hover {
+	font-size: 130%;
+}
+
+#siteDetails__commentList .commentList__footer a:hover {
+	color: red;
+}
+
+#siteDetails__commentList .commentList__editMode button:hover {
+	color: green;
+}

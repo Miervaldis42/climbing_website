@@ -1,0 +1,94 @@
+/**
+ *
+ * Login page - Mobile CSS file
+ *
+ */
+ 
+
+/* Body & Container */
+#loginBody {
+	background-image: url(../../assets/backgrounds/auth_background.png);
+	background-size: cover;
+	background-position-x: center;
+}
+ 
+#loginContainer {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#loginContainer h2 {
+	text-align: center;
+	margin: 5% auto;
+}
+
+
+/* Login form */
+#loginForm {
+	display: flex;
+    flex-direction: column;
+    flex-basis: 48%;
+    align-items: center;
+    justify-content: center;
+}
+
+#loginForm * {
+	display: block;
+	text-align: center;
+	margin: 2%;
+}
+
+#loginForm label {
+	font-weight: bolder;
+}
+
+#loginForm label:nth-child(3) {
+	margin-top: 10%;
+}
+
+#loginForm input[type="text"], #loginForm input[type="password"] {
+	text-align: center;
+	padding-bottom: 0.6%;
+
+	background: none;
+	border: none;
+	border-bottom: 1px solid;
+}
+
+#loginForm input:focus {
+	padding-bottom: 3%;
+	outline: none;
+}
+
+
+/* Login button */
+#loginButton {
+	border-radius: 20px;
+	
+	color: var(--main-color);
+	background-color: var(--black-color);
+	
+	padding: 4% 10%;
+	margin-top: 10%;
+}
+
+#loginButton:hover {
+	font-style: italic;
+	transform: translate(0, -4px);
+	background: var(--success-color);
+}
+
+
+
+/* Links */
+#loginLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100vw;	
+    
+    font-style: italic;
+    
+    margin: 2% 0;
+}

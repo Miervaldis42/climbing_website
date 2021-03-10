@@ -1,0 +1,166 @@
+<div id="dashboard__usersTab">
+	<h3>
+		<i class="fa fa-users"></i>
+		Utilisateurs
+	</h3>
+
+	<div id="usersTab__content">
+		<!-- 1st column: List of all users -->
+		<div id="usersTab__userList">
+			<h3>Liste des utilisateurs</h3>
+	
+			<c:forEach items="${ users }" var="u">
+				<a href="/lesamisdelescalade/dashboard/users?userId=${ u.id }" class="user__tile">
+					<img class="avatar" src="<%=request.getContextPath()%>/resources/assets/roles/${ u.role.getRoleName() }.png" alt="${ u.firstname } - ${ u.role.getRoleName() }"/>
+					<p>
+						 ${ u.firstname } ${ u.lastname }
+					</p>
+				</a>
+			</c:forEach>
+		</div>
+		
+		<c:if test="${ not empty user }">
+			<!-- 2nd column: User detail card -->
+			<div id="usersTab__userDetails" class="tile">					
+				<h3>Id: ${ user.id }</h3>
+						
+				<div id="usersTab__userDetailsContent">
+					<div id="user__info">
+						<p>
+							<span>Rôle:</span> ${ user.role.getRoleName() }
+						</p>
+						<p>
+							<span>Nom de famille:</span> ${ user.lastname }
+						</p>
+						<p>
+							<span>Prénom:</span> ${ user.firstname }
+						</p>
+						<p>
+							<span>Adresse mail:</span> ${ user.email }
+						</p>
+					</div>
+					
+					<div id="user__dates">
+						<p>
+							<span>Date de création:</span> ${ userCreationDates.get(user.id) }
+						</p>
+						<p>
+							<span>Dernière modification:</span> ${ empty user.updatedAt ? '---' : userUpdateDates.get(user.id) }
+						</p>
+					</div>					
+				</div>
+				
+				<!-- User edit -->
+				<form id="usersTab__editUserForm" action="/lesamisdelescalade/dashboard/editUser" method="POST" style="display: none;">
+					<input type="hidden" name="userId" value="${ user.id }" />
+					
+					<div>
+						<label>Rôle</label>
+						<select name="role">
+							<c:forEach items="${ roles }" var="r">
+								<option value="${ r }" ${ r == user.role ? 'selected' : '' }>${ r.getRoleName()  }</option>
+							</c:forEach>
+						</select>
+					</div>
+					
+					<div>
+						<label>Nom de famille</label>
+						<input type="text" name="lastname" value="${ user.lastname }" maxlength="45" />
+					</div>
+					
+					<div>
+						<label>Prénom</label>
+						<input type="text" name="firstname" value="${ user.firstname }" maxlength="45" />
+					</div>
+					
+					<div>
+						<label>Adresse email</label>
+						<input type="text" name="email" value="${ user.email }" maxlength="255" />
+					</div>
+					
+					<button type="submit">
+						<i class="fa fa-check"></i>
+					</button>
+				</form>
+				
+				<div id="usersTab__userActionButtons">
+					<a onclick="showUserEditForm()">
+						<i class="fa fa-pencil-alt"></i>
+					</a>
+					
+					<c:url var="deleteUserLink" value="/dashboard/deleteUser">
+						<c:param name="userId" value="${ user.id }" />
+					</c:url>
+					<a onclick="if(!(confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?'))) return false" href="${ deleteUserLink }">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+			</div>
+			
+			<!-- 3rd column: His/Her topos  -->
+			<c:if test="${ not empty userTopos && userTopos.size() > 0 }">
+				<div id="usersTab__userToposList" class="tile">
+					<h3>Ses topos</h3>
+
+					<c:forEach items="${ userTopos }" var="t">
+						<div>
+							<p>
+								<span>Nom:</span> ${ t.name }
+							</p>
+							<p>
+								<span>Lié au site:</span> ${ t.getSite().name }
+							</p>
+							<p>
+								<span>Status:</span> ${ t.status.getStatusName() }
+							</p>
+							<p>
+								<span>Description:</span> ${ t.description }
+							</p>
+							<p>
+								<span>Date de parution:</span> ${ userTopoDates.get(t.id) }
+							</p>
+							<c:if test="${ not empty t.getBorrower() }">
+								<p>
+									<span>Demande d'emprunt ou prêté à:</span>
+									 ${ t.getBorrower().firstname }
+								</p>
+							</c:if>
+						</div>
+					</c:forEach>
+				</div>
+			</c:if>
+			
+			<!-- 4th column: His/Her comments  -->
+			<c:if test="${ not empty userComments && userComments.size() > 0 }">
+				<div id="usersTab__userCommentsList" class="tile">
+					<h3>Ses commentaires</h3>
+					
+					<c:forEach items="${ userComments }" var="c">
+						<div>
+							<p>
+								<span>Sur le site:</span> ${ c.site.name }
+							</p>
+							<p>
+								<span>Contenu:</span> ${ c.content }
+							</p>
+							<p>
+								<span>Créé le:</span> ${ userCommentCreationDates.get(c.id) }
+							</p>
+							
+							<c:if test="${ not empty c.updatedAt }">
+								<p>
+									<span>Modifié le:</span> ${ userCommentUpdateDates.get(c.id) }
+								</p>
+								<p>
+									<span>Modifié par:</span> ${ c.modifiedLastBy.firstname }
+								</p>
+							</c:if>
+						</div>
+					</c:forEach>
+				</div>
+			</c:if>
+
+		</c:if>
+
+	</div>	<!-- Dashboard - Users tab content -->
+</div>

@@ -1,0 +1,94 @@
+/**
+ * Inscription page - Mobile CSS file
+ */
+
+ 
+
+/* 
+ * Body & Container
+ */
+#inscriptionBody {
+	background-image: url(../../assets/backgrounds/auth_background.png);
+	background-size: cover;
+	background-position-x: center;
+}
+ 
+#inscriptionContainer {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#backToLoginButton {
+	display: none;
+}
+
+#inscriptionContainer h2 {
+	text-align: center;
+	margin: 5% auto;
+}
+
+#inscriptionContainer p {
+	text-align: center;
+	font-style: italic;
+	line-height: 1.5;
+	margin: 0 5%;
+}
+
+
+/* Inscription form */
+#inscriptionForm {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 55%;
+}
+
+#inscriptionForm * {
+	display: block;
+	text-align: center;
+	margin: 5%;
+}
+
+#inscriptionForm label {
+	font-weight: bolder
+}
+
+#inscriptionForm input[type="text"], #inscriptionForm input[type="password"] {
+	text-align: center;
+	padding-bottom: 0.6%;
+
+	background: none;
+	border: none;
+	border-bottom: 1px solid;
+}
+
+#inscriptionForm input:focus {
+	padding-bottom: 3%;
+	outline: none;
+}
+
+
+/* Inscription button */
+#inscriptionButton {
+	border-radius: 20px;
+	
+	color: var(--main-color);
+	background-color: var(--black-color);
+	
+	padding: 4% 10%;
+	margin-top: 22%;
+}
+
+#inscriptionButton:hover {
+	font-style: italic;
+	transform: translate(0, -4px);
+	background: var(--success-color);
+}
+
+
+/* Logo & Footer */
+#header__logo, #footer {
+	display: none;
+}
