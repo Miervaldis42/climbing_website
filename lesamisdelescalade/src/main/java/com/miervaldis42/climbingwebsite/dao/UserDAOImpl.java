@@ -67,14 +67,11 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
     public User getUserByCredentials(User unknownUser) {
+		// Hash given password
+		byte[] hashedBytes = hasherMachine.hashPassword(unknownUser.getPassword());
+		String hashedPassword = Hex.encodeHexString(hashedBytes);
 		
-		if(!Objects.equals(unknownUser.getPassword(), "admin")) {
-			// Hash given password
-			byte[] hashedBytes = hasherMachine.hashPassword(unknownUser.getPassword());
-			String hashedPassword = Hex.encodeHexString(hashedBytes);
-			
-			unknownUser.setPassword(hashedPassword);
-		}
+		unknownUser.setPassword(hashedPassword);
 	    
 
 	    // Hibernate transaction

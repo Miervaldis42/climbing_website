@@ -32,7 +32,7 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` VALUES 
-	(1, 'Fallacy', 'Hal', 'admin', 'admin', '0', '2020-01-01 10:10:10', null),
+	(1, 'Fallacy', 'Hal', 'admin', 'fb48e040318246f34f2dda51cc4357c80de92011cdf9441e049b1bc006f11d498e5cd30e8f1acff6ee56c8bd80836878d29b821d2ba5e9d1ded54db357925a93', '0', '2020-01-01 10:10:10', null),
   (2, 'Fallacy', 'Sony', 'sony@gmail.com', 'ecfcf8d91c593f310b62402b702f6264a11672571b57729a6ead59c19860426e7a0fc0f211e906bd126fe507b1563392d02b90a051f5df23191a84a70d59dd3f', '1', '2020-01-01 10:10:10', null),
   (3, 'Cazet', 'Alix', 'alix@gmail.com', 'efdfa25e219d32b630b4234b29ab796f102880a908785fd9415a892230f81c7cce14b382bdf4b111a4019cc6130c4cb5d17c541f91f4542dac65520f9cd3b18c', '2', '2020-01-01 10:10:10', null);
 
